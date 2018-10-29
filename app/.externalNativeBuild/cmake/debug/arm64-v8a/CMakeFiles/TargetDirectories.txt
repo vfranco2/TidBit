@@ -1,0 +1,3 @@
+C:/Users/Vlad/AndroidStudioProjects/TidBit/app/.externalNativeBuild/cmake/debug/arm64-v8a/CMakeFiles/native-lib.dir
+C:/Users/Vlad/AndroidStudioProjects/TidBit/app/.externalNativeBuild/cmake/debug/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/Vlad/AndroidStudioProjects/TidBit/app/.externalNativeBuild/cmake/debug/arm64-v8a/CMakeFiles/rebuild_cache.dir
