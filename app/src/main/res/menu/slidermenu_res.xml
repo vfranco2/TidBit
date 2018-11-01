@@ -2,15 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_interests"
+            android:icon="@android:drawable/btn_plus"
+            android:title="Interests" />
+        <item
+            android:id="@+id/nav_favorites"
             android:icon="@android:drawable/btn_star_big_on"
             android:title="Favorites" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_account"
             android:icon="@android:drawable/ic_dialog_info"
             android:title="Account" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_settings"
             android:icon="@android:drawable/ic_menu_mylocation"
             android:title="Settings" />
     </group>
