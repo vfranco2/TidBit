@@ -28,38 +28,10 @@
             android:layout_gravity="center_horizontal"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-        <!-- Cardview holds the blocks of content, referred to as cards -->
-        <android.support.v7.widget.CardView
-            xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/card_view1"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/cardRecycler"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_margin="8dp"
-            card_view:cardCornerRadius="4dp">
-                <TextView
-                    android:id="@+id/info_text1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
-                    android:layout_weight="1"
-                    tools:text="Test Article 1"/>
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/card_view2"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_margin="8dp"
-            card_view:cardCornerRadius="4dp">
-            <TextView
-                android:id="@+id/info_text2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:layout_weight="1"
-                tools:text="Test Article 2"/>
-        </android.support.v7.widget.CardView>
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
     <!-- Sliding menu, also a little bit delicate -->
