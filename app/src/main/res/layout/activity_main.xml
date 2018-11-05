@@ -28,8 +28,9 @@
             android:layout_gravity="center_horizontal"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
+        <!-- RecyclerView holds all the cards and content, lets scrolling happen -->
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/cardRecycler"
+            android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 

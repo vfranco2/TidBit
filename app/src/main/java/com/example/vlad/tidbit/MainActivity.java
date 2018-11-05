@@ -15,8 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements RecycleViewAdapter.ItemClickListener{
+public class MainActivity extends AppCompatActivity {
 
     // Used to load the 'native-lib' library on application startup.
     static {
@@ -25,14 +26,25 @@ public class MainActivity extends AppCompatActivity implements RecycleViewAdapte
 
     private DrawerLayout mDrawerLayout;
 
-    RecycleViewAdapter adapter;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private List<ArticleHolder> articleList;
+    private ArticleAdapter articleAdapter;
+
+    String[] titles = {"Is Lebron the Goat?" , "Wow I love music" , "Space is Cool" , "More Languages" , "I Can Believe It's Not Butter"};
+    String[] websource = {"ESPN" , "Pitchfork" , "Popular Science" , "Translate" , "Food Network"};
+    String[] acontent = {"This is filler article content. Here's hoping it appears as it should on the card. I'm going to have a stroke if it doesn't, I swear. I've just about had it with these stubborn-ass cardviews and recyclerviews, shit irritating.", "This is filler article content. Here's hoping it appears as it should on the card. I'm going to have a stroke if it doesn't, I swear. I've just about had it with these stubborn-ass cardviews and recyclerviews, shit irritating.", "This is filler article content. Here's hoping it appears as it should on the card. I'm going to have a stroke if it doesn't, I swear. I've just about had it with these stubborn-ass cardviews and recyclerviews, shit irritating.", "This is filler article content. Here's hoping it appears as it should on the card. I'm going to have a stroke if it doesn't, I swear. I've just about had it with these stubborn-ass cardviews and recyclerviews, shit irritating.", "This is filler article content. Here's hoping it appears as it should on the card. I'm going to have a stroke if it doesn't, I swear. I've just about had it with these stubborn-ass cardviews and recyclerviews, shit irritating."};
+    int[] images = {R.drawable.ic_menu, R.drawable.ic_menu,R.drawable.ic_menu,R.drawable.ic_menu,R.drawable.ic_menu};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         mDrawerLayout = findViewById(R.id.navmenubar);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        mLayoutManager = new LinearLayoutManager(this);
+
 
         //Things that happen when you tap menu stuff
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -56,27 +68,16 @@ public class MainActivity extends AppCompatActivity implements RecycleViewAdapte
         actionbar.setDisplayHomeAsUpEnabled(true);
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
 
-        //Recycle view stuff
-        ArrayList<String> articleHold = new ArrayList<>();
-        articleHold.add("Art");
-        articleHold.add("Astronomy");
-        articleHold.add("Auto");
-        articleHold.add("Fashion");
-        articleHold.add("Film");
-        articleHold.add("Finance");
-        articleHold.add("Music");
-        articleHold.add("Photography");
-        articleHold.add("Science");
-        articleHold.add("Sports");
-        articleHold.add("Tech");
-        articleHold.add("Word of the Day");
-        articleHold.add("World");
-
-        RecyclerView recyclerView = findViewById(R.id.cardRecycler);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new RecycleViewAdapter(this, articleHold);
-        adapter.setClickListener(this);
-        recyclerView.setAdapter(adapter);
+        //Recycler view stuff
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        articleList = new ArrayList<>();
+        for (int i = 0; i < titles.length; i++){
+            ArticleHolder article = new ArticleHolder(titles[i], websource[i], acontent[i], images[i]);
+            articleList.add(article);
+        }
+        articleAdapter = new ArticleAdapter(articleList);
+        mRecyclerView.setAdapter(articleAdapter);
+        articleAdapter.notifyDataSetChanged();
     }
 
     //Handle drawer clicks
@@ -90,10 +91,11 @@ public class MainActivity extends AppCompatActivity implements RecycleViewAdapte
         return super.onOptionsItemSelected(item);
     }
 
-    //Handle recycler clicks
+    //Handle recycler
+    /*
     @Override
     public void onItemClick(View view, int position) {
         Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
-    }
+    }*/
 
 }
