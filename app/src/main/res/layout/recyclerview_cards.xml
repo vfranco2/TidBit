@@ -13,14 +13,27 @@
         android:id="@+id/content_holder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/title_text"
-            android:layout_width="90dp"
+        <ImageView
+            android:id="@+id/card_category"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="20dp"
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
+            android:layout_marginBottom="2dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="2dp"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@id/card_category"
             android:layout_weight="1"/>
         <TextView
             android:id="@+id/website_text"
@@ -30,16 +43,17 @@
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
             />
+
         <ImageView
             android:id="@+id/article_image"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:layout_below="@+id/title_text"
-            android:src="@drawable/ic_menu" />
+            android:scaleType="centerCrop"/>
         <TextView
             android:id="@+id/article_text"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"

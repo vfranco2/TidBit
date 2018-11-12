@@ -5,14 +5,19 @@ import java.util.List;
 
 public class ArticleHolder {
     private String articleTitle, websiteSource, articleContent;
-    int articleImage;
+    int articleCategory, articleImage;
 
-    public ArticleHolder(String articleTitle, String websiteSource, String articleContent, int articleImage){
+    public ArticleHolder(int articleCategory, String articleTitle, String websiteSource, String articleContent, int articleImage){
+        this.articleCategory = articleCategory;
         this.articleTitle = articleTitle;
         this.websiteSource = websiteSource;
         this.articleContent = articleContent;
         this.articleImage = articleImage;
     }
+    public int getArticleCategory(){
+        return articleCategory;
+    }
+    public void setArticleCategory(int articleCategory){ this.articleCategory = articleCategory; }
 
     public String getArticleTitle(){
         return articleTitle;

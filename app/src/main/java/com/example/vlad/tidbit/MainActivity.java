@@ -13,8 +13,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import java.lang.Object;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,10 +32,69 @@ public class MainActivity extends AppCompatActivity {
     private List<ArticleHolder> articleList;
     private ArticleAdapter articleAdapter;
 
-    String[] titles = {"Is Lebron the Goat?" , "Wow I love music" , "Space is Cool" , "More Languages" , "I Can Believe It's Not Butter"};
-    String[] websource = {"ESPN" , "Pitchfork" , "Popular Science" , "Translate" , "Food Network"};
-    String[] acontent = {"This is filler article content. Here's hoping it appears as it should on the card. I'm going to have a stroke if it doesn't, I swear. I've just about had it with these stubborn-ass cardviews and recyclerviews, shit irritating.", "This is filler article content. Here's hoping it appears as it should on the card. I'm going to have a stroke if it doesn't, I swear. I've just about had it with these stubborn-ass cardviews and recyclerviews, shit irritating.", "This is filler article content. Here's hoping it appears as it should on the card. I'm going to have a stroke if it doesn't, I swear. I've just about had it with these stubborn-ass cardviews and recyclerviews, shit irritating.", "This is filler article content. Here's hoping it appears as it should on the card. I'm going to have a stroke if it doesn't, I swear. I've just about had it with these stubborn-ass cardviews and recyclerviews, shit irritating.", "This is filler article content. Here's hoping it appears as it should on the card. I'm going to have a stroke if it doesn't, I swear. I've just about had it with these stubborn-ass cardviews and recyclerviews, shit irritating."};
-    int[] images = {R.drawable.ic_menu, R.drawable.ic_menu,R.drawable.ic_menu,R.drawable.ic_menu,R.drawable.ic_menu};
+    int[] category = {R.drawable.ic_action_emo_laugh,
+            R.drawable.ic_action_camera,
+            R.drawable.ic_action_ball,
+            R.drawable.ic_action_car,
+            R.drawable.ic_action_glasses,
+            R.drawable.ic_action_movie,
+            R.drawable.ic_action_line_chart,
+            R.drawable.ic_action_restaurant,
+            R.drawable.ic_action_news,
+            R.drawable.ic_action_record,
+            R.drawable.ic_action_laptop,
+            R.drawable.ic_action_globe};
+    String[] titles = {"Word of the Day:",
+            "Today's Photo:",
+            "Sports Article",
+            "Auto Article",
+            "Fashion Article",
+            "Movie Article",
+            "Finance Article",
+            "Food Article",
+            "Local Article",
+            "Music Article",
+            "Tech Article",
+            "World Article"};
+    String[] websource = {"Dictionary",
+            "Flickr",
+            "ESPN",
+            "Jalopnik",
+            "StockX",
+            "IMDB",
+            "Bloomberg",
+            "Food Network",
+            "OU News",
+            "Pitchfork",
+            "Wired",
+            "CNN"};
+    static String[] acontent = {
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in odio neque. Fusce convallis mauris at dui lacinia tincidunt. Etiam ex augue, posuere at velit sed, imperdiet vehicula metus. Aliquam eu maximus erat. Quisque nec libero pellentesque, egestas arcu et, luctus odio. Nulla tincidunt massa urna, nec sodales lacus ultricies vel.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in odio neque. Fusce convallis mauris at dui lacinia tincidunt. Etiam ex augue, posuere at velit sed, imperdiet vehicula metus. Aliquam eu maximus erat. Quisque nec libero pellentesque, egestas arcu et, luctus odio. Nulla tincidunt massa urna, nec sodales lacus ultricies vel.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in odio neque. Fusce convallis mauris at dui lacinia tincidunt. Etiam ex augue, posuere at velit sed, imperdiet vehicula metus. Aliquam eu maximus erat. Quisque nec libero pellentesque, egestas arcu et, luctus odio. Nulla tincidunt massa urna, nec sodales lacus ultricies vel.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in odio neque. Fusce convallis mauris at dui lacinia tincidunt. Etiam ex augue, posuere at velit sed, imperdiet vehicula metus. Aliquam eu maximus erat. Quisque nec libero pellentesque, egestas arcu et, luctus odio. Nulla tincidunt massa urna, nec sodales lacus ultricies vel.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in odio neque. Fusce convallis mauris at dui lacinia tincidunt. Etiam ex augue, posuere at velit sed, imperdiet vehicula metus. Aliquam eu maximus erat. Quisque nec libero pellentesque, egestas arcu et, luctus odio. Nulla tincidunt massa urna, nec sodales lacus ultricies vel.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in odio neque. Fusce convallis mauris at dui lacinia tincidunt. Etiam ex augue, posuere at velit sed, imperdiet vehicula metus. Aliquam eu maximus erat. Quisque nec libero pellentesque, egestas arcu et, luctus odio. Nulla tincidunt massa urna, nec sodales lacus ultricies vel.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in odio neque. Fusce convallis mauris at dui lacinia tincidunt. Etiam ex augue, posuere at velit sed, imperdiet vehicula metus. Aliquam eu maximus erat. Quisque nec libero pellentesque, egestas arcu et, luctus odio. Nulla tincidunt massa urna, nec sodales lacus ultricies vel.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in odio neque. Fusce convallis mauris at dui lacinia tincidunt. Etiam ex augue, posuere at velit sed, imperdiet vehicula metus. Aliquam eu maximus erat. Quisque nec libero pellentesque, egestas arcu et, luctus odio. Nulla tincidunt massa urna, nec sodales lacus ultricies vel.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in odio neque. Fusce convallis mauris at dui lacinia tincidunt. Etiam ex augue, posuere at velit sed, imperdiet vehicula metus. Aliquam eu maximus erat. Quisque nec libero pellentesque, egestas arcu et, luctus odio. Nulla tincidunt massa urna, nec sodales lacus ultricies vel.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in odio neque. Fusce convallis mauris at dui lacinia tincidunt. Etiam ex augue, posuere at velit sed, imperdiet vehicula metus. Aliquam eu maximus erat. Quisque nec libero pellentesque, egestas arcu et, luctus odio. Nulla tincidunt massa urna, nec sodales lacus ultricies vel.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in odio neque. Fusce convallis mauris at dui lacinia tincidunt. Etiam ex augue, posuere at velit sed, imperdiet vehicula metus. Aliquam eu maximus erat. Quisque nec libero pellentesque, egestas arcu et, luctus odio. Nulla tincidunt massa urna, nec sodales lacus ultricies vel.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in odio neque. Fusce convallis mauris at dui lacinia tincidunt. Etiam ex augue, posuere at velit sed, imperdiet vehicula metus. Aliquam eu maximus erat. Quisque nec libero pellentesque, egestas arcu et, luctus odio. Nulla tincidunt massa urna, nec sodales lacus ultricies vel."
+    };
+
+    int[] images = {R.drawable.word,
+            R.drawable.flickr,
+            R.drawable.lebron,
+            R.drawable.miata,
+            R.drawable.yeezy,
+            R.drawable.imdb,
+            R.drawable.stock,
+            R.drawable.food,
+            R.drawable.ou,
+            R.drawable.music,
+            R.drawable.server,
+            R.drawable.worldnews};
 
 
     @Override
@@ -46,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
 
 
-        //Things that happen when you tap menu stuff
+        //Drawer menu selection
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
@@ -72,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         articleList = new ArrayList<>();
         for (int i = 0; i < titles.length; i++){
-            ArticleHolder article = new ArticleHolder(titles[i], websource[i], acontent[i], images[i]);
+            ArticleHolder article = new ArticleHolder(category[i], titles[i], websource[i], acontent[i], images[i]);
             articleList.add(article);
         }
         articleAdapter = new ArticleAdapter(articleList);

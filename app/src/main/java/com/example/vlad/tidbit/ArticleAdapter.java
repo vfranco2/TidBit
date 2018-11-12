@@ -14,10 +14,11 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public TextView tvTitle, tvSource, tvContent;
-        public ImageView tvImage;
+        public ImageView tvCategory, tvImage;
 
         public ViewHolder(View v){
             super(v);
+            tvCategory = (ImageView)v.findViewById(R.id.card_category);
             tvTitle = (TextView)v.findViewById(R.id.title_text);
             tvSource = (TextView)v.findViewById(R.id.website_text);
             tvContent = (TextView)v.findViewById(R.id.article_text);
@@ -39,6 +40,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
     @Override
     public void onBindViewHolder(ArticleAdapter.ViewHolder holder, int position){
         ArticleHolder article = articleList.get(position);
+        holder.tvCategory.setImageResource(article.getArticleCategory());
         holder.tvTitle.setText(article.getArticleTitle());
         holder.tvSource.setText(article.getWebsiteSource());
         holder.tvContent.setText(article.getArticleContent());
