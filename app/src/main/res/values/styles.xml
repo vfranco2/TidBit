@@ -8,6 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/defaultBackground</item>
         <item name="android:colorBackground">@color/defaultBackground</item>
+        <item name="android:colorForeground">@color/foreground_material_light</item>
 
     </style>
 

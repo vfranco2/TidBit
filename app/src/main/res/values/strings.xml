@@ -1,7 +1,3 @@
 <resources>
     <string name="app_name">TidBit</string>
-    <string name="edit_message">Enter message!</string>
-    <string name="button_send">Send!</string>
-    <string name="menu_top">Settings</string>
-    <string name="menu_top_under">Change your preferences, access your saved pages, and more!</string>
 </resources>

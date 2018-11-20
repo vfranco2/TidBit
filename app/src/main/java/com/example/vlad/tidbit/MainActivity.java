@@ -1,5 +1,6 @@
 package com.example.vlad.tidbit;
 
+import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -17,6 +18,7 @@ import java.lang.Object;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -82,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in odio neque. Fusce convallis mauris at dui lacinia tincidunt. Etiam ex augue, posuere at velit sed, imperdiet vehicula metus. Aliquam eu maximus erat. Quisque nec libero pellentesque, egestas arcu et, luctus odio. Nulla tincidunt massa urna, nec sodales lacus ultricies vel.",
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in odio neque. Fusce convallis mauris at dui lacinia tincidunt. Etiam ex augue, posuere at velit sed, imperdiet vehicula metus. Aliquam eu maximus erat. Quisque nec libero pellentesque, egestas arcu et, luctus odio. Nulla tincidunt massa urna, nec sodales lacus ultricies vel."
     };
-
     int[] images = {R.drawable.word,
             R.drawable.flickr,
             R.drawable.lebron,
@@ -95,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.music,
             R.drawable.server,
             R.drawable.worldnews};
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +114,27 @@ public class MainActivity extends AppCompatActivity {
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         // set item as selected to persist highlight
                         menuItem.setChecked(true);
+                        switch(menuItem.getItemId()){
+                            case R.id.nav_interests:
+                                Intent interestsIntent = new Intent(MainActivity.this, ActivityInterests.class);
+                                startActivity(interestsIntent);
+                                break;
+                                /*
+                            case R.id.nav_favorites:
+                                Intent interestsFavorites = new Intent(MainActivity.this, ActivityFavorites.class);
+                                startActivity(interestsFavorites);
+                                break;
+                            case R.id.nav_account:
+                                Intent interestsAccount = new Intent(MainActivity.this, ActivityAccount.class);
+                                startActivity(interestsAccount);
+                                break;
+                            case R.id.nav_settings:
+                                Intent interestsSettings = new Intent(MainActivity.this, ActivitySettings.class);
+                                startActivity(interestsSettings);
+                                break;    */
+                        }
+
+
                         // close drawer when item is tapped
                         mDrawerLayout.closeDrawers();
 
@@ -124,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
         //Toolbar stuff
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(android.graphics.Color.WHITE);
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
@@ -140,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
         articleAdapter.notifyDataSetChanged();
     }
 
-    //Handle drawer clicks
+    //Handle drawer click opening
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -150,12 +172,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-    //Handle recycler
-    /*
-    @Override
-    public void onItemClick(View view, int position) {
-        Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
-    }*/
 
 }
