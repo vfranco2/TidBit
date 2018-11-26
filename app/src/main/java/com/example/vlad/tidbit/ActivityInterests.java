@@ -32,6 +32,4 @@ public class ActivityInterests extends AppCompatActivity {
         });
 
     }
-
-
 }

@@ -46,6 +46,4 @@ public class ArticleHolder {
     public void setArticleImage(int articleImage){
         this.articleImage = articleImage;
     }
-
-
 }

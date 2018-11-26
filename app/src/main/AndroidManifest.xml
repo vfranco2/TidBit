@@ -13,19 +13,16 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".MainActivity"
-            android:theme="@style/AppTheme">
+            android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".ActivityInterests"
             android:label="TidBit Interests"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.vlad.tidbit.MainActivity" />
@@ -33,26 +30,23 @@
         <activity
             android:name=".ActivityFavorites"
             android:label="TidBit Favorites"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.vlad.tidbit.MainActivity" />
         </activity>
         <activity
             android:name=".ActivityAccount"
-            android:label="TidBit Favorites"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme">
+            android:label="TidBit Account"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.vlad.tidbit.MainActivity" />
         </activity>
         <activity
             android:name=".ActivitySettings"
-            android:label="TidBit Favorites"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme">
+            android:label="TidBit Settings"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.vlad.tidbit.MainActivity" />

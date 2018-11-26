@@ -29,6 +29,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static java.util.logging.Logger.global;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -101,38 +103,36 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.ic_action_restaurant,
             R.drawable.ic_action_record,
             R.drawable.ic_action_laptop};
-    String[] titles = {"Word of the Day:Word of the Day:Word of the Day:Word of the Day:Word of the Day:",
-            "Today's Photo:",
-            "Sports Article",
-            "Auto Article",
-            "Fashion Article",
-            "Movie Article",
-            "Finance Article",
-            "Food Article",
-            "Music Article",
-            "Tech Article"};
-    String[] websource = {"Dictionary",
-            "Flickr",
-            "ESPN",
-            "Jalopnik",
-            "StockX",
-            "IMDB",
-            "Bloomberg",
-            "Food Network",
-            "Pitchfork",
-            "Wired"};
-    static String[] acontent = {
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in odio neque. Fusce convallis mauris at dui lacinia tincidunt. Etiam ex augue, posuere at velit sed, imperdiet vehicula metus. Aliquam eu maximus erat. Quisque nec libero pellentesque, egestas arcu et, luctus odio. Nulla tincidunt massa urna, nec sodales lacus ultricies vel.",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in odio neque. Fusce convallis mauris at dui lacinia tincidunt. Etiam ex augue, posuere at velit sed, imperdiet vehicula metus. Aliquam eu maximus erat. Quisque nec libero pellentesque, egestas arcu et, luctus odio. Nulla tincidunt massa urna, nec sodales lacus ultricies vel.",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in odio neque. Fusce convallis mauris at dui lacinia tincidunt. Etiam ex augue, posuere at velit sed, imperdiet vehicula metus. Aliquam eu maximus erat. Quisque nec libero pellentesque, egestas arcu et, luctus odio. Nulla tincidunt massa urna, nec sodales lacus ultricies vel.",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in odio neque. Fusce convallis mauris at dui lacinia tincidunt. Etiam ex augue, posuere at velit sed, imperdiet vehicula metus. Aliquam eu maximus erat. Quisque nec libero pellentesque, egestas arcu et, luctus odio. Nulla tincidunt massa urna, nec sodales lacus ultricies vel.",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in odio neque. Fusce convallis mauris at dui lacinia tincidunt. Etiam ex augue, posuere at velit sed, imperdiet vehicula metus. Aliquam eu maximus erat. Quisque nec libero pellentesque, egestas arcu et, luctus odio. Nulla tincidunt massa urna, nec sodales lacus ultricies vel.",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in odio neque. Fusce convallis mauris at dui lacinia tincidunt. Etiam ex augue, posuere at velit sed, imperdiet vehicula metus. Aliquam eu maximus erat. Quisque nec libero pellentesque, egestas arcu et, luctus odio. Nulla tincidunt massa urna, nec sodales lacus ultricies vel.",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in odio neque. Fusce convallis mauris at dui lacinia tincidunt. Etiam ex augue, posuere at velit sed, imperdiet vehicula metus. Aliquam eu maximus erat. Quisque nec libero pellentesque, egestas arcu et, luctus odio. Nulla tincidunt massa urna, nec sodales lacus ultricies vel.",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in odio neque. Fusce convallis mauris at dui lacinia tincidunt. Etiam ex augue, posuere at velit sed, imperdiet vehicula metus. Aliquam eu maximus erat. Quisque nec libero pellentesque, egestas arcu et, luctus odio. Nulla tincidunt massa urna, nec sodales lacus ultricies vel.",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in odio neque. Fusce convallis mauris at dui lacinia tincidunt. Etiam ex augue, posuere at velit sed, imperdiet vehicula metus. Aliquam eu maximus erat. Quisque nec libero pellentesque, egestas arcu et, luctus odio. Nulla tincidunt massa urna, nec sodales lacus ultricies vel.",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in odio neque. Fusce convallis mauris at dui lacinia tincidunt. Etiam ex augue, posuere at velit sed, imperdiet vehicula metus. Aliquam eu maximus erat. Quisque nec libero pellentesque, egestas arcu et, luctus odio. Nulla tincidunt massa urna, nec sodales lacus ultricies vel.",
-            };
+    String[] titles = {"Content not found!",
+            "Content not found!",
+            "Content not found!",
+            "Content not found!",
+            "Content not found!",
+            "Content not found!",
+            "Content not found!",
+            "Content not found!",
+            "Content not found!",
+            "Content not found!"};
+    String[] websource = {"",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",};
+    static String[] acontent = {"Content not found!",
+            "Content not found!",
+            "Content not found!",
+            "Content not found!",
+            "Content not found!",
+            "Content not found!",
+            "Content not found!",
+            "Content not found!",
+            "Content not found!",
+            "Content not found!"};
     int[] images = {R.drawable.word,
             R.drawable.flickr,
             R.drawable.lebron,
@@ -167,16 +167,16 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(interestsIntent);
                                 break;
                             case R.id.nav_favorites:
-                                Intent interestsFavorites = new Intent(MainActivity.this, ActivityFavorites.class);
-                                startActivity(interestsFavorites);
+                                Intent favoritesIntent = new Intent(MainActivity.this, ActivityFavorites.class);
+                                startActivity(favoritesIntent);
                                 break;
                             case R.id.nav_account:
-                                Intent interestsAccount = new Intent(MainActivity.this, ActivityAccount.class);
-                                startActivity(interestsAccount);
+                                Intent accountIntent = new Intent(MainActivity.this, ActivityAccount.class);
+                                startActivity(accountIntent);
                                 break;
                             case R.id.nav_settings:
-                                Intent interestsSettings = new Intent(MainActivity.this, ActivitySettings.class);
-                                startActivity(interestsSettings);
+                                Intent settingsIntent = new Intent(MainActivity.this, ActivitySettings.class);
+                                startActivity(settingsIntent);
                                 break;
                         }
 
@@ -206,326 +206,44 @@ public class MainActivity extends AppCompatActivity {
         articleAdapter = new ArticleAdapter(articleList);
         mRecyclerView.setAdapter(articleAdapter);
         articleAdapter.notifyDataSetChanged();
-        // -------------------------------------------------------------------------
-        // -------------------------------------------------------------------------
-        // -------------------------------------------------------------------------
-        //Firebase stuff
-        firebaseDocs[0].get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists()){
-                    acontent[0] = documentSnapshot.getString(TIDBIT_KEY);
-                    websource[0] = documentSnapshot.getString(SOURCE_KEY);
-                    titles[0] = documentSnapshot.getString(HEADLINE_KEY);
-                    Log.d(TAG, "Document was successfully retrieved: "+websource[3]+": "+acontent[3]);
 
-                    //Re-populate the view with database content
-                    mRecyclerView.setLayoutManager(mLayoutManager);
-                    articleList = new ArrayList<>();
-                    for (int i = 0; i < titles.length; i++){
-                        ArticleHolder article = new ArticleHolder(category[i], titles[i], websource[i], acontent[i], images[i]);
-                        articleList.add(article);
+        //Firebase stuff, assigns scraped data to cards
+        for (int k = 0; k <firebaseDocs.length; k++){
+            final int j = k;
+            firebaseDocs[j].get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    if (documentSnapshot.exists()){
+                        acontent[j] = documentSnapshot.getString(TIDBIT_KEY);
+                        websource[j] = documentSnapshot.getString(SOURCE_KEY);
+                        titles[j] = documentSnapshot.getString(HEADLINE_KEY);
+                        Log.d(TAG, "Document was successfully retrieved: "+websource[3]+": "+acontent[3]);
+
+                        //Re-populate the view with database content
+                        mRecyclerView.setLayoutManager(mLayoutManager);
+                        articleList = new ArrayList<>();
+                        //get rid of this array
+                        for (int i = 0; i < titles.length; i++){
+                            ArticleHolder article = new ArticleHolder(category[i], titles[i], websource[i], acontent[i], images[i]);
+                            articleList.add(article);
+                        }
+                        articleAdapter = new ArticleAdapter(articleList);
+                        mRecyclerView.setAdapter(articleAdapter);
+                        articleAdapter.notifyDataSetChanged();
                     }
-                    articleAdapter = new ArticleAdapter(articleList);
-                    mRecyclerView.setAdapter(articleAdapter);
-                    articleAdapter.notifyDataSetChanged();
-                }
-                else {
-                    Log.d(TAG, "Error: Document does not exist.");
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d(TAG, "Document was not retrieved.", e);
-            }
-        });
-
-        firebaseDocs[1].get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists()){
-                    acontent[1] = documentSnapshot.getString(TIDBIT_KEY);
-                    websource[1] = documentSnapshot.getString(SOURCE_KEY);
-                    titles[1] = documentSnapshot.getString(HEADLINE_KEY);
-                    Log.d(TAG, "Document was successfully retrieved: "+websource[3]+": "+acontent[3]);
-
-                    //Re-populate the view with database content
-                    mRecyclerView.setLayoutManager(mLayoutManager);
-                    articleList = new ArrayList<>();
-                    for (int i = 0; i < titles.length; i++){
-                        ArticleHolder article = new ArticleHolder(category[i], titles[i], websource[i], acontent[i], images[i]);
-                        articleList.add(article);
+                    else {
+                        Log.d(TAG, "Error: Document does not exist.");
                     }
-                    articleAdapter = new ArticleAdapter(articleList);
-                    mRecyclerView.setAdapter(articleAdapter);
-                    articleAdapter.notifyDataSetChanged();
                 }
-                else {
-                    Log.d(TAG, "Error: Document does not exist.");
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.d(TAG, "Document was not retrieved.", e);
                 }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d(TAG, "Document was not retrieved.", e);
-            }
-        });
+            });
+        }
 
-        firebaseDocs[2].get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists()){
-                    acontent[2] = documentSnapshot.getString(TIDBIT_KEY);
-                    websource[2] = documentSnapshot.getString(SOURCE_KEY);
-                    titles[2] = documentSnapshot.getString(HEADLINE_KEY);
-                    Log.d(TAG, "Document was successfully retrieved: "+websource[3]+": "+acontent[3]);
-
-                    //Re-populate the view with database content
-                    mRecyclerView.setLayoutManager(mLayoutManager);
-                    articleList = new ArrayList<>();
-                    for (int i = 0; i < titles.length; i++){
-                        ArticleHolder article = new ArticleHolder(category[i], titles[i], websource[i], acontent[i], images[i]);
-                        articleList.add(article);
-                    }
-                    articleAdapter = new ArticleAdapter(articleList);
-                    mRecyclerView.setAdapter(articleAdapter);
-                    articleAdapter.notifyDataSetChanged();
-                }
-                else {
-                    Log.d(TAG, "Error: Document does not exist.");
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d(TAG, "Document was not retrieved.", e);
-            }
-        });
-
-
-        firebaseDocs[3].get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists()){
-                    acontent[3] = documentSnapshot.getString(TIDBIT_KEY);
-                    websource[3] = documentSnapshot.getString(SOURCE_KEY);
-                    titles[3] = documentSnapshot.getString(HEADLINE_KEY);
-                    Log.d(TAG, "Document was successfully retrieved: "+websource[3]+": "+acontent[3]);
-
-                    //Re-populate the view with database content
-                    mRecyclerView.setLayoutManager(mLayoutManager);
-                    articleList = new ArrayList<>();
-                    for (int i = 0; i < titles.length; i++){
-                        ArticleHolder article = new ArticleHolder(category[i], titles[i], websource[i], acontent[i], images[i]);
-                        articleList.add(article);
-                    }
-                    articleAdapter = new ArticleAdapter(articleList);
-                    mRecyclerView.setAdapter(articleAdapter);
-                    articleAdapter.notifyDataSetChanged();
-                }
-                else {
-                    Log.d(TAG, "Error: Document does not exist.");
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d(TAG, "Document was not retrieved.", e);
-            }
-        });
-
-        firebaseDocs[4].get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists()){
-                    acontent[4] = documentSnapshot.getString(TIDBIT_KEY);
-                    websource[4] = documentSnapshot.getString(SOURCE_KEY);
-                    titles[4] = documentSnapshot.getString(HEADLINE_KEY);
-                    Log.d(TAG, "Document was successfully retrieved: "+websource[3]+": "+acontent[3]);
-
-                    //Re-populate the view with database content
-                    mRecyclerView.setLayoutManager(mLayoutManager);
-                    articleList = new ArrayList<>();
-                    for (int i = 0; i < titles.length; i++){
-                        ArticleHolder article = new ArticleHolder(category[i], titles[i], websource[i], acontent[i], images[i]);
-                        articleList.add(article);
-                    }
-                    articleAdapter = new ArticleAdapter(articleList);
-                    mRecyclerView.setAdapter(articleAdapter);
-                    articleAdapter.notifyDataSetChanged();
-                }
-                else {
-                    Log.d(TAG, "Error: Document does not exist.");
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d(TAG, "Document was not retrieved.", e);
-            }
-        });
-
-        firebaseDocs[5].get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists()){
-                    acontent[5] = documentSnapshot.getString(TIDBIT_KEY);
-                    websource[5] = documentSnapshot.getString(SOURCE_KEY);
-                    titles[5] = documentSnapshot.getString(HEADLINE_KEY);
-                    Log.d(TAG, "Document was successfully retrieved: "+websource[3]+": "+acontent[3]);
-
-                    //Re-populate the view with database content
-                    mRecyclerView.setLayoutManager(mLayoutManager);
-                    articleList = new ArrayList<>();
-                    for (int i = 0; i < titles.length; i++){
-                        ArticleHolder article = new ArticleHolder(category[i], titles[i], websource[i], acontent[i], images[i]);
-                        articleList.add(article);
-                    }
-                    articleAdapter = new ArticleAdapter(articleList);
-                    mRecyclerView.setAdapter(articleAdapter);
-                    articleAdapter.notifyDataSetChanged();
-                }
-                else {
-                    Log.d(TAG, "Error: Document does not exist.");
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d(TAG, "Document was not retrieved.", e);
-            }
-        });
-
-        firebaseDocs[6].get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists()){
-                    acontent[6] = documentSnapshot.getString(TIDBIT_KEY);
-                    websource[6] = documentSnapshot.getString(SOURCE_KEY);
-                    titles[6] = documentSnapshot.getString(HEADLINE_KEY);
-                    Log.d(TAG, "Document was successfully retrieved: "+websource[3]+": "+acontent[3]);
-
-                    //Re-populate the view with database content
-                    mRecyclerView.setLayoutManager(mLayoutManager);
-                    articleList = new ArrayList<>();
-                    for (int i = 0; i < titles.length; i++){
-                        ArticleHolder article = new ArticleHolder(category[i], titles[i], websource[i], acontent[i], images[i]);
-                        articleList.add(article);
-                    }
-                    articleAdapter = new ArticleAdapter(articleList);
-                    mRecyclerView.setAdapter(articleAdapter);
-                    articleAdapter.notifyDataSetChanged();
-                }
-                else {
-                    Log.d(TAG, "Error: Document does not exist.");
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d(TAG, "Document was not retrieved.", e);
-            }
-        });
-
-        firebaseDocs[7].get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists()){
-                    acontent[7] = documentSnapshot.getString(TIDBIT_KEY);
-                    websource[7] = documentSnapshot.getString(SOURCE_KEY);
-                    titles[7] = documentSnapshot.getString(HEADLINE_KEY);
-                    Log.d(TAG, "Document was successfully retrieved: "+websource[3]+": "+acontent[3]);
-
-                    //Re-populate the view with database content
-                    mRecyclerView.setLayoutManager(mLayoutManager);
-                    articleList = new ArrayList<>();
-                    for (int i = 0; i < titles.length; i++){
-                        ArticleHolder article = new ArticleHolder(category[i], titles[i], websource[i], acontent[i], images[i]);
-                        articleList.add(article);
-                    }
-                    articleAdapter = new ArticleAdapter(articleList);
-                    mRecyclerView.setAdapter(articleAdapter);
-                    articleAdapter.notifyDataSetChanged();
-                }
-                else {
-                    Log.d(TAG, "Error: Document does not exist.");
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d(TAG, "Document was not retrieved.", e);
-            }
-        });
-
-        firebaseDocs[8].get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists()){
-                    acontent[8] = documentSnapshot.getString(TIDBIT_KEY);
-                    websource[8] = documentSnapshot.getString(SOURCE_KEY);
-                    titles[8] = documentSnapshot.getString(HEADLINE_KEY);
-                    Log.d(TAG, "Document was successfully retrieved: "+websource[3]+": "+acontent[3]);
-
-                    //Re-populate the view with database content
-                    mRecyclerView.setLayoutManager(mLayoutManager);
-                    articleList = new ArrayList<>();
-                    for (int i = 0; i < titles.length; i++){
-                        ArticleHolder article = new ArticleHolder(category[i], titles[i], websource[i], acontent[i], images[i]);
-                        articleList.add(article);
-                    }
-                    articleAdapter = new ArticleAdapter(articleList);
-                    mRecyclerView.setAdapter(articleAdapter);
-                    articleAdapter.notifyDataSetChanged();
-                }
-                else {
-                    Log.d(TAG, "Error: Document does not exist.");
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d(TAG, "Document was not retrieved.", e);
-            }
-        });
-
-
-        firebaseDocs[9].get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists()){
-                    acontent[9] = documentSnapshot.getString(TIDBIT_KEY);
-                    websource[9] = documentSnapshot.getString(SOURCE_KEY);
-                    titles[9] = documentSnapshot.getString(HEADLINE_KEY);
-                    Log.d(TAG, "Document was successfully retrieved: "+websource[3]+": "+acontent[3]);
-
-                    //Re-populate the view with database content
-                    mRecyclerView.setLayoutManager(mLayoutManager);
-                    articleList = new ArrayList<>();
-                    for (int i = 0; i < titles.length; i++){
-                        ArticleHolder article = new ArticleHolder(category[i], titles[i], websource[i], acontent[i], images[i]);
-                        articleList.add(article);
-                    }
-                    articleAdapter = new ArticleAdapter(articleList);
-                    mRecyclerView.setAdapter(articleAdapter);
-                    articleAdapter.notifyDataSetChanged();
-                }
-                else {
-                    Log.d(TAG, "Error: Document does not exist.");
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d(TAG, "Document was not retrieved.", e);
-            }
-        });
-
-
-    }//end onCreate
-
-
+    }
 
     //Handle drawer click opening
     @Override

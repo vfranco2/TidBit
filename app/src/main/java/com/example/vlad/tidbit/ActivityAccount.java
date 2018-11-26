@@ -17,7 +17,7 @@ public class ActivityAccount extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_favorites);
+        setContentView(R.layout.activity_account);
 
         //Toolbar stuff - only change the mToolbar.setTitle field to match your activity
         Toolbar mToolbar = findViewById(R.id.toolbar_activity);
@@ -32,6 +32,4 @@ public class ActivityAccount extends AppCompatActivity {
         });
 
     }
-
-
 }
