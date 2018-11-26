@@ -11,7 +11,7 @@
         android:id="@+id/toolbar_activity"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimaryDark"
         app:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
     <LinearLayout
@@ -75,13 +75,6 @@
             android:text="Food"
             android:onClick="onCheckboxClicked"
             android:paddingTop="7dp"/>
-        <CheckBox android:id="@+id/checkbox_local"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_action_news"
-            android:text="Local"
-            android:onClick="onCheckboxClicked"
-            android:paddingTop="7dp"/>
         <CheckBox android:id="@+id/checkbox_music"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -94,13 +87,6 @@
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_action_laptop"
             android:text="Tech"
-            android:onClick="onCheckboxClicked"
-            android:paddingTop="7dp"/>
-        <CheckBox android:id="@+id/checkbox_world"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_action_globe"
-            android:text="World"
             android:onClick="onCheckboxClicked"
             android:paddingTop="7dp"/>
     </LinearLayout>

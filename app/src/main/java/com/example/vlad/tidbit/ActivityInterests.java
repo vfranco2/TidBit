@@ -20,7 +20,7 @@ public class ActivityInterests extends AppCompatActivity {
         setContentView(R.layout.activity_interests);
 
         //Toolbar stuff - only change the mToolbar.setTitle field to match your activity
-        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar_activity);
+        Toolbar mToolbar = findViewById(R.id.toolbar_activity);
         mToolbar.setTitle("Interests");
         mToolbar.setTitleTextColor(0xFFFFFFFF);
         mToolbar.setNavigationIcon(R.drawable.ic_arrow_left_white);
@@ -30,8 +30,6 @@ public class ActivityInterests extends AppCompatActivity {
                 finish();
             }
         });
-
-
 
     }
 

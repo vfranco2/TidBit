@@ -1,10 +1,28 @@
 <resources>
 
     <!-- Base application theme. -->
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">#9575cd</item>
+        <item name="colorPrimaryDark">#673ab7</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/defaultBackground</item>
+        <item name="android:colorBackground">@color/defaultBackground</item>
+        <item name="android:colorForeground">@color/foreground_material_light</item>
+    </style>
+
+    <style name="AppThemeRed" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#cb5a5a</item>
+        <item name="colorPrimaryDark">#8b1919</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/defaultBackground</item>
+        <item name="android:colorBackground">@color/defaultBackground</item>
+        <item name="android:colorForeground">@color/foreground_material_light</item>
+    </style>
+
+    <style name="AppThemeGreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#73BD76</item>
+        <item name="colorPrimaryDark">#4F6936</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/defaultBackground</item>
         <item name="android:colorBackground">@color/defaultBackground</item>
