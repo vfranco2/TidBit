@@ -149,9 +149,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mDrawerLayout = findViewById(R.id.navmenubar);
-        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        mRecyclerView = findViewById(R.id.recycler_view);
         mLayoutManager = new LinearLayoutManager(this);
-
 
         //Drawer menu selection
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -180,7 +179,6 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                         }
 
-
                         // close drawer when item is tapped
                         mDrawerLayout.closeDrawers();
 
@@ -196,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
         actionbar.setDisplayHomeAsUpEnabled(true);
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
 
-        //Recycler view stuff
+        //Recycler view stuff, fills with default images/text
         mRecyclerView.setLayoutManager(mLayoutManager);
         articleList = new ArrayList<>();
         for (int i = 0; i < titles.length; i++){
@@ -223,6 +221,7 @@ public class MainActivity extends AppCompatActivity {
                         mRecyclerView.setLayoutManager(mLayoutManager);
                         articleList = new ArrayList<>();
                         //get rid of this array
+                        
                         for (int i = 0; i < titles.length; i++){
                             ArticleHolder article = new ArticleHolder(category[i], titles[i], websource[i], acontent[i], images[i]);
                             articleList.add(article);
@@ -230,6 +229,14 @@ public class MainActivity extends AppCompatActivity {
                         articleAdapter = new ArticleAdapter(articleList);
                         mRecyclerView.setAdapter(articleAdapter);
                         articleAdapter.notifyDataSetChanged();
+
+                        //Click handling
+                        articleAdapter.setOnItemClickListener(new ArticleAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(int position) {
+                                Toast.makeText(getApplicationContext(), "You clicked " + position, Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
                     else {
                         Log.d(TAG, "Error: Document does not exist.");

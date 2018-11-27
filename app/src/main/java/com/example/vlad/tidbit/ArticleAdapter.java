@@ -6,23 +6,47 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHolder>{
     private List<ArticleHolder> articleList;
 
+    //Card clicking stuff
+    private OnItemClickListener mListener;
+    public interface OnItemClickListener{
+        void onItemClick(int position);
+    }
+    public void setOnItemClickListener(OnItemClickListener listener){
+        mListener = listener;
+    }
+
+    //Viewholder
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public TextView tvTitle, tvSource, tvContent;
         public ImageView tvCategory, tvImage;
 
-        public ViewHolder(View v){
+        public ViewHolder(View v, final OnItemClickListener listener){
             super(v);
             tvCategory = (ImageView)v.findViewById(R.id.card_category);
             tvTitle = (TextView)v.findViewById(R.id.title_text);
             tvSource = (TextView)v.findViewById(R.id.website_text);
             tvContent = (TextView)v.findViewById(R.id.article_text);
             tvImage = (ImageView)v.findViewById(R.id.article_image);
+
+            //Some item click stuff in constructor
+            v.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    if (listener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            listener.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 
@@ -33,7 +57,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
     @Override
     public ArticleAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_cards, parent, false);
-        ViewHolder vh = new ViewHolder(v);
+        ViewHolder vh = new ViewHolder(v, mListener);
         return vh;
     }
 
