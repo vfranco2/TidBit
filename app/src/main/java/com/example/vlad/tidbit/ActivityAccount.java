@@ -19,7 +19,7 @@ public class ActivityAccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
 
-        //Toolbar stuff - only change the mToolbar.setTitle field to match your activity
+        //Toolbar stuff
         Toolbar mToolbar = findViewById(R.id.toolbar_activity);
         mToolbar.setTitle("Account");
         mToolbar.setTitleTextColor(0xFFFFFFFF);

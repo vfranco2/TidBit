@@ -22,7 +22,7 @@ public class ActivitySettings extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         //Toolbar stuff
-        final Toolbar mToolbar = findViewById(R.id.toolbar_activity);
+        Toolbar mToolbar = findViewById(R.id.toolbar_activity);
         mToolbar.setTitle("Settings");
         mToolbar.setTitleTextColor(0xFFFFFFFF);
         mToolbar.setNavigationIcon(R.drawable.ic_arrow_left_white);
@@ -33,33 +33,5 @@ public class ActivitySettings extends AppCompatActivity {
             }
         });
 
-        //Button stuff
-        Button redButton = (Button) findViewById(R.id.button_red);
-        Button greenButton = (Button) findViewById(R.id.button_green);
-        Button purpleButton = (Button) findViewById(R.id.button_purple);
-        redButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                mToolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimaryRed));
-                Window window = getWindow();
-                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                window.setStatusBarColor(getResources().getColor(R.color.colorPrimaryDarkRed));
-            }
-        });
-        greenButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                mToolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimaryGreen));
-                Window window = getWindow();
-                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                window.setStatusBarColor(getResources().getColor(R.color.colorPrimaryDarkGreen));
-            }
-        });
-        purpleButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                mToolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                Window window = getWindow();
-                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                window.setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
-            }
-        });
     }
 }

@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.net.*;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -70,15 +71,13 @@ public class MainActivity extends AppCompatActivity {
             techRef
     };
 
-
-
     //Used for getting data fields in Firebase
     public static final String TAG = "TIDBIT";
     public static final String TIDBIT_KEY = "tidbit";
     public static final String SOURCE_KEY = "source";
     public static final String HEADLINE_KEY = "headline";
     public static final String IMAGE_KEY = "image_URL";
-
+    public static final String URL_KEY = "article_link";
 
     public static final String[] CATEGORIES = {
             "WOD",
@@ -90,9 +89,7 @@ public class MainActivity extends AppCompatActivity {
             "finance",
             "food",
             "music",
-            "technology"
-    };
-
+            "technology"};
     int[] category = {R.drawable.ic_action_emo_laugh,
             R.drawable.ic_action_camera,
             R.drawable.ic_action_ball,
@@ -113,16 +110,7 @@ public class MainActivity extends AppCompatActivity {
             "Content not found!",
             "Content not found!",
             "Content not found!"};
-    String[] websource = {"",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",};
+    String[] websource = {"", "", "", "", "", "", "", "", "", "",};
     static String[] acontent = {"Content not found!",
             "Content not found!",
             "Content not found!",
@@ -143,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.food,
             R.drawable.music,
             R.drawable.server};
+    String[] source_URLs = {"", "", "", "", "", "", "", "", "", "",};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -181,7 +170,6 @@ public class MainActivity extends AppCompatActivity {
 
                         // close drawer when item is tapped
                         mDrawerLayout.closeDrawers();
-
                         return true;
                     }
                 });
@@ -198,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         articleList = new ArrayList<>();
         for (int i = 0; i < titles.length; i++){
-            ArticleHolder article = new ArticleHolder(category[i], titles[i], websource[i], acontent[i], images[i]);
+            ArticleHolder article = new ArticleHolder(category[i], titles[i], websource[i], acontent[i], images[i], source_URLs[i]);
             articleList.add(article);
         }
         articleAdapter = new ArticleAdapter(articleList);
@@ -215,26 +203,27 @@ public class MainActivity extends AppCompatActivity {
                         acontent[j] = documentSnapshot.getString(TIDBIT_KEY);
                         websource[j] = documentSnapshot.getString(SOURCE_KEY);
                         titles[j] = documentSnapshot.getString(HEADLINE_KEY);
+                        source_URLs[j] = documentSnapshot.getString(URL_KEY);
                         Log.d(TAG, "Document was successfully retrieved: "+websource[3]+": "+acontent[3]);
 
-                        //Re-populate the view with database content
-                        mRecyclerView.setLayoutManager(mLayoutManager);
-                        articleList = new ArrayList<>();
-                        //get rid of this array
-                        
-                        for (int i = 0; i < titles.length; i++){
-                            ArticleHolder article = new ArticleHolder(category[i], titles[i], websource[i], acontent[i], images[i]);
-                            articleList.add(article);
-                        }
+                        //Re-populate the view with database content at that location
+                        ArticleHolder article = new ArticleHolder(category[j], titles[j], websource[j], acontent[j], images[j], source_URLs[j]);
+                        articleList.set(j, article);
+
                         articleAdapter = new ArticleAdapter(articleList);
                         mRecyclerView.setAdapter(articleAdapter);
                         articleAdapter.notifyDataSetChanged();
 
-                        //Click handling
+                        //Click handling for each article
                         articleAdapter.setOnItemClickListener(new ArticleAdapter.OnItemClickListener() {
                             @Override
                             public void onItemClick(int position) {
+                                Uri webpage = Uri.parse(source_URLs[position]);
                                 Toast.makeText(getApplicationContext(), "You clicked " + position, Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+                                if (intent.resolveActivity(getPackageManager()) != null) {
+                                    startActivity(intent);
+                                }
                             }
                         });
                     }

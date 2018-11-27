@@ -24,7 +24,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
 
     //Viewholder
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        public TextView tvTitle, tvSource, tvContent;
+        public TextView tvTitle, tvSource, tvContent, tvURL;
         public ImageView tvCategory, tvImage;
 
         public ViewHolder(View v, final OnItemClickListener listener){
@@ -34,6 +34,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
             tvSource = (TextView)v.findViewById(R.id.website_text);
             tvContent = (TextView)v.findViewById(R.id.article_text);
             tvImage = (ImageView)v.findViewById(R.id.article_image);
+            tvURL = (TextView)v.findViewById(R.id.article_url);
 
             //Some item click stuff in constructor
             v.setOnClickListener(new View.OnClickListener(){
@@ -69,6 +70,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
         holder.tvSource.setText(article.getWebsiteSource());
         holder.tvContent.setText(article.getArticleContent());
         holder.tvImage.setImageResource(article.getArticleImage());
+        holder.tvURL.setText(article.getArticleUrl());
     }
 
     @Override

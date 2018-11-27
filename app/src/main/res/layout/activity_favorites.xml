@@ -14,13 +14,4 @@
         android:background="@color/colorPrimary"
         app:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="30dp"
-        android:orientation="vertical">
-    </LinearLayout>
-
-
-
 </LinearLayout>

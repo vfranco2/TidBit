@@ -19,7 +19,7 @@ public class ActivityFavorites extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorites);
 
-        //Toolbar stuff - only change the mToolbar.setTitle field to match your activity
+        //Toolbar stuff
         Toolbar mToolbar = findViewById(R.id.toolbar_activity);
         mToolbar.setTitle("Favorites");
         mToolbar.setTitleTextColor(0xFFFFFFFF);
