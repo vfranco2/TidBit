@@ -8,6 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -30,6 +31,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static android.view.View.GONE;
+import static android.view.View.INVISIBLE;
 import static java.util.logging.Logger.global;
 
 
@@ -45,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private List<ArticleHolder> articleList;
     private ArticleAdapter articleAdapter;
+    private CardView mCardView;
 
     //Firebase references
     DocumentReference wordRef = FirebaseFirestore.getInstance().document("words/card_0");
@@ -79,58 +83,28 @@ public class MainActivity extends AppCompatActivity {
     public static final String IMAGE_KEY = "image_URL";
     public static final String URL_KEY = "article_link";
 
-    public static final String[] CATEGORIES = {
-            "WOD",
-            "POD",
-            "sports",
-            "cars",
-            "fashion",
-            "movie",
-            "finance",
-            "food",
-            "music",
-            "technology"};
-    int[] category = {R.drawable.ic_action_emo_laugh,
-            R.drawable.ic_action_camera,
-            R.drawable.ic_action_ball,
-            R.drawable.ic_action_car,
-            R.drawable.ic_action_glasses,
-            R.drawable.ic_action_movie,
-            R.drawable.ic_action_line_chart,
-            R.drawable.ic_action_restaurant,
-            R.drawable.ic_action_record,
-            R.drawable.ic_action_laptop};
-    String[] titles = {"Content not found!",
-            "Content not found!",
-            "Content not found!",
-            "Content not found!",
-            "Content not found!",
-            "Content not found!",
-            "Content not found!",
-            "Content not found!",
-            "Content not found!",
-            "Content not found!"};
+    public static final String[] CATEGORIES = {"WOD", "POD", "sports", "cars", "fashion", "movie", "finance", "food", "music", "technology"};
+    int[] category = {R.drawable.ic_action_emo_laugh, R.drawable.ic_action_camera,
+            R.drawable.ic_action_ball, R.drawable.ic_action_car,
+            R.drawable.ic_action_glasses, R.drawable.ic_action_movie,
+            R.drawable.ic_action_line_chart, R.drawable.ic_action_restaurant,
+            R.drawable.ic_action_record, R.drawable.ic_action_laptop};
+    String[] titles = {"Content not found!", "Content not found!",
+            "Content not found!", "Content not found!",
+            "Content not found!", "Content not found!",
+            "Content not found!", "Content not found!",
+            "Content not found!", "Content not found!"};
     String[] websource = {"", "", "", "", "", "", "", "", "", "",};
-    static String[] acontent = {"Content not found!",
-            "Content not found!",
-            "Content not found!",
-            "Content not found!",
-            "Content not found!",
-            "Content not found!",
-            "Content not found!",
-            "Content not found!",
-            "Content not found!",
-            "Content not found!"};
-    int[] images = {R.drawable.word,
-            R.drawable.flickr,
-            R.drawable.lebron,
-            R.drawable.miata,
-            R.drawable.yeezy,
-            R.drawable.imdb,
-            R.drawable.stock,
-            R.drawable.food,
-            R.drawable.music,
-            R.drawable.server};
+    static String[] acontent = {"Content not found!", "Content not found!",
+            "Content not found!", "Content not found!",
+            "Content not found!", "Content not found!",
+            "Content not found!", "Content not found!",
+            "Content not found!", "Content not found!"};
+    int[] images = {R.drawable.word, R.drawable.flickr,
+            R.drawable.lebron, R.drawable.miata,
+            R.drawable.yeezy, R.drawable.imdb,
+            R.drawable.stock, R.drawable.food,
+            R.drawable.music, R.drawable.server};
     String[] source_URLs = {"", "", "", "", "", "", "", "", "", "",};
 
     @Override
@@ -167,7 +141,6 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(settingsIntent);
                                 break;
                         }
-
                         // close drawer when item is tapped
                         mDrawerLayout.closeDrawers();
                         return true;
@@ -194,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
         articleAdapter.notifyDataSetChanged();
 
         //Firebase stuff, assigns scraped data to cards
+        //Keep final int j=k, cannot use non-final variables for population
         for (int k = 0; k <firebaseDocs.length; k++){
             final int j = k;
             firebaseDocs[j].get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -204,10 +178,10 @@ public class MainActivity extends AppCompatActivity {
                         websource[j] = documentSnapshot.getString(SOURCE_KEY);
                         titles[j] = documentSnapshot.getString(HEADLINE_KEY);
                         source_URLs[j] = documentSnapshot.getString(URL_KEY);
-                        Log.d(TAG, "Document was successfully retrieved: "+websource[3]+": "+acontent[3]);
+                        Log.d(TAG, "Document was successfully retrieved: "+websource[j]+": "+acontent[j]);
 
                         //Re-populate the view with database content at that location
-                        ArticleHolder article = new ArticleHolder(category[j], titles[j], websource[j], acontent[j], images[j], source_URLs[j]);
+                        final ArticleHolder article = new ArticleHolder(category[j], titles[j], websource[j], acontent[j], images[j], source_URLs[j]);
                         articleList.set(j, article);
 
                         articleAdapter = new ArticleAdapter(articleList);
@@ -215,17 +189,20 @@ public class MainActivity extends AppCompatActivity {
                         articleAdapter.notifyDataSetChanged();
 
                         //Click handling for each article
+
                         articleAdapter.setOnItemClickListener(new ArticleAdapter.OnItemClickListener() {
                             @Override
                             public void onItemClick(int position) {
-                                Uri webpage = Uri.parse(source_URLs[position]);
                                 Toast.makeText(getApplicationContext(), "You clicked " + position, Toast.LENGTH_SHORT).show();
+                                Uri webpage = Uri.parse(source_URLs[position]);
                                 Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
                                 if (intent.resolveActivity(getPackageManager()) != null) {
                                     startActivity(intent);
                                 }
+
                             }
                         });
+
                     }
                     else {
                         Log.d(TAG, "Error: Document does not exist.");
@@ -238,7 +215,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-
     }
 
     //Handle drawer click opening
@@ -251,5 +227,4 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }
