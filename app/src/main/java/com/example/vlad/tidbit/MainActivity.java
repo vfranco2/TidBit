@@ -1,8 +1,12 @@
 package com.example.vlad.tidbit;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -17,6 +21,9 @@ import android.net.*;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -45,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private List<ArticleHolder> articleList;
     private ArticleAdapter articleAdapter;
+
+
+
+
 
     //Firebase references
     DocumentReference wordRef = FirebaseFirestore.getInstance().document("words/card_0");
@@ -141,6 +152,21 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.recycler_view);
         mLayoutManager = new LinearLayoutManager(this);
 
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
+
+
+
+
         //Drawer menu selection
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(
@@ -194,6 +220,7 @@ public class MainActivity extends AppCompatActivity {
         articleAdapter.notifyDataSetChanged();
 
         //Firebase stuff, assigns scraped data to cards
+        //some shit
         for (int k = 0; k <firebaseDocs.length; k++){
             final int j = k;
             firebaseDocs[j].get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
