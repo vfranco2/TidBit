@@ -238,10 +238,12 @@ public class MainActivity extends AppCompatActivity {
             if (interested[h]){
                 newList.add(articleList.get(h));
             }
-            else{
-                newList.remove(articleList.get(h));
-            }
         }
+
+        for (int i = 0; i < newList.size(); i++) {
+            source_URLs[i] = newList.get(i).getArticleUrl();
+        }
+
         articleAdapter = new ArticleAdapter(newList);
         mRecyclerView.setAdapter(articleAdapter);
         articleAdapter.notifyDataSetChanged();
