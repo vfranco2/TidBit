@@ -27,7 +27,11 @@
         <item name="android:windowBackground">@color/defaultBackground</item>
         <item name="android:colorBackground">@color/defaultBackground</item>
         <item name="android:colorForeground">@color/foreground_material_light</item>
+    </style>
 
+    <style name="AppTheme.Popup">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
     </style>
 
 </resources>

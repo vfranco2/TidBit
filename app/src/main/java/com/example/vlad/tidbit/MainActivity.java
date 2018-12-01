@@ -2,6 +2,8 @@ package com.example.vlad.tidbit;
 
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -9,6 +11,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -53,10 +56,6 @@ public class MainActivity extends AppCompatActivity {
     private List<ArticleHolder> articleList;
     private ArticleAdapter articleAdapter;
 
-
-
-
-
     //Firebase references
     DocumentReference wordRef = FirebaseFirestore.getInstance().document("words/card_0");
     DocumentReference photosRef = FirebaseFirestore.getInstance().document("photography/card_0");
@@ -69,17 +68,8 @@ public class MainActivity extends AppCompatActivity {
     DocumentReference sportsRef = FirebaseFirestore.getInstance().document("sports/card_0");
     DocumentReference techRef = FirebaseFirestore.getInstance().document("technology/card_2");
 
-    private DocumentReference[] firebaseDocs = {
-            wordRef,
-            photosRef,
-            sportsRef,
-            carsRef,
-            fashionRef,
-            movieRef,
-            financeRef,
-            foodRef,
-            musicRef,
-            techRef
+    private DocumentReference[] firebaseDocs = {wordRef, photosRef, sportsRef, carsRef, fashionRef,
+            movieRef, financeRef, foodRef, musicRef, techRef
     };
 
     //Used for getting data fields in Firebase
@@ -89,59 +79,31 @@ public class MainActivity extends AppCompatActivity {
     public static final String HEADLINE_KEY = "headline";
     public static final String IMAGE_KEY = "image_URL";
     public static final String URL_KEY = "article_link";
+    int counter = 0;
 
     public static final String[] CATEGORIES = {
-            "WOD",
-            "POD",
-            "sports",
-            "cars",
-            "fashion",
-            "movie",
-            "finance",
-            "food",
-            "music",
-            "technology"};
-    int[] category = {R.drawable.ic_action_emo_laugh,
-            R.drawable.ic_action_camera,
-            R.drawable.ic_action_ball,
-            R.drawable.ic_action_car,
-            R.drawable.ic_action_glasses,
-            R.drawable.ic_action_movie,
-            R.drawable.ic_action_line_chart,
-            R.drawable.ic_action_restaurant,
-            R.drawable.ic_action_record,
-            R.drawable.ic_action_laptop};
-    String[] titles = {"Content not found!",
-            "Content not found!",
-            "Content not found!",
-            "Content not found!",
-            "Content not found!",
-            "Content not found!",
-            "Content not found!",
-            "Content not found!",
-            "Content not found!",
-            "Content not found!"};
+            "WOD", "POD", "sports", "cars", "fashion", "movie", "finance", "food", "music", "technology"};
+    int[] category = {R.drawable.ic_action_emo_laugh, R.drawable.ic_action_camera,
+            R.drawable.ic_action_ball, R.drawable.ic_action_car,
+            R.drawable.ic_action_glasses, R.drawable.ic_action_movie,
+            R.drawable.ic_action_line_chart, R.drawable.ic_action_restaurant,
+            R.drawable.ic_action_record, R.drawable.ic_action_laptop};
+    String[] titles = {"Content not found!", "Content not found!",
+            "Content not found!", "Content not found!",
+            "Content not found!", "Content not found!",
+            "Content not found!", "Content not found!",
+            "Content not found!", "Content not found!"};
     String[] websource = {"", "", "", "", "", "", "", "", "", "",};
-    static String[] acontent = {"Content not found!",
-            "Content not found!",
-            "Content not found!",
-            "Content not found!",
-            "Content not found!",
-            "Content not found!",
-            "Content not found!",
-            "Content not found!",
-            "Content not found!",
-            "Content not found!"};
-    int[] images = {R.drawable.word,
-            R.drawable.flickr,
-            R.drawable.lebron,
-            R.drawable.miata,
-            R.drawable.yeezy,
-            R.drawable.imdb,
-            R.drawable.stock,
-            R.drawable.food,
-            R.drawable.music,
-            R.drawable.server};
+    static String[] acontent = {"Content not found!", "Content not found!",
+            "Content not found!", "Content not found!",
+            "Content not found!", "Content not found!",
+            "Content not found!", "Content not found!",
+            "Content not found!", "Content not found!"};
+    int[] images = {R.drawable.word, R.drawable.flickr,
+            R.drawable.lebron, R.drawable.miata,
+            R.drawable.yeezy, R.drawable.imdb,
+            R.drawable.stock, R.drawable.food,
+            R.drawable.music, R.drawable.server};
     String[] source_URLs = {"", "", "", "", "", "", "", "", "", "",};
 
     @Override
@@ -152,20 +114,13 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.recycler_view);
         mLayoutManager = new LinearLayoutManager(this);
 
-
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                startActivity(new Intent (MainActivity.this, ActivityInterests.class));
             }
         });
-
-
-
-
 
         //Drawer menu selection
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -176,10 +131,6 @@ public class MainActivity extends AppCompatActivity {
                         // set item as selected to persist highlight
                         menuItem.setChecked(true);
                         switch(menuItem.getItemId()){
-                            case R.id.nav_interests:
-                                Intent interestsIntent = new Intent(MainActivity.this, ActivityInterests.class);
-                                startActivity(interestsIntent);
-                                break;
                             case R.id.nav_favorites:
                                 Intent favoritesIntent = new Intent(MainActivity.this, ActivityFavorites.class);
                                 startActivity(favoritesIntent);
@@ -193,7 +144,6 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(settingsIntent);
                                 break;
                         }
-
                         // close drawer when item is tapped
                         mDrawerLayout.closeDrawers();
                         return true;
@@ -211,16 +161,17 @@ public class MainActivity extends AppCompatActivity {
         //Recycler view stuff, fills with default images/text
         mRecyclerView.setLayoutManager(mLayoutManager);
         articleList = new ArrayList<>();
+
         for (int i = 0; i < titles.length; i++){
             ArticleHolder article = new ArticleHolder(category[i], titles[i], websource[i], acontent[i], images[i], source_URLs[i]);
             articleList.add(article);
         }
+
         articleAdapter = new ArticleAdapter(articleList);
         mRecyclerView.setAdapter(articleAdapter);
         articleAdapter.notifyDataSetChanged();
 
         //Firebase stuff, assigns scraped data to cards
-        //some shit
         for (int k = 0; k <firebaseDocs.length; k++){
             final int j = k;
             firebaseDocs[j].get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -241,6 +192,14 @@ public class MainActivity extends AppCompatActivity {
                         mRecyclerView.setAdapter(articleAdapter);
                         articleAdapter.notifyDataSetChanged();
 
+                        counter++;
+                        System.out.println(counter);
+                        if (counter == 10) {
+                            System.out.println("new code");
+                            articleAdapter.printList();
+                            System.out.println(articleList.get(5));
+                            coolList(articleList);
+                        }
                         //Click handling for each article
                         articleAdapter.setOnItemClickListener(new ArticleAdapter.OnItemClickListener() {
                             @Override
@@ -265,7 +224,27 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+    }
 
+    public void coolList(List<ArticleHolder> articleList){
+        List<ArticleHolder> newList;
+        newList = new ArrayList<>();
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        boolean[] interested = new boolean[10];
+        String[] boolKeys = {"wodvalue", "podvalue", "sportsvalue", "autovalue", "fashionvalue", "filmvalue", "financevalue", "foodvalue", "musicvalue", "techvalue"};
+        for (int h = 0; h<10; h++){
+            interested[h] = preferences.getBoolean(boolKeys[h], false);
+            if (interested[h]){
+                newList.add(articleList.get(h));
+            }
+            else{
+                newList.remove(articleList.get(h));
+            }
+        }
+        articleAdapter = new ArticleAdapter(newList);
+        mRecyclerView.setAdapter(articleAdapter);
+        articleAdapter.notifyDataSetChanged();
     }
 
     //Handle drawer click opening
@@ -278,5 +257,4 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }
