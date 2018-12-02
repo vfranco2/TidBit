@@ -25,9 +25,6 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.Fragment;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -105,6 +102,19 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.tidbitbannerbw,R.drawable.tidbitbannerbw,
             R.drawable.tidbitbannerbw,R.drawable.tidbitbannerbw,};
     String[] source_URLs = {"", "", "", "", "", "", "", "", "", "",};
+    String[] image_URLs = {
+            "https://imgplaceholder.com/420x320/ff7f7f/333333/fa-image",
+            "https://imgplaceholder.com/420x320/ff7f7f/333333/fa-image",
+            "https://imgplaceholder.com/420x320/ff7f7f/333333/fa-image",
+            "https://imgplaceholder.com/420x320/ff7f7f/333333/fa-image",
+            "https://imgplaceholder.com/420x320/ff7f7f/333333/fa-image",
+            "https://imgplaceholder.com/420x320/ff7f7f/333333/fa-image",
+            "https://imgplaceholder.com/420x320/ff7f7f/333333/fa-image",
+            "https://imgplaceholder.com/420x320/ff7f7f/333333/fa-image",
+            "https://imgplaceholder.com/420x320/ff7f7f/333333/fa-image",
+            "https://imgplaceholder.com/420x320/ff7f7f/333333/fa-image",
+            "https://imgplaceholder.com/420x320/ff7f7f/333333/fa-image"};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
         articleList = new ArrayList<>();
 
         for (int i = 0; i < titles.length; i++){
-            ArticleHolder article = new ArticleHolder(category[i], titles[i], websource[i], acontent[i], images[i], source_URLs[i]);
+            ArticleHolder article = new ArticleHolder(category[i], titles[i], websource[i], acontent[i], source_URLs[i], image_URLs[i]);
             articleList.add(article);
         }
 
@@ -183,10 +193,11 @@ public class MainActivity extends AppCompatActivity {
                         websource[j] = documentSnapshot.getString(SOURCE_KEY);
                         titles[j] = documentSnapshot.getString(HEADLINE_KEY);
                         source_URLs[j] = documentSnapshot.getString(URL_KEY);
-                        Log.d(TAG, "Document was successfully retrieved: "+websource[3]+": "+acontent[3]);
+                        image_URLs[j] = documentSnapshot.getString(IMAGE_KEY);
+                        Log.d(TAG, "Document was successfully retrieved: "+websource[j]+": "+acontent[j]);
 
                         //Re-populate the view with database content at that location
-                        ArticleHolder article = new ArticleHolder(category[j], titles[j], websource[j], acontent[j], images[j], source_URLs[j]);
+                        ArticleHolder article = new ArticleHolder(category[j], titles[j], websource[j], acontent[j], source_URLs[j], image_URLs[j]);
                         articleList.set(j, article);
 
                         articleAdapter = new ArticleAdapter(articleList);

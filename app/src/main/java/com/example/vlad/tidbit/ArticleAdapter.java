@@ -8,14 +8,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import android.content.Context;
+import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHolder>{
     private List<ArticleHolder> articleList;
+    private Context context;
+
+    //Constructor
+    public ArticleAdapter(List<ArticleHolder> articleList, Context context){
+        this.articleList = articleList;
+        this.context = context;
+    }
 
     //Card clicking stuff
     private OnItemClickListener mListener;
-
     public interface OnItemClickListener{
         void onItemClick(int position);
     }
@@ -78,8 +86,14 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
         holder.tvTitle.setText(article.getArticleTitle());
         holder.tvSource.setText(article.getWebsiteSource());
         holder.tvContent.setText(article.getArticleContent());
-        holder.tvImage.setImageResource(article.getArticleImage());
         holder.tvURL.setText(article.getArticleUrl());
+
+        Picasso.with(context)
+                .load(article.getArticleImageURL())
+                .resize(3000,2000)
+                .centerCrop()
+                .error(R.drawable.tidbitbannerbw)
+                .into(holder.tvImage);
     }
 
     @Override
