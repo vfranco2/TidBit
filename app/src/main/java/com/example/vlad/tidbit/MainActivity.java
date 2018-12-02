@@ -99,11 +99,11 @@ public class MainActivity extends AppCompatActivity {
             "Content not found!", "Content not found!",
             "Content not found!", "Content not found!",
             "Content not found!", "Content not found!"};
-    int[] images = {R.drawable.word, R.drawable.flickr,
-            R.drawable.lebron, R.drawable.miata,
-            R.drawable.yeezy, R.drawable.imdb,
-            R.drawable.stock, R.drawable.food,
-            R.drawable.music, R.drawable.server};
+    int[] images = {R.drawable.tidbitbannerbw,R.drawable.tidbitbannerbw,
+            R.drawable.tidbitbannerbw,R.drawable.tidbitbannerbw,
+            R.drawable.tidbitbannerbw,R.drawable.tidbitbannerbw,
+            R.drawable.tidbitbannerbw,R.drawable.tidbitbannerbw,
+            R.drawable.tidbitbannerbw,R.drawable.tidbitbannerbw,};
     String[] source_URLs = {"", "", "", "", "", "", "", "", "", "",};
 
     @Override
@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.recycler_view);
         mLayoutManager = new LinearLayoutManager(this);
 
+        //Interests button
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -226,6 +227,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Generate new list based on checked interests in ActivityInterests
     public void coolList(List<ArticleHolder> articleList){
         List<ArticleHolder> newList;
         newList = new ArrayList<>();
