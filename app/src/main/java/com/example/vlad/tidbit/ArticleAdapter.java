@@ -15,6 +15,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
 
     //Card clicking stuff
     private OnItemClickListener mListener;
+
     public interface OnItemClickListener{
         void onItemClick(int position);
     }
@@ -53,6 +54,14 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
 
     public ArticleAdapter(List<ArticleHolder> articleList){
         this.articleList = articleList;
+    }
+
+    public void printList(){
+        System.out.print("[");
+        for(ArticleHolder it : articleList) {
+            System.out.print(it.toString() + ", ");
+        }
+        System.out.print("]");
     }
 
     @Override

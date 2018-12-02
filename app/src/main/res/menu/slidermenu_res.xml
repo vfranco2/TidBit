@@ -2,10 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_interests"
-            android:icon="@drawable/ic_assistant_photo_black_24dp"
-            android:title="Interests" />
-        <item
             android:id="@+id/nav_favorites"
             android:icon="@drawable/ic_star_black_24dp"
             android:title="Favorites" />
