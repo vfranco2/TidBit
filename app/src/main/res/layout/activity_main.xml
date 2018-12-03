@@ -44,7 +44,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
         </LinearLayout>
-
     </android.support.design.widget.CoordinatorLayout>
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
@@ -53,5 +52,5 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="false"
         app:menu="@menu/slidermenu_res"
-        app:headerLayout="@layout/slidermenu_layout_res" />
+        app:headerLayout="@layout/slidermenu_layout_res"/>
 </android.support.v4.widget.DrawerLayout>

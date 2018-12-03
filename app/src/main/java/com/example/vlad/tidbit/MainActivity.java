@@ -83,28 +83,42 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String[] CATEGORIES = {
             "WOD", "POD", "sports", "cars", "fashion", "movie", "finance", "food", "music", "technology"};
-    int[] category = {R.drawable.ic_action_emo_laugh, R.drawable.ic_action_camera,
+
+    int[] category = {
+            R.drawable.ic_action_emo_laugh, R.drawable.ic_action_camera,
             R.drawable.ic_action_ball, R.drawable.ic_action_car,
             R.drawable.ic_action_glasses, R.drawable.ic_action_movie,
             R.drawable.ic_action_line_chart, R.drawable.ic_action_restaurant,
             R.drawable.ic_action_record, R.drawable.ic_action_laptop};
+
     String[] titles = {"Content not found!", "Content not found!",
             "Content not found!", "Content not found!",
             "Content not found!", "Content not found!",
             "Content not found!", "Content not found!",
             "Content not found!", "Content not found!"};
+
     String[] websource = {"", "", "", "", "", "", "", "", "", "",};
+
     static String[] acontent = {"Content not found!", "Content not found!",
             "Content not found!", "Content not found!",
             "Content not found!", "Content not found!",
             "Content not found!", "Content not found!",
             "Content not found!", "Content not found!"};
-    int[] images = {R.drawable.word, R.drawable.flickr,
-            R.drawable.lebron, R.drawable.miata,
-            R.drawable.yeezy, R.drawable.imdb,
-            R.drawable.stock, R.drawable.food,
-            R.drawable.music, R.drawable.server};
+
     String[] source_URLs = {"", "", "", "", "", "", "", "", "", "",};
+
+    String[] image_URLs = {
+            "https://imgplaceholder.com/420x320/ff7f7f/333333/fa-image",
+            "https://imgplaceholder.com/420x320/ff7f7f/333333/fa-image",
+            "https://imgplaceholder.com/420x320/ff7f7f/333333/fa-image",
+            "https://imgplaceholder.com/420x320/ff7f7f/333333/fa-image",
+            "https://imgplaceholder.com/420x320/ff7f7f/333333/fa-image",
+            "https://imgplaceholder.com/420x320/ff7f7f/333333/fa-image",
+            "https://imgplaceholder.com/420x320/ff7f7f/333333/fa-image",
+            "https://imgplaceholder.com/420x320/ff7f7f/333333/fa-image",
+            "https://imgplaceholder.com/420x320/ff7f7f/333333/fa-image",
+            "https://imgplaceholder.com/420x320/ff7f7f/333333/fa-image",
+            "https://imgplaceholder.com/420x320/ff7f7f/333333/fa-image",};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,18 +145,7 @@ public class MainActivity extends AppCompatActivity {
                         // set item as selected to persist highlight
                         menuItem.setChecked(true);
                         switch(menuItem.getItemId()){
-                            case R.id.nav_favorites:
-                                Intent favoritesIntent = new Intent(MainActivity.this, ActivityFavorites.class);
-                                startActivity(favoritesIntent);
-                                break;
-                            case R.id.nav_account:
-                                Intent accountIntent = new Intent(MainActivity.this, ActivityAccount.class);
-                                startActivity(accountIntent);
-                                break;
-                            case R.id.nav_settings:
-                                Intent settingsIntent = new Intent(MainActivity.this, ActivitySettings.class);
-                                startActivity(settingsIntent);
-                                break;
+
                         }
                         // close drawer when item is tapped
                         mDrawerLayout.closeDrawers();
@@ -163,11 +166,11 @@ public class MainActivity extends AppCompatActivity {
         articleList = new ArrayList<>();
 
         for (int i = 0; i < titles.length; i++){
-            ArticleHolder article = new ArticleHolder(category[i], titles[i], websource[i], acontent[i], images[i], source_URLs[i]);
+            ArticleHolder article = new ArticleHolder(category[i], titles[i], websource[i], acontent[i], source_URLs[i], image_URLs[i]);
             articleList.add(article);
         }
 
-        articleAdapter = new ArticleAdapter(articleList);
+        articleAdapter = new ArticleAdapter(articleList, getApplicationContext());
         mRecyclerView.setAdapter(articleAdapter);
         articleAdapter.notifyDataSetChanged();
 
@@ -182,13 +185,14 @@ public class MainActivity extends AppCompatActivity {
                         websource[j] = documentSnapshot.getString(SOURCE_KEY);
                         titles[j] = documentSnapshot.getString(HEADLINE_KEY);
                         source_URLs[j] = documentSnapshot.getString(URL_KEY);
+                        image_URLs[j] = documentSnapshot.getString(IMAGE_KEY);
                         Log.d(TAG, "Document was successfully retrieved: "+websource[3]+": "+acontent[3]);
 
                         //Re-populate the view with database content at that location
-                        ArticleHolder article = new ArticleHolder(category[j], titles[j], websource[j], acontent[j], images[j], source_URLs[j]);
+                        ArticleHolder article = new ArticleHolder(category[j], titles[j], websource[j], acontent[j], source_URLs[j], image_URLs[j]);
                         articleList.set(j, article);
 
-                        articleAdapter = new ArticleAdapter(articleList);
+                        articleAdapter = new ArticleAdapter(articleList, getApplicationContext());
                         mRecyclerView.setAdapter(articleAdapter);
                         articleAdapter.notifyDataSetChanged();
 
@@ -241,10 +245,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         for (int i = 0; i < newList.size(); i++) {
-            source_URLs[i] = newList.get(i).getArticleUrl();
+            source_URLs[i] = newList.get(i).getArticleImage();
         }
 
-        articleAdapter = new ArticleAdapter(newList);
+        articleAdapter = new ArticleAdapter(newList,getApplicationContext());
         mRecyclerView.setAdapter(articleAdapter);
         articleAdapter.notifyDataSetChanged();
     }

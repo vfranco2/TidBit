@@ -8,10 +8,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import android.content.Context;
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHolder>{
     private List<ArticleHolder> articleList;
+    private Context context;
 
     //Card clicking stuff
     private OnItemClickListener mListener;
@@ -19,6 +24,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
     public interface OnItemClickListener{
         void onItemClick(int position);
     }
+
     public void setOnItemClickListener(OnItemClickListener listener){
         mListener = listener;
     }
@@ -52,10 +58,12 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
         }
     }
 
-    public ArticleAdapter(List<ArticleHolder> articleList){
+    public ArticleAdapter(List<ArticleHolder> articleList,Context context){
         this.articleList = articleList;
+        this.context = context;
     }
 
+    // Yousif's function to check code working and see results
     public void printList(){
         System.out.print("[");
         for(ArticleHolder it : articleList) {
@@ -78,8 +86,16 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
         holder.tvTitle.setText(article.getArticleTitle());
         holder.tvSource.setText(article.getWebsiteSource());
         holder.tvContent.setText(article.getArticleContent());
-        holder.tvImage.setImageResource(article.getArticleImage());
+
         holder.tvURL.setText(article.getArticleUrl());
+
+        Picasso.with(context)
+                .load(article.getArticleUrl())
+                .resize(1500,750)
+                .centerCrop()
+                .error(R.drawable.tidbitbannerbw)
+                .into(holder.tvImage);
+
     }
 
     @Override

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ArticleHolder {
-    private String articleTitle, websiteSource, articleContent, articleURL;
-    int articleCategory, articleImage;
+    private String articleTitle, websiteSource, articleContent, articleURL,articleImage;
+    int articleCategory;
 
-    public ArticleHolder(int articleCategory, String articleTitle, String websiteSource, String articleContent, int articleImage, String articleURL){
+    public ArticleHolder(int articleCategory, String articleTitle, String websiteSource, String articleContent, String articleImage, String articleURL){
         this.articleCategory = articleCategory;
         this.articleTitle = articleTitle;
         this.websiteSource = websiteSource;
@@ -41,10 +41,11 @@ public class ArticleHolder {
         this.articleContent = articleContent;
     }
 
-    public int getArticleImage(){
+    public String getArticleImage(){
         return articleImage;
     }
-    public void setArticleImage(int articleImage){
+
+    public void setArticleImage(String articleImage){
         this.articleImage = articleImage;
     }
 
