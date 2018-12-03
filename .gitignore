@@ -1,0 +1,9 @@
+app/
+app/*
+.vscode/
+.vscode/*
+python/.vscode/*
+python/.vscode*
+python/scraper/__pycache__/*
+python/scraper/__pycache__*
+python/scraper/ServiceAccountKey.*

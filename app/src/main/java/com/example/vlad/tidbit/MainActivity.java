@@ -1,17 +1,13 @@
 package com.example.vlad.tidbit;
 
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,25 +18,14 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.net.*;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.Fragment;
-
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.*;
-import com.google.android.gms.*;
 
-import java.lang.Object;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
-import static java.util.logging.Logger.global;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -57,18 +42,18 @@ public class MainActivity extends AppCompatActivity {
     private ArticleAdapter articleAdapter;
 
     //Firebase references
-    DocumentReference wordRef = FirebaseFirestore.getInstance().document("words/card_0");
+    DocumentReference gameRef = FirebaseFirestore.getInstance().document("gaming/card_0");
     DocumentReference photosRef = FirebaseFirestore.getInstance().document("photography/card_0");
     DocumentReference carsRef = FirebaseFirestore.getInstance().document("cars/card_0");
     DocumentReference fashionRef = FirebaseFirestore.getInstance().document("fashion/card_0");
     DocumentReference movieRef = FirebaseFirestore.getInstance().document("movie/card_0");
     DocumentReference financeRef = FirebaseFirestore.getInstance().document("finance/card_0");
-    DocumentReference foodRef = FirebaseFirestore.getInstance().document("food/card_0");
+    DocumentReference foodRef = FirebaseFirestore.getInstance().document("cuisine/card_0");
     DocumentReference musicRef = FirebaseFirestore.getInstance().document("music/card_0");
     DocumentReference sportsRef = FirebaseFirestore.getInstance().document("sports/card_0");
-    DocumentReference techRef = FirebaseFirestore.getInstance().document("technology/card_2");
+    DocumentReference techRef = FirebaseFirestore.getInstance().document("technology/card_0");
 
-    private DocumentReference[] firebaseDocs = {wordRef, photosRef, sportsRef, carsRef, fashionRef,
+    private DocumentReference[] firebaseDocs = {gameRef, photosRef, sportsRef, carsRef, fashionRef,
             movieRef, financeRef, foodRef, musicRef, techRef
     };
 
@@ -81,11 +66,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String URL_KEY = "article_link";
     int counter = 0;
 
-    public static final String[] CATEGORIES = {
-            "WOD", "POD", "sports", "cars", "fashion", "movie", "finance", "food", "music", "technology"};
-
     int[] category = {
-            R.drawable.ic_action_emo_laugh, R.drawable.ic_action_camera,
+            R.drawable.ic_action_joypad, R.drawable.ic_action_camera,
             R.drawable.ic_action_ball, R.drawable.ic_action_car,
             R.drawable.ic_action_glasses, R.drawable.ic_action_movie,
             R.drawable.ic_action_line_chart, R.drawable.ic_action_restaurant,
@@ -191,10 +173,6 @@ public class MainActivity extends AppCompatActivity {
                         //Re-populate the view with database content at that location
                         ArticleHolder article = new ArticleHolder(category[j], titles[j], websource[j], acontent[j], source_URLs[j], image_URLs[j]);
                         articleList.set(j, article);
-
-                        articleAdapter = new ArticleAdapter(articleList, getApplicationContext());
-                        mRecyclerView.setAdapter(articleAdapter);
-                        articleAdapter.notifyDataSetChanged();
 
                         counter++;
                         System.out.println(counter);

@@ -11,14 +11,14 @@
     <CheckBox android:id="@+id/checkbox_word"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_action_emo_laugh"
-        android:text="Word of the Day"
+        android:drawableLeft="@drawable/ic_action_joypad"
+        android:text="Gaming"
         android:paddingTop="7dp"/>
     <CheckBox android:id="@+id/checkbox_photo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_action_camera"
-        android:text="Photo of the Day"
+        android:text="Photography"
         android:paddingTop="7dp"/>
     <CheckBox android:id="@+id/checkbox_sports"
         android:layout_width="wrap_content"
