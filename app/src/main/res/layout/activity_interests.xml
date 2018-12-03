@@ -73,11 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Save Preferences"
-        android:layout_gravity="center_horizontal"/>
-    <Button
-        android:id="@+id/btnShow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Show Array"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="@color/colorPrimary"/>
 </LinearLayout>

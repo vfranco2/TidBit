@@ -26,7 +26,7 @@ import java.util.Map;
 public class ActivityInterests extends AppCompatActivity implements View.OnClickListener{
 
     private CheckBox cbWod, cbPod, cbSports, cbAuto, cbFashion, cbFilm, cbFinance, cbFood, cbMusic, cbTech;
-    private Button btnSave, btnShow;
+    private Button btnSave;
     boolean interested[] = new boolean[10];
 
     @Override
@@ -84,27 +84,11 @@ public class ActivityInterests extends AppCompatActivity implements View.OnClick
         cbTech = findViewById(R.id.checkbox_tech);
         btnSave = findViewById(R.id.btnSave);
         btnSave.setOnClickListener(this);
-        btnShow = findViewById(R.id.btnShow);
-        btnShow.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btnShow:
-                StringBuffer stringBuffer = new StringBuffer();
-                stringBuffer.append(interested[0]);
-                stringBuffer.append("\n"+interested[1]);
-                stringBuffer.append("\n"+interested[2]);
-                stringBuffer.append("\n"+interested[3]);
-                stringBuffer.append("\n"+interested[4]);
-                stringBuffer.append("\n"+interested[5]);
-                stringBuffer.append("\n"+interested[6]);
-                stringBuffer.append("\n"+interested[7]);
-                stringBuffer.append("\n"+interested[8]);
-                stringBuffer.append("\n"+interested[9]);
-                Toast.makeText(this, stringBuffer, Toast.LENGTH_SHORT).show();
-                break;
             case R.id.btnSave:
                 savePreferences("wodvalue", cbWod.isChecked());
                 savePreferences("podvalue", cbPod.isChecked());

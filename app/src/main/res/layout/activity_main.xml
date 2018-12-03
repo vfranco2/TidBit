@@ -53,6 +53,5 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="false"
         app:menu="@menu/slidermenu_res"
-        app:headerLayout="@layout/slidermenu_layout_res"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        app:headerLayout="@layout/slidermenu_layout_res" />
 </android.support.v4.widget.DrawerLayout>
