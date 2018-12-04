@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -188,10 +189,8 @@ public class MainActivity extends AppCompatActivity {
                             public void onItemClick(int position) {
                                 Uri webpage = Uri.parse(source_URLs[position]);
                                 Toast.makeText(getApplicationContext(), "You clicked " + position, Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
-                                if (intent.resolveActivity(getPackageManager()) != null) {
-                                    startActivity(intent);
-                                }
+                                //Call launchWeb method, holds web page intent
+                                launchWeb(webpage);
                             }
                         });
                     }
@@ -206,6 +205,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    public void launchWeb(Uri holder){
+        final CustomTabsIntent intent = new CustomTabsIntent.Builder().build();
+        intent.launchUrl(this, holder);
     }
 
     public void coolList(List<ArticleHolder> articleList){
