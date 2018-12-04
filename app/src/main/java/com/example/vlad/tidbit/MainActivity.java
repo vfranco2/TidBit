@@ -2,11 +2,13 @@ package com.example.vlad.tidbit;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.customtabs.CustomTabsIntent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -208,8 +210,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void launchWeb(Uri holder){
+        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
         final CustomTabsIntent intent = new CustomTabsIntent.Builder().build();
+
         intent.launchUrl(this, holder);
+        builder.setToolbarColor(ContextCompat.getColor(this, R.color.colorPrimary));
     }
 
     public void coolList(List<ArticleHolder> articleList){
