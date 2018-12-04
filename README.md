@@ -6,10 +6,9 @@ TidBit is a microlearning mobile app that allows users to select categorical pre
 
 # TidBit in Action
 **_TidBit Article Card Viewing_**
-![TidBit Main Feed 1](https://raw.githubusercontent.com/vfranco2/TidBit/master/screenshots/screen1.jpeg)
+<img src="screenshots/screen1.jpeg" width="300">
 
-
-![TidBit Main Feed 2](https://raw.githubusercontent.com/vfranco2/TidBit/master/screenshots/screen2.jpeg)
+<img src="screenshots/screen2.jpeg" width="300">
 
 **_Filtering Topics Based on Preference_**
-![TidBit Category Filtering](https://raw.githubusercontent.com/vfranco2/TidBit/master/screenshots/screen3.png)
+<img src="screenshots/screen3.png" width="300">
