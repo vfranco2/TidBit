@@ -7,7 +7,7 @@ TidBit is a microlearning mobile app that allows users to select categorical pre
 # TidBit in Action
 **_TidBit Article Card Viewing_**  
 <img src="screenshots/screen1.jpeg" width="300">  
-
+**_A Wide Variety of Article Topics_**    
 <img src="screenshots/screen2.jpeg" width="300">  
   
 **_Filtering Topics Based on Preference_**  
