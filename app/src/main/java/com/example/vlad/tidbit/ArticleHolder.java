@@ -1,8 +1,5 @@
 package com.example.vlad.tidbit;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ArticleHolder {
     private String articleTitle, websiteSource, articleContent, articleURL,articleImage;
     int articleCategory;

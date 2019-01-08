@@ -2,7 +2,6 @@ package com.example.vlad.tidbit;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.customtabs.CustomTabsIntent;
@@ -11,6 +10,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,6 +29,7 @@ import com.google.firebase.firestore.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -43,18 +44,24 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private List<ArticleHolder> articleList;
     private ArticleAdapter articleAdapter;
+    private SwipeRefreshLayout mRefresh;
+
+    int max = 4;
+    int randomNum = ThreadLocalRandom.current().nextInt(0, max +1);
 
     //Firebase references
-    DocumentReference gameRef = FirebaseFirestore.getInstance().document("gaming/card_0");
-    DocumentReference photosRef = FirebaseFirestore.getInstance().document("photography/card_0");
-    DocumentReference carsRef = FirebaseFirestore.getInstance().document("cars/card_0");
-    DocumentReference fashionRef = FirebaseFirestore.getInstance().document("fashion/card_0");
-    DocumentReference movieRef = FirebaseFirestore.getInstance().document("movie/card_0");
-    DocumentReference financeRef = FirebaseFirestore.getInstance().document("finance/card_0");
-    DocumentReference foodRef = FirebaseFirestore.getInstance().document("cuisine/card_0");
-    DocumentReference musicRef = FirebaseFirestore.getInstance().document("music/card_0");
-    DocumentReference sportsRef = FirebaseFirestore.getInstance().document("sports/card_0");
-    DocumentReference techRef = FirebaseFirestore.getInstance().document("technology/card_0");
+    String[] cardV = {"gaming/card_","photography/card_","cars/card_","fashion/card_","movie/card_",
+            "finance/card_","cuisine/card_","music/card_","sports/card_","technology/card_"};
+    DocumentReference gameRef = FirebaseFirestore.getInstance().document(cardV[0]+Integer.toString(randomNum));
+    DocumentReference photosRef = FirebaseFirestore.getInstance().document(cardV[1]+Integer.toString(randomNum));
+    DocumentReference carsRef = FirebaseFirestore.getInstance().document(cardV[2]+Integer.toString(randomNum));
+    DocumentReference fashionRef = FirebaseFirestore.getInstance().document(cardV[3]+Integer.toString(randomNum));
+    DocumentReference movieRef = FirebaseFirestore.getInstance().document(cardV[4]+Integer.toString(randomNum));
+    DocumentReference financeRef = FirebaseFirestore.getInstance().document(cardV[5]+Integer.toString(randomNum));
+    DocumentReference foodRef = FirebaseFirestore.getInstance().document(cardV[6]+Integer.toString(randomNum));
+    DocumentReference musicRef = FirebaseFirestore.getInstance().document(cardV[7]+Integer.toString(randomNum));
+    DocumentReference sportsRef = FirebaseFirestore.getInstance().document(cardV[8]+Integer.toString(randomNum));
+    DocumentReference techRef = FirebaseFirestore.getInstance().document(cardV[9]+Integer.toString(randomNum));
 
     private DocumentReference[] firebaseDocs = {gameRef, photosRef, sportsRef, carsRef, fashionRef,
             movieRef, financeRef, foodRef, musicRef, techRef
@@ -112,6 +119,9 @@ public class MainActivity extends AppCompatActivity {
         mDrawerLayout = findViewById(R.id.navmenubar);
         mRecyclerView = findViewById(R.id.recycler_view);
         mLayoutManager = new LinearLayoutManager(this);
+        mRefresh = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
+
+
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -207,6 +217,16 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
+        mRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                //articleAdapter.notifyDataSetChanged();
+                Intent refIntent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(refIntent);
+                mRefresh.setRefreshing(false);
+            }
+        });
     }
 
     public void launchWeb(Uri holder){
