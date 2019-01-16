@@ -10,6 +10,10 @@ import android.content.Context;
 import com.squareup.picasso.Picasso;
 import java.util.List;
 
+//----------------------------------------------------
+//TidBit created and developed by Vlad Franco, Harrison Lavins, and Yousif Kashat
+//----------------------------------------------------
+
 public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHolder>{
     private List<ArticleHolder> articleList;
     private Context context;

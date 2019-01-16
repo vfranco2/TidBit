@@ -10,6 +10,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 
+//----------------------------------------------------
+//TidBit created and developed by Vlad Franco, Harrison Lavins, and Yousif Kashat
+//----------------------------------------------------
+
 public class ActivityInterests extends AppCompatActivity implements View.OnClickListener{
 
     private CheckBox cbWod, cbPod, cbSports, cbAuto, cbFashion, cbFilm, cbFinance, cbFood, cbMusic, cbTech;

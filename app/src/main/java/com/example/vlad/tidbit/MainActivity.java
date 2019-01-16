@@ -31,6 +31,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
+//----------------------------------------------------
+//TidBit created and developed by Vlad Franco, Harrison Lavins, and Yousif Kashat
+//----------------------------------------------------
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         System.loadLibrary("native-lib");
     }
 
-    private DrawerLayout mDrawerLayout;
+    //private DrawerLayout mDrawerLayout;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private List<ArticleHolder> articleList;
@@ -116,12 +119,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mDrawerLayout = findViewById(R.id.navmenubar);
         mRecyclerView = findViewById(R.id.recycler_view);
         mLayoutManager = new LinearLayoutManager(this);
         mRefresh = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
-
-
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -131,30 +131,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Drawer menu selection
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        // set item as selected to persist highlight
-                        menuItem.setChecked(true);
-                        switch(menuItem.getItemId()){
-
-                        }
-                        // close drawer when item is tapped
-                        mDrawerLayout.closeDrawers();
-                        return true;
-                    }
-                });
-
         //Toolbar stuff
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(android.graphics.Color.WHITE);
-        ActionBar actionbar = getSupportActionBar();
-        actionbar.setDisplayHomeAsUpEnabled(true);
-        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
 
         //Recycler view stuff, fills with default images/text
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -258,16 +238,5 @@ public class MainActivity extends AppCompatActivity {
         articleAdapter = new ArticleAdapter(newList,getApplicationContext());
         mRecyclerView.setAdapter(articleAdapter);
         articleAdapter.notifyDataSetChanged();
-    }
-
-    //Handle drawer click opening
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                mDrawerLayout.openDrawer(GravityCompat.START);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 }

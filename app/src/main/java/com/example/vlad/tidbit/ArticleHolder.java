@@ -1,5 +1,9 @@
 package com.example.vlad.tidbit;
 
+//----------------------------------------------------
+//TidBit created and developed by Vlad Franco, Harrison Lavins, and Yousif Kashat
+//----------------------------------------------------
+
 public class ArticleHolder {
     private String articleTitle, websiteSource, articleContent, articleURL,articleImage;
     int articleCategory;
