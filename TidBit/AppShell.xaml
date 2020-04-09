@@ -28,15 +28,15 @@
     <TabBar Route="main">
 
         <Tab Title="Feed">
-            <ShellContent ContentTemplate="{DataTemplate views:HomeView}"/>
+            <ShellContent ContentTemplate="{DataTemplate views:HomeView}" Icon="home.pngs"/>
         </Tab>
 
         <Tab Title="Favorites">
-            <ShellContent ContentTemplate="{DataTemplate views:FavoritesView}"/>
+            <ShellContent ContentTemplate="{DataTemplate views:FavoritesView}" Icon="home.png"/>
         </Tab>
         
         <Tab Title="Settings">
-            <ShellContent ContentTemplate="{DataTemplate views:SettingsView}"/>
+            <ShellContent ContentTemplate="{DataTemplate views:SettingsView}" Icon="settings.png"/>
         </Tab>
 
     </TabBar>
