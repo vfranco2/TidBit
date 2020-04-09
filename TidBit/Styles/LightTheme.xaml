@@ -5,7 +5,7 @@
                     Source="Global.xaml">
 
     <Color x:Key="TextColor">#000000</Color>
-    <Color x:Key="PageBackground">#F8F8F8</Color>
+    <Color x:Key="PageBackground">#E8E8E8</Color>
     <Color x:Key="AccentText">#121212</Color>
     <Color x:Key="CardBackground">#FFFFFF</Color>
 
