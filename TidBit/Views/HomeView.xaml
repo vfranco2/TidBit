@@ -1,27 +1,81 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="TidBit.Views.HomeView"
-             BackgroundColor="{DynamicResource PageBackground}">
+             BackgroundColor="{DynamicResource PageBackground}"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             xmlns:vm="clr-namespace:TidBit.ViewModels"
+             xmlns:behaviors="clr-namespace:TidBit.Behaviors"
+             x:Class="TidBit.Views.HomeView">
 
     <Shell.TitleView>
-        <Label TextColor="{DynamicResource TextColor}" Text="Main Page Header"/>
+        <Grid>
+            <Label TextColor="#f2f2f2" VerticalOptions="Center" Style="{StaticResource TitleTextStyle}" Text="Feed"/>
+        </Grid>
     </Shell.TitleView>
     
     <ContentPage.Resources>
         <ResourceDictionary>
             <StyleSheet Source="../Styles/styles.css"/>
+            <vm:HomeViewModel x:Key="vm"/>
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ContentPage.Content>
 
-        <StackLayout>
-            <!-- Place new controls here -->
-            <Label Text="Welcome to Home View!" TextColor="{DynamicResource AccentText}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+        <StackLayout Margin="0" Padding="0">
+
+            <ListView HorizontalOptions="FillAndExpand"
+                      CachingStrategy="RecycleElement"
+                      HasUnevenRows="True"
+                      Margin="8"
+                      BackgroundColor="{DynamicResource PageBackground}"
+                      SeparatorVisibility="None"
+                      VerticalOptions="Start"
+                      ItemsSource="{Binding Source={StaticResource vm}, Path=Articles}">
+
+                <ListView.Behaviors>
+                    <behaviors:ArticleBehavior/>
+                </ListView.Behaviors>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+
+                            <Frame Margin="4,8,4,8" CornerRadius="8" Padding="8" HeightRequest="270" HorizontalOptions="FillAndExpand" BackgroundColor="{DynamicResource CardBackground}" HasShadow="True">
+
+                                <Grid Margin="0" RowSpacing="4">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid Grid.Row="0" ColumnSpacing="1" Padding="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="60"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <BoxView Grid.Column="0" BackgroundColor="{StaticResource TBPurple}" WidthRequest="20" HeightRequest="20"/>
+                                        <Label Grid.Column="1" Style="{StaticResource TitleTextStyle}" VerticalOptions="Center" TextColor="{DynamicResource TextColor}" Text="{Binding ArticleTitle}"/>
+                                        <Label Grid.Column="2" Style="{StaticResource MediumTextStyle}" VerticalOptions="Center" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleSource}"/>
+                                    </Grid>
+
+                                    <Image Grid.Row="1" Source="{Binding ArticleImageUrl}" Aspect="AspectFill" HorizontalOptions="FillAndExpand"/>
+                                    <Label Grid.Row="2" Style="{StaticResource MediumTextStyle}" VerticalOptions="Center" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleText}" />
+
+                                </Grid>
+
+                            </Frame>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                
+            </ListView>
+            
         </StackLayout>
 
     </ContentPage.Content>
