@@ -28,6 +28,7 @@ namespace TidBit.Services
             queueArticles.Add(new Article
             {
                 CategoryId = 0,
+                CategoryIcon = "phonelink.png",
                 ArticleTitle = "0 Tech Article",
                 ArticleSource = "TidBit Times",
                 ArticleImageUrl = "https://www.arborday.org/images/hero/medium/hero-aerial-forest-evergreen-trees.jpg",
@@ -38,6 +39,7 @@ namespace TidBit.Services
             queueArticles.Add(new Article
             {
                 CategoryId = 1,
+                CategoryIcon = "sports_basketball.png",
                 ArticleTitle = "1 Sports Article",
                 ArticleSource = "TidBit Times",
                 ArticleImageUrl = "https://www.arborday.org/images/hero/medium/hero-aerial-forest-evergreen-trees.jpg",
@@ -48,6 +50,7 @@ namespace TidBit.Services
             queueArticles.Add(new Article
             {
                 CategoryId = 2,
+                CategoryIcon = "phonelink.png",
                 ArticleTitle = "2 Gaming Article",
                 ArticleSource = "TidBit Times",
                 ArticleImageUrl = "https://www.arborday.org/images/hero/medium/hero-aerial-forest-evergreen-trees.jpg",
@@ -58,6 +61,7 @@ namespace TidBit.Services
             queueArticles.Add(new Article
             {
                 CategoryId = 3,
+                CategoryIcon = "visibility.png",
                 ArticleTitle = "3 Fashion Article",
                 ArticleSource = "TidBit Times",
                 ArticleImageUrl = "https://www.arborday.org/images/hero/medium/hero-aerial-forest-evergreen-trees.jpg",
@@ -68,6 +72,7 @@ namespace TidBit.Services
             queueArticles.Add(new Article
             {
                 CategoryId = 4,
+                CategoryIcon = "headset.png",
                 ArticleTitle = "4 Music Article",
                 ArticleSource = "TidBit Times",
                 ArticleImageUrl = "https://www.arborday.org/images/hero/medium/hero-aerial-forest-evergreen-trees.jpg",
@@ -78,6 +83,7 @@ namespace TidBit.Services
             queueArticles.Add(new Article
             {
                 CategoryId = 5,
+                CategoryIcon = "directions_car.png",
                 ArticleTitle = "5 Auto Article",
                 ArticleSource = "TidBit Times",
                 ArticleImageUrl = "https://www.arborday.org/images/hero/medium/hero-aerial-forest-evergreen-trees.jpg",
@@ -88,6 +94,7 @@ namespace TidBit.Services
             queueArticles.Add(new Article
             {
                 CategoryId = 6,
+                CategoryIcon = "restaurant.png",
                 ArticleTitle = "6 Food Article",
                 ArticleSource = "TidBit Times",
                 ArticleImageUrl = "https://www.arborday.org/images/hero/medium/hero-aerial-forest-evergreen-trees.jpg",
@@ -98,6 +105,7 @@ namespace TidBit.Services
             queueArticles.Add(new Article
             {
                 CategoryId = 7,
+                CategoryIcon = "local_movies.png",
                 ArticleTitle = "7 Film Article",
                 ArticleSource = "TidBit Times",
                 ArticleImageUrl = "https://www.arborday.org/images/hero/medium/hero-aerial-forest-evergreen-trees.jpg",
@@ -108,6 +116,7 @@ namespace TidBit.Services
             queueArticles.Add(new Article
             {
                 CategoryId = 8,
+                CategoryIcon = "bar_chart.png",
                 ArticleTitle = "8 Finance Article",
                 ArticleSource = "TidBit Times",
                 ArticleImageUrl = "https://www.arborday.org/images/hero/medium/hero-aerial-forest-evergreen-trees.jpg",
@@ -118,6 +127,7 @@ namespace TidBit.Services
             queueArticles.Add(new Article
             {
                 CategoryId = 9,
+                CategoryIcon = "camera_alt.png",
                 ArticleTitle = "9 Photography Article",
                 ArticleSource = "TidBit Times",
                 ArticleImageUrl = "https://www.arborday.org/images/hero/medium/hero-aerial-forest-evergreen-trees.jpg",

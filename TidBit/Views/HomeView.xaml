@@ -58,7 +58,7 @@
                                             <ColumnDefinition Width="60"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <BoxView Grid.Column="0" BackgroundColor="{StaticResource TBPurple}" WidthRequest="20" HeightRequest="20"/>
+                                        <Image Grid.Column="0" Source="{Binding CategoryIcon}" WidthRequest="35" HeightRequest="35" HorizontalOptions="Center" VerticalOptions="Center"/>
                                         <Label Grid.Column="1" Style="{StaticResource TitleTextStyle}" VerticalOptions="Center" TextColor="{DynamicResource TextColor}" Text="{Binding ArticleTitle}"/>
                                         <Label Grid.Column="2" Style="{StaticResource MediumTextStyle}" VerticalOptions="Center" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleSource}"/>
                                     </Grid>
