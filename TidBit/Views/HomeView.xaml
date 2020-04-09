@@ -6,6 +6,7 @@
              ios:Page.UseSafeArea="True"
              xmlns:vm="clr-namespace:TidBit.ViewModels"
              xmlns:behaviors="clr-namespace:TidBit.Behaviors"
+             Visual="Material"
              x:Class="TidBit.Views.HomeView">
 
     <Shell.TitleView>
