@@ -3,6 +3,7 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:views="clr-namespace:TidBit.Views"
        FlyoutBehavior="Disabled"
+       Visual="Material"
        x:Class="TidBit.AppShell">
 
     <Shell.Resources>
@@ -27,16 +28,16 @@
     
     <TabBar Route="main">
 
-        <Tab Title="Feed">
-            <ShellContent ContentTemplate="{DataTemplate views:HomeView}" Icon="home.pngs"/>
+        <Tab Title="Feed" Icon="dashboard.png">
+            <ShellContent ContentTemplate="{DataTemplate views:HomeView}"/>
         </Tab>
 
-        <Tab Title="Favorites">
-            <ShellContent ContentTemplate="{DataTemplate views:FavoritesView}" Icon="home.png"/>
+        <Tab Title="Favorites" Icon="favorite.png">
+            <ShellContent ContentTemplate="{DataTemplate views:FavoritesView}"/>
         </Tab>
         
-        <Tab Title="Settings">
-            <ShellContent ContentTemplate="{DataTemplate views:SettingsView}" Icon="settings.png"/>
+        <Tab Title="Settings" Icon="settings.png">
+            <ShellContent ContentTemplate="{DataTemplate views:SettingsView}"/>
         </Tab>
 
     </TabBar>

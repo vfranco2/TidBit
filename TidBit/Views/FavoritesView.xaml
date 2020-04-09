@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="TidBit.Views.FavoritesView"
+             Visual="Material"
              BackgroundColor="{DynamicResource PageBackground}">
 
     <Shell.TitleView>
