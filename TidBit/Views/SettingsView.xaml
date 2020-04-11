@@ -1,29 +1,73 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="TidBit.Views.SettingsView"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             xmlns:vm="clr-namespace:TidBit.ViewModels"
+             xmlns:sv="clr-namespace:AiForms.Renderers;assembly=SettingsView"
+             BackgroundColor="{DynamicResource PageBackground}"
              Visual="Material"
-             BackgroundColor="{DynamicResource PageBackground}">
+             x:Class="TidBit.Views.SettingsView">
 
     <Shell.TitleView>
-        <Label TextColor="{DynamicResource TextColor}" Text="Settings Page Header"/>
+        <Grid>
+            <Label TextColor="#f2f2f2" VerticalOptions="Center" Style="{StaticResource TitleTextStyle}" Text="Settings"/>
+        </Grid>
     </Shell.TitleView>
 
     <ContentPage.Resources>
         <ResourceDictionary>
             <StyleSheet Source="../Styles/styles.css"/>
+            <vm:SettingsViewModel x:Key="vm"/>
         </ResourceDictionary>
     </ContentPage.Resources>
     
     <ContentPage.Content>
 
-        <StackLayout>
-            <!-- Place new controls here -->
-            <Label Text="Welcome to TidBit Settings!" TextColor="{DynamicResource AccentText}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-        </StackLayout>
+        <sv:SettingsView HasUnevenRows="True" SeparatorColor="{DynamicResource AccentText}">
+
+            <sv:Section Title="News Preferences" TextColor="{DynamicResource AccentText}">
+                <ViewCell>
+                    <Grid BackgroundColor="{DynamicResource CardBackground}" Padding="18,8,8,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Source="phonelink.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
+                        <Label Grid.Column="1" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Tech"/>
+                        <CheckBox Grid.Column="2" x:Name="TechActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Tech_Toggled" Color="{StaticResource TBPurple}"/>
+                    </Grid>
+                </ViewCell>
+
+                <ViewCell>
+                    <Grid BackgroundColor="{DynamicResource CardBackground}" Padding="18,8,8,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Source="directions_car.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
+                        <Label Grid.Column="1" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Auto"/>
+                        <CheckBox Grid.Column="2" x:Name="AutoActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Auto_Toggled" Color="{StaticResource TBPurple}"/>
+                    </Grid>
+                </ViewCell>
+
+                <ViewCell>
+                    <Grid BackgroundColor="{DynamicResource CardBackground}" Padding="18,8,8,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Source="sports_basketball.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
+                        <Label Grid.Column="1" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Sports"/>
+                        <CheckBox Grid.Column="2" x:Name="SportsActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Sports_Toggled" Color="{StaticResource TBPurple}"/>
+                    </Grid>
+                </ViewCell>
+            </sv:Section>
+            
+        </sv:SettingsView>
 
     </ContentPage.Content>
 </ContentPage>

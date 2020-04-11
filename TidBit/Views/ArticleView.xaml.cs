@@ -1,20 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using TidBit.Models;
+using TidBit.ViewModels;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace TidBit.Views
 {
     public partial class ArticleView : ContentPage
     {
+        ArticleViewModel ViewModel;
         public ArticleView()
         {
             InitializeComponent();
-            webView.Source = "https://github.com/vfranco2/TidBit";
+        }
+
+        public ArticleView(Article article)
+        {
+            InitializeComponent();
+            ViewModel = Resources["vm"] as ArticleViewModel;
+            ViewModel.Article = article;
+            webView.Source = article.ArticleUrl;
         }
 
         async void OnBackButtonClicked(object sender, EventArgs e)
@@ -29,17 +33,17 @@ namespace TidBit.Views
             }
         }
 
-        void OnReloadButtonClicked(object sender, EventArgs e)
-        {
-            webView.Reload();
-        }
-
         void OnForwardButtonClicked(object sender, EventArgs e)
         {
             if (webView.CanGoForward)
             {
                 webView.GoForward();
             }
+        }
+
+        void OnReloadButtonClicked(object sender, EventArgs e)
+        {
+            webView.Reload();
         }
 
         async void OnDismissButtonClicked(object sender, EventArgs args)
