@@ -11,6 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AiForms.SettingsView" Version="1.0.9" />
     <PackageReference Include="AsyncAwaitBestPractices" Version="4.1.0" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="modernhttpclient-updated" Version="3.4.3" />

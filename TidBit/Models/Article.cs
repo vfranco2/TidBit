@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TidBit.Models
+﻿namespace TidBit.Models
 {
     public class Article
     {

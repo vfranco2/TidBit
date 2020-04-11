@@ -1,14 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-            Visual="Material"
-            xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-            ios:Page.UseSafeArea="true"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             xmlns:vm="clr-namespace:TidBit.ViewModels"
+             BackgroundColor="{DynamicResource PageBackground}"
+             Visual="Material"
              x:Class="TidBit.Views.ArticleView">
 
     <ContentPage.Resources>
         <ResourceDictionary>
             <StyleSheet Source="../Styles/styles.css"/>
+            <vm:ArticleViewModel x:Key="vm"/>
         </ResourceDictionary>
     </ContentPage.Resources>
     
@@ -27,7 +30,7 @@
 
                 <Frame WidthRequest="40" Margin="0" Grid.Column="0" BackgroundColor="{DynamicResource PageBackground}" HasShadow="False">
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnReloadButtonClicked" />
+                        <TapGestureRecognizer Tapped="OnBackButtonClicked" />
                     </Frame.GestureRecognizers>
                     <Grid>
                         <Image Grid.Row="0" Source="arrow_back.png" HeightRequest="60" Margin="-10"/>
@@ -36,7 +39,7 @@
 
                 <Frame WidthRequest="40" Margin="0" Grid.Column="1" BackgroundColor="{DynamicResource PageBackground}" HasShadow="False">
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnReloadButtonClicked" />
+                        <TapGestureRecognizer Tapped="OnForwardButtonClicked" />
                     </Frame.GestureRecognizers>
                     <Grid>
                         <Image Grid.Row="0" Source="arrow_forward.png" HeightRequest="60" Margin="-10"/>

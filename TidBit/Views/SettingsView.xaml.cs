@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,6 +11,27 @@ namespace TidBit.Views
         public SettingsView()
         {
             InitializeComponent();
+            TechActive.IsChecked = Convert.ToBoolean(Preferences.Get("TechActive", true));
+            AutoActive.IsChecked = Convert.ToBoolean(Preferences.Get("AutoActive", true));
+            SportsActive.IsChecked = Convert.ToBoolean(Preferences.Get("SportsActive", true));
+        }
+
+        void Tech_Toggled(Object sender, ToggledEventArgs e)
+        {
+            bool techState = e.Value ? true : false;
+            Preferences.Set("TechActive", techState);
+        }
+
+        void Auto_Toggled(Object sender, ToggledEventArgs e)
+        {
+            bool autoState = e.Value ? true : false;
+            Preferences.Set("AutoActive", autoState);
+        }
+
+        void Sports_Toggled(Object sender, ToggledEventArgs e)
+        {
+            bool sportsState = e.Value ? true : false;
+            Preferences.Set("SportsActive", sportsState);
         }
     }
 }

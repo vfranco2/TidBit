@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TidBit.Models;
+﻿using TidBit.Models;
 using TidBit.Views;
 using Xamarin.Forms;
 
@@ -25,7 +22,7 @@ namespace TidBit.Behaviors
                 return;
 
             Article selectedArticle = (listView.SelectedItem) as Article;
-            Shell.Current.Navigation.PushModalAsync(new ArticleView());
+            Shell.Current.Navigation.PushModalAsync(new ArticleView(selectedArticle));
 
             ((ListView)sender).SelectedItem = null;
         }
