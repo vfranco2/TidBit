@@ -200,25 +200,63 @@
     <ImageAsset Include="Assets.xcassets\bar_chart.imageset\bar_chart.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\settings.imageset\settings-1.png" />
-    <ImageAsset Include="Assets.xcassets\settings.imageset\settings-3.png" />
-    <ImageAsset Include="Assets.xcassets\favorite.imageset\favorite.png" />
-    <ImageAsset Include="Assets.xcassets\favorite.imageset\favorite-3.png" />
-    <ImageAsset Include="Assets.xcassets\dashboard.imageset\dashboard-2.png" />
-    <ImageAsset Include="Assets.xcassets\dashboard.imageset\dashboard-3.png" />
-    <ImageAsset Include="Assets.xcassets\dashboard.imageset\dashboard.png" />
-    <ImageAsset Include="Assets.xcassets\favorite.imageset\favorite-2.png" />
-    <ImageAsset Include="Assets.xcassets\settings.imageset\settings-2.png" />
-    <ImageAsset Include="Assets.xcassets\arrow_back.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\arrow_forward.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\refresh.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\close.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\arrow_back.imageset\arrow_back_ios.png" />
-    <ImageAsset Include="Assets.xcassets\arrow_forward.imageset\arrow_forward_ios.png" />
-    <ImageAsset Include="Assets.xcassets\refresh.imageset\refresh.png" />
-    <ImageAsset Include="Assets.xcassets\close.imageset\close.png" />
-    <ImageAsset Include="Assets.xcassets\share.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\share.imageset\share.png" />
+    <ImageAsset Include="Assets.xcassets\settings.imageset\settings-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\settings.imageset\settings-3.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\favorite.imageset\favorite.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\favorite.imageset\favorite-3.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\dashboard.imageset\dashboard-2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\dashboard.imageset\dashboard-3.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\dashboard.imageset\dashboard.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\favorite.imageset\favorite-2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\settings.imageset\settings-2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\arrow_back.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\arrow_forward.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\refresh.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\close.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\arrow_back.imageset\arrow_back_ios.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\arrow_forward.imageset\arrow_forward_ios.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\refresh.imageset\refresh.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\close.imageset\close.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\share.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\share.imageset\share.png">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
