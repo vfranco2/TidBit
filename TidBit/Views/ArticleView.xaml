@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             Visual="Material"
+            Visual="Material"
+            xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+            ios:Page.UseSafeArea="true"
              x:Class="TidBit.Views.ArticleView">
 
     <ContentPage.Resources>
@@ -14,7 +13,55 @@
     </ContentPage.Resources>
     
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout BackgroundColor="{DynamicResource PageBackground}">
+
+            <Grid HorizontalOptions="FillAndExpand" Margin="0" Padding="0">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Frame WidthRequest="40" Margin="0" Grid.Column="0" BackgroundColor="{DynamicResource PageBackground}" HasShadow="False">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnReloadButtonClicked" />
+                    </Frame.GestureRecognizers>
+                    <Grid>
+                        <Image Grid.Row="0" Source="arrow_back.png" HeightRequest="60" Margin="-10"/>
+                    </Grid>
+                </Frame>
+
+                <Frame WidthRequest="40" Margin="0" Grid.Column="1" BackgroundColor="{DynamicResource PageBackground}" HasShadow="False">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnReloadButtonClicked" />
+                    </Frame.GestureRecognizers>
+                    <Grid>
+                        <Image Grid.Row="0" Source="arrow_forward.png" HeightRequest="60" Margin="-10"/>
+                    </Grid>
+                </Frame>
+
+                <Frame WidthRequest="40" Margin="0" Grid.Column="2" BackgroundColor="{DynamicResource PageBackground}" HasShadow="False">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnReloadButtonClicked" />
+                    </Frame.GestureRecognizers>
+                    <Grid>
+                        <Image Grid.Row="0" Source="refresh.png" HeightRequest="60" Margin="-10"/>
+                    </Grid>
+                </Frame>
+
+                <Frame WidthRequest="40" Margin="0" Grid.Column="4" BackgroundColor="{DynamicResource PageBackground}" HasShadow="False">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnDismissButtonClicked" />
+                    </Frame.GestureRecognizers>
+                    <Grid>
+                        <Image Grid.Row="0" Source="close.png" HeightRequest="60" Margin="-10"/>
+                    </Grid>
+                </Frame>
+            
+            </Grid>
 
             <WebView x:Name="webView" WidthRequest="1000" HeightRequest="1000"/>
 

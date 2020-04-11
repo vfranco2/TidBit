@@ -12,7 +12,7 @@
       "idiom": "universal"
     },
     {
-      "filename": "settings-1.png",
+      "filename": "arrow_back_ios.png",
       "scale": "3x",
       "idiom": "universal"
     },
@@ -116,7 +116,6 @@
       "idiom": "universal"
     },
     {
-      "filename": "settings-2.png",
       "appearances": [
         {
           "appearance": "luminosity",
@@ -334,7 +333,6 @@
       "idiom": "universal"
     },
     {
-      "filename": "settings-3.png",
       "appearances": [
         {
           "appearance": "luminosity",
