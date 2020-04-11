@@ -21,29 +21,24 @@ namespace TidBit.Services
         {
             string[] icons = new string[3] { "phonelink.png", "directions_car.png", "sports_basketball.png" };
 
-            int[] prefArticles = new int[] { 0, 1, 2 };
+            int[] prefCategories = new int[] { 0, 1, 2 };
+
+            string cat = String.Join("+", prefCategories);
 
             var articles = new ArticlesRootObject();
             articles.Articles = new List<Article>();
 
-            //var client = CreateClient();
-            //if (client.DefaultRequestHeaders.CacheControl == null)
-            //    client.DefaultRequestHeaders.CacheControl = new CacheControlHeaderValue();
+            var request = "http://35.193.77.38:5000/articles?req=" + cat;
 
-            //client.DefaultRequestHeaders.CacheControl.NoCache = true;
-            //client.DefaultRequestHeaders.IfModifiedSince = DateTime.UtcNow;
-            //client.DefaultRequestHeaders.CacheControl.NoStore = true;
-            //client.Timeout = new TimeSpan(0, 0, 30);
-
-            var request = "http://35.193.77.38:5000/";
-            //string response = await client.GetStringAsync(request);
             string response = new WebClient().DownloadString(request);
 
             JArray articleArray = JArray.Parse(response);
 
-            foreach (var articleNumbers in prefArticles)
+            //foreach (var articleCategory in prefArticles)
+            for (int i=0; i< prefCategories.Length; i++)
             {
-                dynamic articleContent = JObject.Parse(articleArray[articleNumbers][0].ToString());
+                dynamic articleContent = JObject.Parse(articleArray[i][0].ToString());
+                int apiCategoryId = articleContent.categoryId;
                 string apiArticleTitle = articleContent.articleTitle;
                 string apiArticleSource = articleContent.articleSource;
                 string apiArticleImageUrl = articleContent.articleImageUrl;
@@ -52,8 +47,7 @@ namespace TidBit.Services
 
                 articles.Articles.Add(new Article()
                 {
-                    CategoryId = articleNumbers,
-                    CategoryIcon = icons[articleNumbers],
+                    CategoryIcon = icons[apiCategoryId],
                     ArticleTitle = apiArticleTitle,
                     ArticleSource = apiArticleSource,
                     ArticleImageUrl = apiArticleImageUrl,
@@ -65,10 +59,5 @@ namespace TidBit.Services
             return articles;
         }
 
-
-        HttpClient CreateClient()
-        {
-            return new HttpClient(new ModernHttpClient.NativeMessageHandler());
-        }
     }
 }
