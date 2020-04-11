@@ -5,6 +5,6 @@ namespace TidBit.Interfaces
 {
     public interface ITBService
     {
-        Task<ArticlesRootObject> GetAllArticles(int CategoryId);
+        Task<ArticlesRootObject> GetAllArticles();
     }
 }

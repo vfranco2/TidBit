@@ -22,22 +22,19 @@ namespace TidBit.ViewModels
 
         protected async Task LoadArticles()
         {
-            var categories = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             Articles.Clear();
             try
             {
-                foreach (int category in categories)
+                var articleResults = await this.TBService.GetAllArticles();
+
+                foreach (var counter in articleResults.Articles)
                 {
-                    var articleResults = await this.TBService.GetAllArticles(category);
-
-                    foreach (var counter in articleResults.Articles)
-                    {
-                        Articles.Add(counter);
-                    }
-
-                    if (articleResults.Articles.Count == 0)
-                        await App.Current.MainPage.DisplayAlert("Warning", "No articles found.", "OK");
+                    Articles.Add(counter);
                 }
+
+                if (articleResults.Articles.Count == 0)
+                    await App.Current.MainPage.DisplayAlert("Warning", "No articles found.", "OK");
+                
             }
             catch (Exception ex)
             {
