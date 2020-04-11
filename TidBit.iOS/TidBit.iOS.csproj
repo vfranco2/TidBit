@@ -113,44 +113,120 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\phonelink.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\sports_basketball.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\bar_chart.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\camera_alt.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\directions_car.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\local_movies.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\headset.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\videogame_asset.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\visibility.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\restaurant.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\settings.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\dashboard.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\dashboard.imageset\home.png" />
-    <ImageAsset Include="Assets.xcassets\dashboard.imageset\home%402x.png" />
-    <ImageAsset Include="Assets.xcassets\dashboard.imageset\home%402x-1.png" />
-    <ImageAsset Include="Assets.xcassets\dashboard.imageset\home%403x.png" />
-    <ImageAsset Include="Assets.xcassets\dashboard.imageset\home%403x-1.png" />
-    <ImageAsset Include="Assets.xcassets\dashboard.imageset\home-1.png" />
-    <ImageAsset Include="Assets.xcassets\favorite.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\visibility.imageset\visibility.png" />
-    <ImageAsset Include="Assets.xcassets\videogame_asset.imageset\videogame_asset.png" />
-    <ImageAsset Include="Assets.xcassets\sports_basketball.imageset\sports_basketball.png" />
-    <ImageAsset Include="Assets.xcassets\restaurant.imageset\restaurant.png" />
-    <ImageAsset Include="Assets.xcassets\phonelink.imageset\phonelink.png" />
-    <ImageAsset Include="Assets.xcassets\local_movies.imageset\local_movies.png" />
-    <ImageAsset Include="Assets.xcassets\headset.imageset\headset.png" />
-    <ImageAsset Include="Assets.xcassets\directions_car.imageset\directions_car.png" />
-    <ImageAsset Include="Assets.xcassets\camera_alt.imageset\camera_alt.png" />
-    <ImageAsset Include="Assets.xcassets\bar_chart.imageset\bar_chart.png" />
-    <ImageAsset Include="Assets.xcassets\settings.imageset\settings-3.png" />
-    <ImageAsset Include="Assets.xcassets\settings.imageset\settings-2.png" />
-    <ImageAsset Include="Assets.xcassets\favorite.imageset\favorite-3.png" />
-    <ImageAsset Include="Assets.xcassets\favorite.imageset\favorite-2.png" />
-    <ImageAsset Include="Assets.xcassets\dashboard.imageset\dashboard-3.png" />
-    <ImageAsset Include="Assets.xcassets\dashboard.imageset\dashboard.png" />
-    <ImageAsset Include="Assets.xcassets\dashboard.imageset\dashboard-1.png" />
-    <ImageAsset Include="Assets.xcassets\favorite.imageset\favorite-1.png" />
-    <ImageAsset Include="Assets.xcassets\settings.imageset\settings.png" />
+    <ImageAsset Include="Assets.xcassets\phonelink.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\sports_basketball.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\bar_chart.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\camera_alt.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\directions_car.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\local_movies.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\headset.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\videogame_asset.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\visibility.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\restaurant.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\settings.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\dashboard.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\dashboard.imageset\home.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\dashboard.imageset\home%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\dashboard.imageset\home%402x-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\dashboard.imageset\home%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\dashboard.imageset\home%403x-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\dashboard.imageset\home-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\favorite.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\visibility.imageset\visibility.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\videogame_asset.imageset\videogame_asset.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\sports_basketball.imageset\sports_basketball.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\restaurant.imageset\restaurant.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\phonelink.imageset\phonelink.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\local_movies.imageset\local_movies.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\headset.imageset\headset.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\directions_car.imageset\directions_car.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\camera_alt.imageset\camera_alt.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\bar_chart.imageset\bar_chart.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\settings.imageset\settings-3.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\settings.imageset\settings-2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\favorite.imageset\favorite-3.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\favorite.imageset\favorite-2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\dashboard.imageset\dashboard-3.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\dashboard.imageset\dashboard.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\dashboard.imageset\dashboard-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\favorite.imageset\favorite-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\settings.imageset\settings.png">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
