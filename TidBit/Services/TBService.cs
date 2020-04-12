@@ -19,7 +19,14 @@ namespace TidBit.Services
         {
             TechActive,
             AutoActive,
-            SportsActive
+            SportsActive,
+            FashionActive,
+            GamingActive,
+            FilmActive,
+            FoodActive,
+            MusicActive,
+            PhotographyActive,
+            FinanceActive
         }
 
         public static int[] categoryChecker()
@@ -41,7 +48,7 @@ namespace TidBit.Services
         public async Task<ArticlesRootObject> GetAllArticles()
         {
             
-            string[] icons = new string[] { "phonelink.png", "directions_car.png", "sports_basketball.png", "local_movies.png", "visibility.png", "videogame_asset.png", "restaurant.png", "headset.png", "camera_alt.png", "bar_chart.png" };
+            string[] icons = new string[] { "phonelink.png", "directions_car.png", "sports_basketball.png", "visibility.png", "videogame_asset.png", "local_movies.png", "restaurant.png", "headset.png", "camera_alt.png", "bar_chart.png" };
 
             int[] categoryArray = categoryChecker();
             string cat = String.Join("+", categoryArray);
@@ -49,7 +56,7 @@ namespace TidBit.Services
             var articles = new ArticlesRootObject();
             articles.Articles = new List<Article>();
 
-            var request = "http://35.193.77.38:5000/articles?req=" + cat;
+            var request = "http://35.193.77.38:5000/articles?categories=" + cat;
             string response = new WebClient().DownloadString(request);
             JArray articleArray = JArray.Parse(response);
 

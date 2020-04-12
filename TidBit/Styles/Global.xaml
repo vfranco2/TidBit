@@ -36,7 +36,7 @@
     <Style TargetType="Label" x:Key="TitleTextStyle">
         <Setter Property="FontSize">
             <Setter.Value>
-                <OnPlatform x:TypeArguments="x:Double" Android="20" iOS="22" />
+                <OnPlatform x:TypeArguments="x:Double" Android="22" iOS="24" />
             </Setter.Value>
         </Setter>
     </Style>
@@ -48,7 +48,7 @@
     <Style TargetType="Label" x:Key="LargeTextStyle">
         <Setter Property="FontSize">
             <Setter.Value>
-                <OnPlatform x:TypeArguments="x:Double" Android="18" iOS="20" />
+                <OnPlatform x:TypeArguments="x:Double" Android="20" iOS="22" />
             </Setter.Value>
         </Setter>
     </Style>
