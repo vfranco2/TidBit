@@ -33,7 +33,10 @@
                       BackgroundColor="{DynamicResource PageBackground}"
                       SeparatorVisibility="None"
                       VerticalOptions="Start"
-                      ItemsSource="{Binding Source={StaticResource vm}, Path=Articles}">
+                      ItemsSource="{Binding Source={StaticResource vm}, Path=Articles}"
+                      IsPullToRefreshEnabled="True"
+                      RefreshCommand="{Binding Source={StaticResource vm}, Path=RefreshCommand}"
+                      IsRefreshing="{Binding Source={StaticResource vm}, Path=IsRefreshing}">
 
                 <ListView.Behaviors>
                     <behaviors:ArticleBehavior/>

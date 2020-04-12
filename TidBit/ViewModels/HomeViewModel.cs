@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using TidBit.Models;
 using TidBit.ViewModels.Base;
+using Xamarin.Forms;
 
 namespace TidBit.ViewModels
 {
     public class HomeViewModel : ViewModelBase
     {
         public ObservableCollection<Article> Articles { get; set; }
+
+        private bool _isRefreshing = false;
+        
 
         public HomeViewModel()
         {
@@ -36,6 +41,29 @@ namespace TidBit.ViewModels
             catch (Exception ex)
             {
                 await App.Current.MainPage.DisplayAlert("Warning", "Could not retrieve articles.", "OK");
+            }
+        }
+
+        public bool IsRefreshing
+        {
+            get { return _isRefreshing; }
+            set
+            {
+                _isRefreshing = value;
+                OnPropertyChanged(nameof(IsRefreshing));
+            }
+        }
+
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    IsRefreshing = true;
+                    LoadArticles();
+                    IsRefreshing = false;
+                });
             }
         }
     }
