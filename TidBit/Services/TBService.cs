@@ -32,12 +32,7 @@ namespace TidBit.Services
                 {
                     prefCategories.Add(i);
                     Debug.WriteLine(i);
-                }
-                else
-                {
-                    Debug.WriteLine(false);
-                }
-
+                } else { }
             }
             int[] prefArray = prefCategories.ToArray();
             return prefArray;
