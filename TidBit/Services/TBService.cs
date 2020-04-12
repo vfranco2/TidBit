@@ -80,7 +80,6 @@ namespace TidBit.Services
                     ArticleUrl = apiArticleUrl,
                 });
             }
-
             return articles;
         }
 
