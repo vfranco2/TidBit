@@ -63,7 +63,7 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Image Grid.Column="0" Source="{Binding CategoryIcon}" WidthRequest="35" HeightRequest="35" HorizontalOptions="Center" VerticalOptions="Start"/>
-                                        <Label Grid.Column="1" Style="{StaticResource TitleTextStyle}" VerticalOptions="Center" TextColor="{DynamicResource TextColor}" Text="{Binding ArticleTitle}"/>
+                                        <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" VerticalOptions="Center" TextColor="{DynamicResource TextColor}" Text="{Binding ArticleTitle}"/>
                                         
                                     </Grid>
 

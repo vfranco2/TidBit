@@ -10,8 +10,8 @@
         <ResourceDictionary>
             <Color x:Key="NavigationPrimary">#2196F3</Color>
             <Style x:Key="BaseStyle" TargetType="Element">
-                <Setter Property="Shell.BackgroundColor" Value="{DynamicResource TBPurple}" />
-                <Setter Property="Shell.ForegroundColor" Value="{DynamicResource TBPurple}" />
+                <Setter Property="Shell.BackgroundColor" Value="{DynamicResource TBPurpleDark}" />
+                <Setter Property="Shell.ForegroundColor" Value="{DynamicResource TBPurpleDark}" />
                 <Setter Property="Shell.TitleColor" Value="{DynamicResource TextColor}" />
                 <Setter Property="Shell.DisabledColor" Value="{DynamicResource TBPurple}" />
                 <Setter Property="Shell.UnselectedColor" Value="{DynamicResource TBPurple}" />
@@ -31,11 +31,11 @@
         <Tab Title="Feed" Icon="dashboard.png">
             <ShellContent ContentTemplate="{DataTemplate views:HomeView}"/>
         </Tab>
-
+<!--
         <Tab Title="Favorites" Icon="favorite.png">
             <ShellContent ContentTemplate="{DataTemplate views:FavoritesView}"/>
         </Tab>
-        
+        -->
         <Tab Title="Settings" Icon="settings.png">
             <ShellContent ContentTemplate="{DataTemplate views:SettingsView}"/>
         </Tab>
