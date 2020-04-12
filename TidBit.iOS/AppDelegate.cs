@@ -24,6 +24,7 @@ namespace TidBit.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             global::Xamarin.Forms.FormsMaterial.Init();
+            AiForms.Renderers.iOS.SettingsViewInit.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
