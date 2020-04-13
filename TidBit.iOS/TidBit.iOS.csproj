@@ -137,9 +137,6 @@
     <ImageAsset Include="Assets.xcassets\videogame_asset.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\visibility.imageset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\restaurant.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -168,9 +165,6 @@
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\favorite.imageset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\visibility.imageset\visibility.png">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\videogame_asset.imageset\videogame_asset.png">
@@ -257,6 +251,13 @@
     <ImageAsset Include="Assets.xcassets\share.imageset\share.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\local_mall.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\local_mall.imageset\visibility.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\local_mall.imageset\local_mall.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -289,7 +290,6 @@
     <Folder Include="Assets.xcassets\local_movies.imageset\" />
     <Folder Include="Assets.xcassets\headset.imageset\" />
     <Folder Include="Assets.xcassets\videogame_asset.imageset\" />
-    <Folder Include="Assets.xcassets\visibility.imageset\" />
     <Folder Include="Assets.xcassets\restaurant.imageset\" />
     <Folder Include="Assets.xcassets\settings.imageset\" />
     <Folder Include="Assets.xcassets\favorites.imageset\" />
@@ -300,6 +300,7 @@
     <Folder Include="Assets.xcassets\refresh.imageset\" />
     <Folder Include="Assets.xcassets\close.imageset\" />
     <Folder Include="Assets.xcassets\share.imageset\" />
+    <Folder Include="Assets.xcassets\local_mall.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Roboto-Bold.ttf" />

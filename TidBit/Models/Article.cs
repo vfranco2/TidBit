@@ -9,5 +9,6 @@
         public string ArticleImageUrl { get; set; }
         public string ArticleText { get; set; }
         public string ArticleUrl { get; set; }
+        public string ArticleDate { get; set; }
     }
 }
