@@ -21,26 +21,6 @@ namespace TidBit.Views
             webView.Source = article.ArticleUrl;
         }
 
-        async void OnBackButtonClicked(object sender, EventArgs e)
-        {
-            if (webView.CanGoBack)
-            {
-                webView.GoBack();
-            }
-            else
-            {
-                await Navigation.PopAsync();
-            }
-        }
-
-        void OnForwardButtonClicked(object sender, EventArgs e)
-        {
-            if (webView.CanGoForward)
-            {
-                webView.GoForward();
-            }
-        }
-
         void OnReloadButtonClicked(object sender, EventArgs e)
         {
             webView.Reload();

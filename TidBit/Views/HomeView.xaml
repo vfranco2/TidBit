@@ -30,7 +30,7 @@
                       CachingStrategy="RecycleElement"
                       HasUnevenRows="True"
                       Margin="8"
-                      BackgroundColor="{DynamicResource PageBackground}"
+                      BackgroundColor="#00FFFFFF"
                       SeparatorVisibility="None"
                       VerticalOptions="Start"
                       ItemsSource="{Binding Source={StaticResource vm}, Path=Articles}"
