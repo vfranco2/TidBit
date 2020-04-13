@@ -257,7 +257,9 @@
     <ImageAsset Include="Assets.xcassets\local_mall.imageset\visibility.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\local_mall.imageset\local_mall.png" />
+    <ImageAsset Include="Assets.xcassets\local_mall.imageset\local_mall.png">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -282,25 +284,23 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets.xcassets\phonelink.imageset\" />
-    <Folder Include="Assets.xcassets\sports_basketball.imageset\" />
     <Folder Include="Assets.xcassets\bar_chart.imageset\" />
     <Folder Include="Assets.xcassets\camera_alt.imageset\" />
+    <Folder Include="Assets.xcassets\close.imageset\" />
+    <Folder Include="Assets.xcassets\dashboard.imageset\" />
     <Folder Include="Assets.xcassets\directions_car.imageset\" />
-    <Folder Include="Assets.xcassets\local_movies.imageset\" />
+    <Folder Include="Assets.xcassets\favorite.imageset\" />
+    <Folder Include="Assets.xcassets\favorites.imageset\" />
     <Folder Include="Assets.xcassets\headset.imageset\" />
-    <Folder Include="Assets.xcassets\videogame_asset.imageset\" />
+    <Folder Include="Assets.xcassets\local_mall.imageset\" />
+    <Folder Include="Assets.xcassets\local_movies.imageset\" />
+    <Folder Include="Assets.xcassets\phonelink.imageset\" />
+    <Folder Include="Assets.xcassets\refresh.imageset\" />
     <Folder Include="Assets.xcassets\restaurant.imageset\" />
     <Folder Include="Assets.xcassets\settings.imageset\" />
-    <Folder Include="Assets.xcassets\favorites.imageset\" />
-    <Folder Include="Assets.xcassets\dashboard.imageset\" />
-    <Folder Include="Assets.xcassets\favorite.imageset\" />
-    <Folder Include="Assets.xcassets\arrow_back.imageset\" />
-    <Folder Include="Assets.xcassets\arrow_forward.imageset\" />
-    <Folder Include="Assets.xcassets\refresh.imageset\" />
-    <Folder Include="Assets.xcassets\close.imageset\" />
     <Folder Include="Assets.xcassets\share.imageset\" />
-    <Folder Include="Assets.xcassets\local_mall.imageset\" />
+    <Folder Include="Assets.xcassets\sports_basketball.imageset\" />
+    <Folder Include="Assets.xcassets\videogame_asset.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Roboto-Bold.ttf" />

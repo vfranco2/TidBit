@@ -73,7 +73,7 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Source="visibility.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
+                        <Image Grid.Column="0" Source="local_mall.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
                         <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Fashion"/>
                         <CheckBox Grid.Column="2" x:Name="FashionActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Fashion_Toggled" Color="{StaticResource TBPurple}"/>
                     </Grid>
