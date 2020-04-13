@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "542178114171",
+    "firebase_url": "https://tidbit-e52a7.firebaseio.com",
+    "project_id": "tidbit-e52a7",
+    "storage_bucket": "tidbit-e52a7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:542178114171:android:0d80e38e240d2c2c",
+        "android_client_info": {
+          "package_name": "com.example.vlad.tidbit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "542178114171-ol8a3u126ej1hbspj7kjjclei7i20pq8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.vlad.tidbit",
+            "certificate_hash": "f831649687323cb6aa09a2c940e39b7a621a4345"
+          }
+        },
+        {
+          "client_id": "542178114171-9468537e00i96jdh1uo6hhq293t7m067.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7hdoaKt7cZD02BzhvcwYrr93nV5arF7Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "542178114171-9468537e00i96jdh1uo6hhq293t7m067.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
