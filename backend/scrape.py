@@ -2,6 +2,7 @@
 # -creation and initialization of scraper objects for ALL NEWS CATEGORIES
 # -invoking methods to scrape news data and send to database
 from GNews import GNewsScraper
+import configparser
 import mysql.connector
 
 #Sets the app-level maximum number of articles scraped PER CATEGORY

@@ -97,33 +97,16 @@ class GNewsScraper(object):
 
     def commit_to_database(self, mydb, catID):
 
-        #--------------------------
-        #Push article to database
-        #--------------------------
-        # try:
-        #     #cursor is sql data element, create here
-        #     cursor = mydb.cursor()
-        #     #Update in table query
-        #     #Update database with article fields retrieved from GNews. MUST BE IN ORDER OF APPEARANCE IN QUERY
-        #     cursor.execute("UPDATE articles SET articleTitle ='%s', articleSource ='%s', articleImageUrl ='%s', articleText ='%s', articleUrl ='%s', articleDate ='%s' WHERE categoryId = %s"  \
-        #     % (self.article_headlines[0], self.article_sources[0], self.img_URLs[0], self.article_descriptions[0], self.article_URLs[0], self.article_times_updated[0], catID))
-        #     #commit new changes
-        #     mydb.commit()
-        #     #close cursor, keep data from overlapping
-        #     cursor.close()
-        #     print(f"CategoryID: {catID} successfully written to database!")
-        # except:
-        #     print(f"ERROR: CategoryID: {catID} not written to database")
-
-        #cursor is sql data element, create here
         cursor = mydb.cursor()
-        #Update in table query
-        #Update database with article fields retrieved from GNews. MUST BE IN ORDER OF APPEARANCE IN QUERY
-        cursor.execute("UPDATE articles SET articleTitle ='%s', articleSource ='%s', articleImageUrl ='%s', articleText ='%s', articleUrl ='%s', articleDate ='%s' WHERE categoryId = %s"  \
+
+        self.article_headlines[0] = self.article_headlines[0].replace("'", '@')
+        self.article_sources[0] = self.article_sources[0].replace("'", '@')
+        self.article_descriptions[0] = self.article_descriptions[0].replace("'", '@')
+
+        cursor.execute("UPDATE articles SET articleTitle ='%s', articleSource ='%s', articleImageUrl ='%s', articleText ='%s', articleUrl ='%s', articleDate ='%s' WHERE categoryId = %s AND articleCount = 0"  \
         % (self.article_headlines[0], self.article_sources[0], self.img_URLs[0], self.article_descriptions[0], self.article_URLs[0], self.article_times_updated[0], str(catID)))
-        #commit new changes
+
         mydb.commit()
-        #close cursor, keep data from overlapping
         cursor.close()
         return
 
