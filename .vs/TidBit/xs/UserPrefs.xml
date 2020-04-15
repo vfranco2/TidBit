@@ -1,0 +1,23 @@
+﻿<Properties StartupConfiguration="{D336FA57-6060-4C5F-AAA3-0ED098662D1D}|Default">
+  <MonoDevelop.Ide.Workbench>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="TidBit" expanded="True">
+            <Node name="TidBit" selected="True" />
+            <Node name="TidBit.Android" expanded="True" />
+            <Node name="TidBit.iOS" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.TidBit.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.FADDFE15-DB61-4104-9CDC-CB309800510C" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.TidBit.Android PreferredExecutionTarget="Android.Android_Accelerated_Oreo" />
+</Properties>
