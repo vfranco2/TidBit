@@ -41,7 +41,7 @@ for category in categories:
     scraper = GNewsScraper(category, max_articles)
     scraper.extract_info()
     scraper.print_to_console()
-    #scraper.commit_to_database(mydb, categories.index(category))
+    scraper.commit_to_database(mydb, categories.index(category))
     #scraper.print_to_console()
 
 #close connection
