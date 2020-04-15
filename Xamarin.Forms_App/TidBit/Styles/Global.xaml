@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xaml-comp compile="true"?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Color x:Key="TBPurple">#9575cd</Color>
+    <Color x:Key="TBPurpleDark">#673ab7</Color>
+
+    <OnPlatform x:TypeArguments="x:String" x:Key="RegularRobotoFont">
+        <On Platform="Android" Value="Roboto-Regular.ttf#Roboto" />
+        <On Platform="iOS" Value="Roboto-Regular" />
+    </OnPlatform>
+
+    <OnPlatform x:TypeArguments="x:String" x:Key="BoldRobotoFont">
+        <On Platform="Android" Value="Roboto-Bold.ttf#Roboto Bold" />
+        <On Platform="iOS" Value="Roboto-Bold" />
+    </OnPlatform>
+
+    <OnPlatform x:TypeArguments="x:String" x:Key="MediumRobotoFont">
+        <On Platform="Android" Value="Roboto-Medium.ttf#Roboto Medium" />
+        <On Platform="iOS" Value="Roboto-Medium" />
+    </OnPlatform>
+
+    <OnPlatform x:Key="FontFamilyName" x:TypeArguments="x:String" iOS="Roboto" Android="Roboto-Regular.ttf#Roboto"/>
+
+    <Style TargetType="Label">
+        <Setter Property="FontFamily" Value="{DynamicResource FontFamilyName}" />
+    </Style>
+
+    <Style TargetType="Button">
+        <Setter Property="FontFamily" Value="{DynamicResource FontFamilyName}" />
+    </Style>
+
+
+    <!-- Globally Used Label Styles-->
+    <Style TargetType="Label" x:Key="TitleTextStyle">
+        <Setter Property="FontSize">
+            <Setter.Value>
+                <OnPlatform x:TypeArguments="x:Double" Android="22" iOS="24" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Label" x:Key="TitleTextStyleBold" BasedOn="{StaticResource TitleTextStyle}">
+        <Setter Property="FontFamily" Value="{StaticResource BoldRobotoFont}"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="LargeTextStyle">
+        <Setter Property="FontSize">
+            <Setter.Value>
+                <OnPlatform x:TypeArguments="x:Double" Android="20" iOS="22" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Label" x:Key="LargeTextStyleBold" BasedOn="{StaticResource LargeTextStyle}">
+        <Setter Property="FontFamily" Value="{StaticResource BoldRobotoFont}"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="MediumTextStyle">
+        <Setter Property="FontSize">
+            <Setter.Value>
+                <OnPlatform x:TypeArguments="x:Double" Android="16" iOS="18" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Label" x:Key="MediumTextStyleBold" BasedOn="{StaticResource MediumTextStyle}">
+        <Setter Property="FontFamily" Value="{StaticResource BoldRobotoFont}"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="SmallTextStyle">
+        <Setter Property="FontSize">
+            <Setter.Value>
+                <OnPlatform x:TypeArguments="x:Double" Android="14" iOS="15" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Label" x:Key="SmallTextStyleBold" BasedOn="{StaticResource SmallTextStyle}">
+        <Setter Property="FontFamily" Value="{StaticResource BoldRobotoFont}"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="HeaderLabelStyle" BasedOn="{StaticResource TitleTextStyleBold}">
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="Grid.Column" Value="0"/>
+    </Style>
+
+</ResourceDictionary>

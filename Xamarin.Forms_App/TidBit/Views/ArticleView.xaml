@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             xmlns:vm="clr-namespace:TidBit.ViewModels"
+             BackgroundColor="{DynamicResource PageBackground}"
+             Visual="Material"
+             x:Class="TidBit.Views.ArticleView">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <StyleSheet Source="../Styles/styles.css"/>
+            <vm:ArticleViewModel x:Key="vm"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="{DynamicResource PageBackground}">
+
+            <Grid HorizontalOptions="FillAndExpand" Margin="0" Padding="0">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Frame HorizontalOptions="Start" WidthRequest="40" Margin="0" Grid.Column="0" BackgroundColor="{DynamicResource PageBackground}" HasShadow="False">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnReloadButtonClicked" />
+                    </Frame.GestureRecognizers>
+                    <Grid>
+                        <Image Grid.Row="0" Source="refresh.png" HeightRequest="60" Margin="-10"/>
+                    </Grid>
+                </Frame>
+
+                <Frame HorizontalOptions="End" WidthRequest="40" Margin="0" Grid.Column="4" BackgroundColor="{DynamicResource PageBackground}" HasShadow="False">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnDismissButtonClicked" />
+                    </Frame.GestureRecognizers>
+                    <Grid>
+                        <Image Grid.Row="0" Source="close.png" HeightRequest="60" Margin="-10"/>
+                    </Grid>
+                </Frame>
+            
+            </Grid>
+
+            <WebView x:Name="webView" WidthRequest="1000" HeightRequest="1000"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
