@@ -60,7 +60,8 @@ namespace TidBit.Services
             string response = new WebClient().DownloadString(request);
             JArray articleArray = JArray.Parse(response);
 
-            for (int i = 0; i < categoryArray.Length; i++)
+            //for (int i = 0; i < categoryArray.Length; i++)
+            for (int i = 0; i < articleArray.Count; i++)
             {
                 dynamic articleContent = JObject.Parse(articleArray[i][0].ToString());
                 int apiCategoryId = articleContent.categoryId;
