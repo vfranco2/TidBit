@@ -1,6 +1,7 @@
 import flask
 import mysql.connector
 import configparser
+import random
 from flask import request, jsonify
 
 app = flask.Flask(__name__)
@@ -12,9 +13,10 @@ app.config['DEBUG'] = True
 def parse_articles(result):
     listofarticles = []
     for article in result:
-        dummyarticle = [{'id': article[0], 'categoryId': article[1], 'articleTitle': article[2], 'articleSource': article[3], 'articleImageUrl': article[4], 'articleText': article[5], 'articleUrl': article[6], 'articleDate': article[7]}]
+        dummyarticle = [{'id': article[0], 'categoryId': article[1], 'articleCount': article[2], 'articleTitle': article[3], 'articleSource': article[4], 'articleImageUrl': article[5], 'articleText': article[6], 'articleUrl': article[7], 'articleDate': article[8]}]
         listofarticles.append(dummyarticle)
         #return jsonify(dummyarticle)
+    random.shuffle(listofarticles)
     return jsonify(listofarticles)
 
 #------------------

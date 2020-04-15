@@ -103,8 +103,9 @@ class GNewsScraper(object):
         self.article_sources[0] = self.article_sources[0].replace("'", '@')
         self.article_descriptions[0] = self.article_descriptions[0].replace("'", '@')
 
-        cursor.execute("UPDATE articles SET articleTitle ='%s', articleSource ='%s', articleImageUrl ='%s', articleText ='%s', articleUrl ='%s', articleDate ='%s' WHERE categoryId = %s"  \
+        cursor.execute("UPDATE articles SET articleTitle ='%s', articleSource ='%s', articleImageUrl ='%s', articleText ='%s', articleUrl ='%s', articleDate ='%s' WHERE categoryId = %s AND articleCount = 0"  \
         % (self.article_headlines[0], self.article_sources[0], self.img_URLs[0], self.article_descriptions[0], self.article_URLs[0], self.article_times_updated[0], str(catID)))
+
         mydb.commit()
         cursor.close()
         return
