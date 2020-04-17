@@ -23,6 +23,8 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <Frame HorizontalOptions="Start" WidthRequest="40" Margin="0" Grid.Column="0" BackgroundColor="{DynamicResource PageBackground}" HasShadow="False">
@@ -31,6 +33,15 @@
                     </Frame.GestureRecognizers>
                     <Grid>
                         <Image Grid.Row="0" Source="refresh.png" HeightRequest="60" Margin="-10"/>
+                    </Grid>
+                </Frame>
+
+                <Frame HorizontalOptions="Start" WidthRequest="40" Margin="0" Grid.Column="1" BackgroundColor="{DynamicResource PageBackground}" HasShadow="False">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnReloadButtonClicked" />
+                    </Frame.GestureRecognizers>
+                    <Grid>
+                        <Image Grid.Row="0" Source="share.png" HeightRequest="60" Margin="-10"/>
                     </Grid>
                 </Frame>
 
