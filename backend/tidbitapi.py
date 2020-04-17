@@ -13,9 +13,13 @@ app.config['DEBUG'] = True
 def parse_articles(result):
     listofarticles = []
     for article in result:
-        dummyarticle = [{'id': article[0], 'categoryId': article[1], 'articleCount': article[2], 'articleTitle': article[3], 'articleSource': article[4], 'articleImageUrl': article[5], 'articleText': article[6], 'articleUrl': article[7], 'articleDate': article[8]}]
-        listofarticles.append(dummyarticle)
-        #return jsonify(dummyarticle)
+        articleTitle = article[3].replace('@', "'")
+        articleSource = article[4].replace('@', "'")
+        articleText = article[6].replace('@', "'")
+
+        currentArticle = [{'id': article[0], 'categoryId': article[1], 'articleCount': article[2], 'articleTitle': articleTitle, 'articleSource': articleSource, 'articleImageUrl': article[5], 'articleText': articleText, 'articleUrl': article[7], 'articleDate': article[8]}]
+        #dummyarticle[0] = dummyarticle[0].replace('@', "'")
+        listofarticles.append(currentArticle)
     random.shuffle(listofarticles)
     return jsonify(listofarticles)
 
