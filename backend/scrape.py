@@ -6,7 +6,7 @@ import configparser
 import mysql.connector
 
 #Sets the app-level maximum number of articles scraped PER CATEGORY
-max_articles = 1
+max_articles = 2
 
 # Categories to feed into scraper
 # TODO: re-arrange in correct order for categoryID to store the correct categories..

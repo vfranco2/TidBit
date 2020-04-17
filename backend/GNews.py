@@ -98,16 +98,20 @@ class GNewsScraper(object):
     def commit_to_database(self, mydb, catID):
 
         cursor = mydb.cursor()
+        try:
+            for i in range(self.max_articles):
+                self.article_headlines[i] = self.article_headlines[i].replace("'", '@')
+                self.article_sources[i] = self.article_sources[i].replace("'", '@')
+                self.article_descriptions[i] = self.article_descriptions[i].replace("'", '@')
 
-        self.article_headlines[0] = self.article_headlines[0].replace("'", '@')
-        self.article_sources[0] = self.article_sources[0].replace("'", '@')
-        self.article_descriptions[0] = self.article_descriptions[0].replace("'", '@')
+                cursor.execute("UPDATE articles SET articleTitle ='%s', articleSource ='%s', articleImageUrl ='%s', articleText ='%s', articleUrl ='%s', articleDate ='%s' WHERE categoryId = %s AND articleCount = %s"  \
+                % (self.article_headlines[i], self.article_sources[i], self.img_URLs[i], self.article_descriptions[i], self.article_URLs[i], self.article_times_updated[i], str(catID), str(i)))
 
-        cursor.execute("UPDATE articles SET articleTitle ='%s', articleSource ='%s', articleImageUrl ='%s', articleText ='%s', articleUrl ='%s', articleDate ='%s' WHERE categoryId = %s AND articleCount = 0"  \
-        % (self.article_headlines[0], self.article_sources[0], self.img_URLs[0], self.article_descriptions[0], self.article_URLs[0], self.article_times_updated[0], str(catID)))
-
-        mydb.commit()
-        cursor.close()
+                mydb.commit()
+                print(f"Successfully committed {self.article_headlines[i]} to database")
+            cursor.close()
+        except:
+            print(f"ERROR: Could not commit {self.article_headlines[i]} to database")
         return
 
 
