@@ -31,11 +31,7 @@
         <Tab Title="Feed" Icon="dashboard.png">
             <ShellContent ContentTemplate="{DataTemplate views:HomeView}"/>
         </Tab>
-<!--
-        <Tab Title="Favorites" Icon="favorite.png">
-            <ShellContent ContentTemplate="{DataTemplate views:FavoritesView}"/>
-        </Tab>
-        -->
+        
         <Tab Title="Settings" Icon="settings.png">
             <ShellContent ContentTemplate="{DataTemplate views:SettingsView}"/>
         </Tab>
