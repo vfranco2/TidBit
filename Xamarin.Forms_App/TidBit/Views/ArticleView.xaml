@@ -38,7 +38,7 @@
 
                 <Frame HorizontalOptions="Start" WidthRequest="40" Margin="0" Grid.Column="1" BackgroundColor="{DynamicResource PageBackground}" HasShadow="False">
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnReloadButtonClicked" />
+                        <TapGestureRecognizer Tapped="OnShareButtonClicked" />
                     </Frame.GestureRecognizers>
                     <Grid>
                         <Image Grid.Row="0" Source="share.png" HeightRequest="60" Margin="-10"/>
