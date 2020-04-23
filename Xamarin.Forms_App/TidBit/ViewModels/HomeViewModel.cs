@@ -12,8 +12,7 @@ namespace TidBit.ViewModels
     {
         public ObservableCollection<Article> Articles { get; set; }
 
-        private bool _isRefreshing = false;
-        
+        //private bool _isRefreshing = false;
 
         public HomeViewModel()
         {
@@ -25,8 +24,11 @@ namespace TidBit.ViewModels
         protected async Task LoadArticles()
         {
             Articles.Clear();
+            
+
             try
             {
+                this.IsBusy = true;
                 var articleResults = await this.TBService.GetAllArticles();
 
                 foreach (var counter in articleResults.Articles)
@@ -34,9 +36,12 @@ namespace TidBit.ViewModels
                     Articles.Add(counter);
                 }
 
+                await Task.Delay(500);
+                this.IsBusy = false;
+
                 if (articleResults.Articles.Count == 0)
                     await App.Current.MainPage.DisplayAlert("Warning", "No articles found.", "OK");
-                
+
             }
             catch (Exception ex)
             {
@@ -44,6 +49,13 @@ namespace TidBit.ViewModels
             }
         }
 
+        public ICommand RefreshCommand => new Command(OnRefresh);
+
+        void OnRefresh()
+        {
+            LoadArticles();
+        }
+        /*
         public bool IsRefreshing
         {
             get { return _isRefreshing; }
@@ -66,5 +78,6 @@ namespace TidBit.ViewModels
                 });
             }
         }
+        */
     }
 }
