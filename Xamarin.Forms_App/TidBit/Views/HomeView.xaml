@@ -5,16 +5,13 @@
              ios:Page.UseSafeArea="True"
              xmlns:vm="clr-namespace:TidBit.ViewModels"
              xmlns:behaviors="clr-namespace:TidBit.Behaviors"
-             BackgroundColor="{DynamicResource PageBackground}"
+             xmlns:sk="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             BackgroundColor="{StaticResource TBPurpleDark}"
              Visual="Material"
+             Shell.NavBarIsVisible="False"
              x:Class="TidBit.Views.HomeView">
 
-    <Shell.TitleView>
-        <Grid>
-            <Label TextColor="#f2f2f2" VerticalOptions="Center" Style="{StaticResource TitleTextStyle}" Text="Feed"/>
-        </Grid>
-    </Shell.TitleView>
-    
     <ContentPage.Resources>
         <ResourceDictionary>
             <StyleSheet Source="../Styles/styles.css"/>
@@ -23,10 +20,41 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
+        <Grid>
+            <SwipeView x:Name="SwipeView" SwipeEnded="OnSwipeEnded">
+                
+                <SwipeView.Behaviors>
+                    <behaviors:CloseRefreshBehavior Delay="500"/>
+                </SwipeView.Behaviors>
+                
+                <!--Animation-->
+                <SwipeView.TopItems>
+                    <SwipeItemView>
+                        <Grid BackgroundColor="{StaticResource TBPurpleDark}" HeightRequest="40">
+                            <Label Text="Refresh animation"/>
+                        </Grid>
+                    </SwipeItemView>
+                </SwipeView.TopItems>
 
-        <StackLayout Margin="0" Padding="0">
+                <!--Content-->
+                <Grid BackgroundColor="{StaticResource TBPurpleDark}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <!--Header-->
+                    <Grid Grid.Row="0" Padding="12">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+                        <Label TextColor="#f2f2f2" VerticalOptions="Center" Style="{StaticResource TitleTextStyle}" Text="Feed"/>
+                    </Grid>
 
-            <ListView HorizontalOptions="FillAndExpand"
+                    <!--Articles-->
+                    <yummy:PancakeView Grid.Row="1" BackgroundColor="{DynamicResource PageBackground}" CornerRadius="35,35,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+                        <ListView HorizontalOptions="FillAndExpand"
                       CachingStrategy="RecycleElement"
                       HasUnevenRows="True"
                       Margin="8"
@@ -34,64 +62,85 @@
                       SeparatorVisibility="None"
                       VerticalOptions="Start"
                       ItemsSource="{Binding Source={StaticResource vm}, Path=Articles}"
-                      IsPullToRefreshEnabled="True"
+                      sk:Skeleton.IsParent="True"
+                      sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
+                      sk:Skeleton.Animation="{sk:DefaultAnimation Fade}">
+
+                            <!--IsPullToRefreshEnabled="True"
                       RefreshCommand="{Binding Source={StaticResource vm}, Path=RefreshCommand}"
-                      IsRefreshing="{Binding Source={StaticResource vm}, Path=IsRefreshing}">
+                      IsRefreshing="{Binding Source={StaticResource vm}, Path=IsRefreshing}"-->
 
-                <ListView.Behaviors>
-                    <behaviors:ArticleBehavior/>
-                </ListView.Behaviors>
+                            <ListView.Behaviors>
+                                <behaviors:ArticleBehavior/>
+                            </ListView.Behaviors>
 
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
 
-                            <Frame Margin="4,8,4,8" CornerRadius="8" Padding="8" HeightRequest="270" HorizontalOptions="FillAndExpand" BackgroundColor="{DynamicResource CardBackground}" HasShadow="True">
+                                        <Frame Margin="4,8,4,8" CornerRadius="8" Padding="8" HeightRequest="270" HorizontalOptions="FillAndExpand" BackgroundColor="{DynamicResource CardBackground}" HasShadow="True">
 
-                                <Grid Margin="0" RowSpacing="4">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
+                                            <Grid Margin="0" RowSpacing="4">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
 
-                                    <Grid Grid.Row="0" ColumnSpacing="8" Padding="0">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="40"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
+                                                <Grid Grid.Row="0" ColumnSpacing="8" Padding="0">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="40"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
 
-                                        <Image Grid.Column="0" Source="{Binding CategoryIcon}" WidthRequest="35" HeightRequest="35" HorizontalOptions="Center" VerticalOptions="Start"/>
-                                        <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" VerticalOptions="Center" TextColor="{DynamicResource TextColor}" Text="{Binding ArticleTitle}"/>
-                                        
-                                    </Grid>
+                                                    <Image Grid.Column="0" Source="{Binding CategoryIcon}" WidthRequest="35" HeightRequest="35" HorizontalOptions="Center" VerticalOptions="Start"
+                                               sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
+                                               sk:Skeleton.BackgroundColor="{StaticResource TBPurple}"/>
+                                                    <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" VerticalOptions="Center" TextColor="{DynamicResource TextColor}" Text="{Binding ArticleTitle}"
+                                               sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
+                                               sk:Skeleton.BackgroundColor="{StaticResource TBPurple}"/>
 
-                                    <Frame Grid.Row="1" CornerRadius="8" HasShadow="False" BackgroundColor="#00FFFFFF" Padding="0" Margin="0">
-                                        <Image Source="{Binding ArticleImageUrl}" Aspect="AspectFill" HorizontalOptions="FillAndExpand"/>
-                                    </Frame>
-                                    
-                                    <Label Grid.Row="2" Style="{StaticResource MediumTextStyle}" LineBreakMode="TailTruncation" MaxLines="3" VerticalOptions="Center" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleText}" />
-                                    <Grid Grid.Row="3" Margin="0" Padding="0">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Label Grid.Column="0" Style="{StaticResource MediumTextStyle}" VerticalOptions="Start" HorizontalOptions="Start" HorizontalTextAlignment="Start" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleSource}"/>
-                                        <Label Grid.Column="1" Style="{StaticResource MediumTextStyle}" VerticalOptions="Start" HorizontalOptions="End" HorizontalTextAlignment="End" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleDate}"/>
-                                    </Grid>
-                                </Grid>
+                                                </Grid>
 
-                            </Frame>
+                                                <Frame Grid.Row="1" CornerRadius="8" HasShadow="False" BackgroundColor="#00FFFFFF" Padding="0" Margin="0"
+                                               sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
+                                               sk:Skeleton.BackgroundColor="{StaticResource TBPurple}">
+                                                    <Image Source="{Binding ArticleImageUrl}" Aspect="AspectFill" HorizontalOptions="FillAndExpand"/>
+                                                </Frame>
 
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+                                                <Label Grid.Row="2" Style="{StaticResource MediumTextStyle}" LineBreakMode="TailTruncation" MaxLines="3" VerticalOptions="Center" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleText}"
+                                               sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
+                                               sk:Skeleton.BackgroundColor="{StaticResource TBPurple}" />
+                                                <Grid Grid.Row="3" Margin="0" Padding="0">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Grid.Column="0" Style="{StaticResource MediumTextStyle}" VerticalOptions="Start" HorizontalOptions="Start" HorizontalTextAlignment="Start" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleSource}"
+                                               sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
+                                               sk:Skeleton.BackgroundColor="{StaticResource TBPurple}"/>
+                                                    <Label Grid.Column="1" Style="{StaticResource MediumTextStyle}" VerticalOptions="Start" HorizontalOptions="End" HorizontalTextAlignment="End" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleDate}"
+                                               sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
+                                               sk:Skeleton.BackgroundColor="{StaticResource TBPurple}"/>
+                                                </Grid>
+                                            </Grid>
+
+                                        </Frame>
+
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+
+                        </ListView>
+
+                    </yummy:PancakeView>
+
+                </Grid>
                 
-            </ListView>
-            
-        </StackLayout>
-
+            </SwipeView>
+        </Grid>
+        
     </ContentPage.Content>
     
 </ContentPage>
