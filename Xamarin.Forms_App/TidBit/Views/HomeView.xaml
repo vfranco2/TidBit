@@ -4,7 +4,6 @@
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="True"
              xmlns:vm="clr-namespace:TidBit.ViewModels"
-             xmlns:behaviors="clr-namespace:TidBit.Behaviors"
              xmlns:sk="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              BackgroundColor="{StaticResource TBPurpleDark}"
@@ -36,8 +35,8 @@
 
             <yummy:PancakeView Grid.Row="1" Margin="0" BackgroundColor="{DynamicResource PageBackground}" CornerRadius="35,35,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 
-                <!--<Frame Margin="16,16,16,8" Padding="0" CornerRadius="16" HasShadow="False" BackgroundColor="#00FFFFFF">-->
                 <Frame Margin="0,0,0,8" Padding="0" CornerRadius="16" HasShadow="False" BackgroundColor="#00FFFFFF">
+
                     <ListView HorizontalOptions="FillAndExpand"
                     CachingStrategy="RecycleElement"
                     HasUnevenRows="True"
@@ -53,81 +52,82 @@
                     sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
                     sk:Skeleton.Animation="{sk:DefaultAnimation Beat}">
 
-                        <ListView.Behaviors>
-                            <behaviors:ArticleBehavior/>
-                        </ListView.Behaviors>
-
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                
-                                    <SwipeView Margin="0,0,0,16" BackgroundColor="Transparent" IsEnabled="False">
+
+                                    <Frame Margin="0,0,0,8" CornerRadius="16" BackgroundColor="{StaticResource TBPurple}" HasShadow="False" Padding="0">
+                                        <SwipeView Margin="0" BackgroundColor="Transparent">
+
                                         <SwipeView.RightItems>
-                                            <SwipeItems>
-                                                <SwipeItemView BackgroundColor="#FF000000">
-                                                    <yummy:PancakeView BackgroundColor="{StaticResource TBPurple}" CornerRadius="0,8,0,8">
-                                                        <StackLayout Padding="12" VerticalOptions="Center">
-                                                            <ImageButton Grid.Row="0" Source="favorite.png"/>
-                                                            <Label Grid.Row="1" Text="Favorite" Style="{StaticResource MediumTextStyle}" TextColor="#f2f2f2"/>
+                                            <SwipeItems Mode="Reveal">
+                                                <SwipeItemView Command="{Binding Source={StaticResource vm}, Path=FavoriteTappedCommand}" CommandParameter="{Binding .}" BackgroundColor="{DynamicResource PageBackground}">
+                                                    <yummy:PancakeView BackgroundColor="{StaticResource TBPurple}" CornerRadius="0,16,0,16">
+                                                        <StackLayout Padding="12" VerticalOptions="Center" HorizontalOptions="Center">
+                                                            <ImageButton Grid.Row="0" Source="favorite.png" BackgroundColor="#00FFFFFF"/>
+                                                            <Label Grid.Row="1" Text="Favorite" Style="{StaticResource MediumTextStyle}" TextColor="#f2f2f2" HorizontalTextAlignment="Center"/>
                                                         </StackLayout>
                                                     </yummy:PancakeView>
                                                 </SwipeItemView>
                                             </SwipeItems>
                                         </SwipeView.RightItems>
                                 
-                                        <Frame Margin="0,0,0,16" CornerRadius="16" Padding="8" HeightRequest="270" HorizontalOptions="FillAndExpand" BackgroundColor="{DynamicResource CardBackground}" HasShadow="True">
-                                        
-                                            <Grid Margin="0" RowSpacing="4">
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="Auto"/>
-                                                    <RowDefinition Height="*"/>
-                                                    <RowDefinition Height="Auto"/>
-                                                    <RowDefinition Height="Auto"/>
-                                                </Grid.RowDefinitions>
+                                            <Frame Margin="0" CornerRadius="16" Padding="8" HeightRequest="270" HorizontalOptions="FillAndExpand" BackgroundColor="{DynamicResource CardBackground}" HasShadow="True">
+                                                <Frame.GestureRecognizers>
+                                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={StaticResource vm}, Path=ArticleTappedCommand}" CommandParameter="{Binding .}"/>
+                                                </Frame.GestureRecognizers>
 
-                                                <Grid Grid.Row="0" ColumnSpacing="8" Padding="0">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="40"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                    </Grid.ColumnDefinitions>
+                                                <Grid Margin="0" RowSpacing="4">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
 
-                                                    <Image Grid.Column="0" Source="{Binding CategoryIcon}" WidthRequest="35" HeightRequest="35" HorizontalOptions="Center" VerticalOptions="Start"
+                                                    <Grid Grid.Row="0" ColumnSpacing="8" Padding="0">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="40"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <Image Grid.Column="0" Source="{Binding CategoryIcon}" WidthRequest="35" HeightRequest="35" HorizontalOptions="Center" VerticalOptions="Start"
+                                                                sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
+                                                                sk:Skeleton.BackgroundColor="{StaticResource TBPurple}"/>
+                                                        <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" LineBreakMode="TailTruncation" MaxLines="3" VerticalOptions="Center" TextColor="{DynamicResource TextColor}" Text="{Binding ArticleTitle}"
+                                                                sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
+                                                                sk:Skeleton.BackgroundColor="{StaticResource TBPurple}"/>
+                                                    </Grid>
+
+                                                    <Frame Grid.Row="1" CornerRadius="8" HasShadow="False" BackgroundColor="#00FFFFFF" Padding="0" Margin="0"
                                                             sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
-                                                            sk:Skeleton.BackgroundColor="{StaticResource TBPurple}"/>
-                                                    <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" VerticalOptions="Center" TextColor="{DynamicResource TextColor}" Text="{Binding ArticleTitle}"
+                                                            sk:Skeleton.BackgroundColor="{StaticResource TBPurple}">
+                                                        <Image Source="{Binding ArticleImageUrl}" Aspect="AspectFill" HorizontalOptions="FillAndExpand"/>
+                                                    </Frame>
+
+                                                    <Label Grid.Row="2" Style="{StaticResource MediumTextStyle}" LineBreakMode="TailTruncation" MaxLines="3" VerticalOptions="Center" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleText}"
                                                             sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
-                                                            sk:Skeleton.BackgroundColor="{StaticResource TBPurple}"/>
+                                                            sk:Skeleton.BackgroundColor="{StaticResource TBPurple}" />
+                                                    <Grid Grid.Row="3" Margin="0" Padding="0">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label Grid.Column="0" Style="{StaticResource MediumTextStyle}" VerticalOptions="Start" HorizontalOptions="Start" HorizontalTextAlignment="Start" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleSource}"
+                                                                sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
+                                                                sk:Skeleton.BackgroundColor="{StaticResource TBPurple}"/>
+                                                        <Label Grid.Column="1" Style="{StaticResource MediumTextStyle}" VerticalOptions="Start" HorizontalOptions="End" HorizontalTextAlignment="End" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleDate}"
+                                                                sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
+                                                                sk:Skeleton.BackgroundColor="{StaticResource TBPurple}"/>
+                                                    </Grid>
 
                                                 </Grid>
-
-                                                <Frame Grid.Row="1" CornerRadius="8" HasShadow="False" BackgroundColor="#00FFFFFF" Padding="0" Margin="0"
-                                                        sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
-                                                        sk:Skeleton.BackgroundColor="{StaticResource TBPurple}">
-                                                    <Image Source="{Binding ArticleImageUrl}" Aspect="AspectFill" HorizontalOptions="FillAndExpand"/>
-                                                </Frame>
-
-                                                <Label Grid.Row="2" Style="{StaticResource MediumTextStyle}" LineBreakMode="TailTruncation" MaxLines="3" VerticalOptions="Center" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleText}"
-                                                        sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
-                                                        sk:Skeleton.BackgroundColor="{StaticResource TBPurple}" />
-                                                <Grid Grid.Row="3" Margin="0" Padding="0">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <Label Grid.Column="0" Style="{StaticResource MediumTextStyle}" VerticalOptions="Start" HorizontalOptions="Start" HorizontalTextAlignment="Start" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleSource}"
-                                                            sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
-                                                            sk:Skeleton.BackgroundColor="{StaticResource TBPurple}"/>
-                                                    <Label Grid.Column="1" Style="{StaticResource MediumTextStyle}" VerticalOptions="Start" HorizontalOptions="End" HorizontalTextAlignment="End" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleDate}"
-                                                            sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
-                                                            sk:Skeleton.BackgroundColor="{StaticResource TBPurple}"/>
-                                                </Grid>
-                                            </Grid>
                                         
-                                        </Frame>
+                                            </Frame>
                                 
-                                    </SwipeView>
-                                
-
+                                        </SwipeView>
+                                    </Frame>
+                                    
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -140,7 +140,6 @@
 
         </Grid>
                 
-        
     </ContentPage.Content>
     
 </ContentPage>

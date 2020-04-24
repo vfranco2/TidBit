@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using TidBit.ViewModels;
 using Xamarin.Forms;
+using TidBit.Models;
 
 namespace TidBit.Views
 {
@@ -9,6 +10,7 @@ namespace TidBit.Views
         public HomeView()
         {
             InitializeComponent();
+            BindingContext = new HomeViewModel();
         }
     }
 }
