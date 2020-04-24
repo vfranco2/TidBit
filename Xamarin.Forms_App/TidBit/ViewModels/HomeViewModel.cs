@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using TidBit.Models;
 using TidBit.ViewModels.Base;
+using TidBit.Views;
 using Xamarin.Forms;
 
 namespace TidBit.ViewModels
@@ -12,6 +13,10 @@ namespace TidBit.ViewModels
     {
         public ObservableCollection<Article> Articles { get; set; }
 
+        public Command ArticleTappedCommand { get; set; }
+
+        public Command FavoriteTappedCommand { get; set; }
+
         private bool _isRefreshing = false;
 
         public HomeViewModel()
@@ -19,6 +24,10 @@ namespace TidBit.ViewModels
             Articles = new ObservableCollection<Article>();
 
             LoadArticles();
+
+            ArticleTappedCommand = new Command(ArticleTapped);
+
+            FavoriteTappedCommand = new Command(FavoriteTapped);
         }
 
         protected async Task LoadArticles()
@@ -46,6 +55,18 @@ namespace TidBit.ViewModels
             {
                 await App.Current.MainPage.DisplayAlert("Warning", "Could not retrieve articles.", "OK");
             }
+        }
+
+        private async void ArticleTapped(object sender)
+        {
+            var selectedArticle = sender as Article;
+            Shell.Current.Navigation.PushModalAsync(new ArticleView(selectedArticle));
+        }
+
+        private async void FavoriteTapped(object sender)
+        {
+            var selectedArticle = sender as Article;
+            await Application.Current.MainPage.DisplayAlert("Added", "Added article to your favorites (Coming soon)", "OK");
         }
 
         public bool IsRefreshing
