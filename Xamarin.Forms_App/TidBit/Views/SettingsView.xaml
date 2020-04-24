@@ -5,15 +5,11 @@
              ios:Page.UseSafeArea="True"
              xmlns:vm="clr-namespace:TidBit.ViewModels"
              xmlns:sv="clr-namespace:AiForms.Renderers;assembly=SettingsView"
-             BackgroundColor="{DynamicResource PageBackground}"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             BackgroundColor="{StaticResource TBPurpleDark}"
              Visual="Material"
+             Shell.NavBarIsVisible="False"
              x:Class="TidBit.Views.SettingsView">
-
-    <Shell.TitleView>
-        <Grid>
-            <Label TextColor="#f2f2f2" VerticalOptions="Center" Style="{StaticResource TitleTextStyle}" Text="Settings"/>
-        </Grid>
-    </Shell.TitleView>
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -24,144 +20,161 @@
     
     <ContentPage.Content>
 
-        <sv:SettingsView HasUnevenRows="True" SeparatorColor="{DynamicResource TBPurpleDark}">
+        <Grid BackgroundColor="{StaticResource TBPurpleDark}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+                    
+            <Grid Grid.Row="0" Padding="12">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Label TextColor="#f2f2f2" VerticalOptions="Center" Style="{StaticResource TitleTextStyle}" Text="Settings"/>
+            </Grid>
 
-            <sv:Section Title="News Preferences" TextColor="{DynamicResource AccentText}">
-                <ViewCell>
-                    <Grid BackgroundColor="{DynamicResource CardBackground}" Padding="18,8,8,8">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Source="phonelink.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
-                        <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Tech"/>
-                        <CheckBox Grid.Column="2" x:Name="TechActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Tech_Toggled" Color="{StaticResource TBPurple}"/>
-                    </Grid>
-                </ViewCell>
+            <yummy:PancakeView Grid.Row="1" Margin="0" Padding="8" BackgroundColor="{DynamicResource PageBackground}" CornerRadius="35,35,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <sv:SettingsView BackgroundColor="{DynamicResource PageBackground}" HasUnevenRows="True" SeparatorColor="{DynamicResource TBPurpleDark}">
 
-                <ViewCell>
-                    <Grid BackgroundColor="{DynamicResource CardBackground}" Padding="18,8,8,8">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Source="directions_car.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
-                        <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Auto"/>
-                        <CheckBox Grid.Column="2" x:Name="AutoActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Auto_Toggled" Color="{StaticResource TBPurple}"/>
-                    </Grid>
-                </ViewCell>
+                    <sv:Section Title="News Preferences" TextColor="{DynamicResource AccentText}">
+                        <ViewCell>
+                            <Grid BackgroundColor="{DynamicResource PageBackground}" Padding="18,8,8,8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Source="phonelink.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
+                                <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Tech"/>
+                                <CheckBox Grid.Column="2" x:Name="TechActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Tech_Toggled" Color="{StaticResource TBPurple}"/>
+                            </Grid>
+                        </ViewCell>
 
-                <ViewCell>
-                    <Grid BackgroundColor="{DynamicResource CardBackground}" Padding="18,8,8,8">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Source="sports_basketball.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
-                        <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Sports"/>
-                        <CheckBox Grid.Column="2" x:Name="SportsActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Sports_Toggled" Color="{StaticResource TBPurple}"/>
-                    </Grid>
-                </ViewCell>
+                        <ViewCell>
+                            <Grid BackgroundColor="{DynamicResource PageBackground}" Padding="18,8,8,8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Source="directions_car.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
+                                <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Auto"/>
+                                <CheckBox Grid.Column="2" x:Name="AutoActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Auto_Toggled" Color="{StaticResource TBPurple}"/>
+                            </Grid>
+                        </ViewCell>
+
+                        <ViewCell>
+                            <Grid BackgroundColor="{DynamicResource PageBackground}" Padding="18,8,8,8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Source="sports_basketball.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
+                                <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Sports"/>
+                                <CheckBox Grid.Column="2" x:Name="SportsActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Sports_Toggled" Color="{StaticResource TBPurple}"/>
+                            </Grid>
+                        </ViewCell>
                 
-                <ViewCell>
-                    <Grid BackgroundColor="{DynamicResource CardBackground}" Padding="18,8,8,8">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Source="local_mall.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
-                        <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Fashion"/>
-                        <CheckBox Grid.Column="2" x:Name="FashionActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Fashion_Toggled" Color="{StaticResource TBPurple}"/>
-                    </Grid>
-                </ViewCell>
+                        <ViewCell>
+                            <Grid BackgroundColor="{DynamicResource PageBackground}" Padding="18,8,8,8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Source="local_mall.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
+                                <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Fashion"/>
+                                <CheckBox Grid.Column="2" x:Name="FashionActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Fashion_Toggled" Color="{StaticResource TBPurple}"/>
+                            </Grid>
+                        </ViewCell>
                 
-                <ViewCell>
-                    <Grid BackgroundColor="{DynamicResource CardBackground}" Padding="18,8,8,8">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Source="videogame_asset.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
-                        <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Gaming"/>
-                        <CheckBox Grid.Column="2" x:Name="GamingActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Gaming_Toggled" Color="{StaticResource TBPurple}"/>
-                    </Grid>
-                </ViewCell>
+                        <ViewCell>
+                            <Grid BackgroundColor="{DynamicResource PageBackground}" Padding="18,8,8,8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Source="videogame_asset.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
+                                <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Gaming"/>
+                                <CheckBox Grid.Column="2" x:Name="GamingActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Gaming_Toggled" Color="{StaticResource TBPurple}"/>
+                            </Grid>
+                        </ViewCell>
 
-                <ViewCell>
-                    <Grid BackgroundColor="{DynamicResource CardBackground}" Padding="18,8,8,8">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Source="local_movies.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
-                        <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Film"/>
-                        <CheckBox Grid.Column="2" x:Name="FilmActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Film_Toggled" Color="{StaticResource TBPurple}"/>
-                    </Grid>
-                </ViewCell>
+                        <ViewCell>
+                            <Grid BackgroundColor="{DynamicResource PageBackground}" Padding="18,8,8,8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Source="local_movies.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
+                                <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Film"/>
+                                <CheckBox Grid.Column="2" x:Name="FilmActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Film_Toggled" Color="{StaticResource TBPurple}"/>
+                            </Grid>
+                        </ViewCell>
 
-                <ViewCell>
-                    <Grid BackgroundColor="{DynamicResource CardBackground}" Padding="18,8,8,8">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Source="restaurant.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
-                        <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Food"/>
-                        <CheckBox Grid.Column="2" x:Name="FoodActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Food_Toggled" Color="{StaticResource TBPurple}"/>
-                    </Grid>
-                </ViewCell>
+                        <ViewCell>
+                            <Grid BackgroundColor="{DynamicResource PageBackground}" Padding="18,8,8,8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Source="restaurant.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
+                                <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Food"/>
+                                <CheckBox Grid.Column="2" x:Name="FoodActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Food_Toggled" Color="{StaticResource TBPurple}"/>
+                            </Grid>
+                        </ViewCell>
 
-                <ViewCell>
-                    <Grid BackgroundColor="{DynamicResource CardBackground}" Padding="18,8,8,8">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Source="headset.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
-                        <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Music"/>
-                        <CheckBox Grid.Column="2" x:Name="MusicActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Music_Toggled" Color="{StaticResource TBPurple}"/>
-                    </Grid>
-                </ViewCell>
+                        <ViewCell>
+                            <Grid BackgroundColor="{DynamicResource PageBackground}" Padding="18,8,8,8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Source="headset.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
+                                <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Music"/>
+                                <CheckBox Grid.Column="2" x:Name="MusicActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Music_Toggled" Color="{StaticResource TBPurple}"/>
+                            </Grid>
+                        </ViewCell>
 
-                <ViewCell>
-                    <Grid BackgroundColor="{DynamicResource CardBackground}" Padding="18,8,8,8">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Source="camera_alt.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
-                        <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Photography"/>
-                        <CheckBox Grid.Column="2" x:Name="PhotographyActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Photography_Toggled" Color="{StaticResource TBPurple}"/>
-                    </Grid>
-                </ViewCell>
+                        <ViewCell>
+                            <Grid BackgroundColor="{DynamicResource PageBackground}" Padding="18,8,8,8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Source="camera_alt.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
+                                <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Photography"/>
+                                <CheckBox Grid.Column="2" x:Name="PhotographyActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Photography_Toggled" Color="{StaticResource TBPurple}"/>
+                            </Grid>
+                        </ViewCell>
 
-                <ViewCell>
-                    <Grid BackgroundColor="{DynamicResource CardBackground}" Padding="18,8,8,8">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Source="bar_chart.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
-                        <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Finance"/>
-                        <CheckBox Grid.Column="2" x:Name="FinanceActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Finance_Toggled" Color="{StaticResource TBPurple}"/>
-                    </Grid>
-                </ViewCell>
+                        <ViewCell>
+                            <Grid BackgroundColor="{DynamicResource PageBackground}" Padding="18,8,8,8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Source="bar_chart.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
+                                <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Finance"/>
+                                <CheckBox Grid.Column="2" x:Name="FinanceActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Finance_Toggled" Color="{StaticResource TBPurple}"/>
+                            </Grid>
+                        </ViewCell>
 
-            </sv:Section>
-            <sv:Section Title="News Preferences" TextColor="{DynamicResource AccentText}">
-                <sv:CommandCell BackgroundColor="{DynamicResource CardBackground}" Title="{Binding Source={StaticResource vm}, Path=tidbitVersion, StringFormat='About - Build Version {0:F0}'}" Description="Built by Vlad Franco and Harrison Lavins."/>
-            </sv:Section>
-        </sv:SettingsView>
+                    </sv:Section>
+                    <sv:Section>
+                        <sv:CommandCell BackgroundColor="{DynamicResource PageBackground}" Title="{Binding Source={StaticResource vm}, Path=tidbitVersion, StringFormat='About - Build Version {0:F0}'}" Description="Built by Vlad Franco and Harrison Lavins."/>
+                    </sv:Section>
+                </sv:SettingsView>
+            </yummy:PancakeView>
+
+        </Grid>
 
     </ContentPage.Content>
 </ContentPage>
