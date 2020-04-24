@@ -12,7 +12,7 @@ namespace TidBit.ViewModels
     {
         public ObservableCollection<Article> Articles { get; set; }
 
-        //private bool _isRefreshing = false;
+        private bool _isRefreshing = false;
 
         public HomeViewModel()
         {
@@ -25,7 +25,6 @@ namespace TidBit.ViewModels
         {
             Articles.Clear();
             
-
             try
             {
                 this.IsBusy = true;
@@ -49,13 +48,6 @@ namespace TidBit.ViewModels
             }
         }
 
-        public ICommand RefreshCommand => new Command(OnRefresh);
-
-        void OnRefresh()
-        {
-            LoadArticles();
-        }
-        /*
         public bool IsRefreshing
         {
             get { return _isRefreshing; }
@@ -78,6 +70,6 @@ namespace TidBit.ViewModels
                 });
             }
         }
-        */
+        
     }
 }

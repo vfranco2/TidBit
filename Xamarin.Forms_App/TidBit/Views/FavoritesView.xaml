@@ -3,13 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="True"
-             BackgroundColor="{DynamicResource PageBackground}"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             BackgroundColor="{StaticResource TBPurpleDark}"
              Visual="Material"
+             Shell.NavBarIsVisible="False"
              x:Class="TidBit.Views.FavoritesView">
-
-    <Shell.TitleView>
-        <Label TextColor="{DynamicResource TextColor}" Text="Main Page Header"/>
-    </Shell.TitleView>
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -19,9 +17,26 @@
 
     <ContentPage.Content>
 
-        <StackLayout>
-            <Label Text="FavoritesView Under Construction" TextColor="{DynamicResource AccentText}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid BackgroundColor="{StaticResource TBPurpleDark}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+                    
+            <Grid Grid.Row="0" Padding="12">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Label TextColor="#f2f2f2" VerticalOptions="Center" Style="{StaticResource TitleTextStyle}" Text="Favorites"/>
+            </Grid>
+
+            <yummy:PancakeView Grid.Row="1" Margin="0" Padding="8" BackgroundColor="{DynamicResource PageBackground}" CornerRadius="35,35,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <StackLayout>
+                    <Label Text="Favorites Under Construction" TextColor="{DynamicResource AccentText}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+                </StackLayout>
+            </yummy:PancakeView>
+
+        </Grid>
 
     </ContentPage.Content>
 
