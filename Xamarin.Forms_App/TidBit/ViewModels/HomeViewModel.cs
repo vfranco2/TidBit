@@ -18,7 +18,10 @@ namespace TidBit.ViewModels
 
         public Command FavoriteTappedCommand { get; set; }
 
+        
+
         private bool _isRefreshing = false;
+
 
         public HomeViewModel()
         {
@@ -29,6 +32,8 @@ namespace TidBit.ViewModels
             ArticleTappedCommand = new Command(ArticleTapped);
 
             FavoriteTappedCommand = new Command(FavoriteTapped);
+
+
         }
 
         protected async Task LoadArticles()
@@ -57,6 +62,10 @@ namespace TidBit.ViewModels
                 await App.Current.MainPage.DisplayAlert("Warning", "Could not retrieve articles.", "OK");
             }
         }
+
+        
+
+        
 
         //Set refresh status
         public bool IsRefreshing
@@ -94,7 +103,9 @@ namespace TidBit.ViewModels
         private async void ArticleTapped(object sender)
         {
             var selectedArticle = sender as Article;
-            Shell.Current.Navigation.PushModalAsync(new ArticleView(selectedArticle));
+            /*if (IsPaneOpen == false) {*/ Shell.Current.Navigation.PushModalAsync(new ArticleView(selectedArticle)); /*}
+            else { }*/
+            
         }
 
     }

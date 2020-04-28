@@ -263,6 +263,8 @@
     <ImageAsset Include="Assets.xcassets\launchicon.imageset\playstore-2.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\favoritenav.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\favoritenav.imageset\favoritenav.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -314,6 +316,7 @@
     <Folder Include="Assets.xcassets\share.imageset\" />
     <Folder Include="Assets.xcassets\sports_basketball.imageset\" />
     <Folder Include="Assets.xcassets\videogame_asset.imageset\" />
+    <Folder Include="Assets.xcassets\favoritenav.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Roboto-Bold.ttf" />
