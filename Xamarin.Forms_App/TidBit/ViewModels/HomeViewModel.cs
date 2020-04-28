@@ -6,6 +6,7 @@ using TidBit.Models;
 using TidBit.ViewModels.Base;
 using TidBit.Views;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace TidBit.ViewModels
 {
@@ -57,18 +58,7 @@ namespace TidBit.ViewModels
             }
         }
 
-        private async void ArticleTapped(object sender)
-        {
-            var selectedArticle = sender as Article;
-            Shell.Current.Navigation.PushModalAsync(new ArticleView(selectedArticle));
-        }
-
-        private async void FavoriteTapped(object sender)
-        {
-            var selectedArticle = sender as Article;
-            await Application.Current.MainPage.DisplayAlert("Added", "Added article to your favorites (Coming soon)", "OK");
-        }
-
+        //Set refresh status
         public bool IsRefreshing
         {
             get { return _isRefreshing; }
@@ -79,6 +69,7 @@ namespace TidBit.ViewModels
             }
         }
 
+        //Refresh articles
         public ICommand RefreshCommand
         {
             get
@@ -91,6 +82,20 @@ namespace TidBit.ViewModels
                 });
             }
         }
-        
+
+        //Add to favorites
+        private async void FavoriteTapped(object sender)
+        {
+            var selectedArticle = sender as Article;
+            await Application.Current.MainPage.DisplayAlert("Added", "Added article to your favorites (Coming soon)", "OK");
+        }
+
+        //View article
+        private async void ArticleTapped(object sender)
+        {
+            var selectedArticle = sender as Article;
+            Shell.Current.Navigation.PushModalAsync(new ArticleView(selectedArticle));
+        }
+
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using ContextMenu.iOS;
 using Foundation;
 using UIKit;
 using Xamarin.Forms;
@@ -27,6 +27,7 @@ namespace TidBit.iOS
             global::Xamarin.Forms.Forms.Init();
             global::Xamarin.Forms.FormsMaterial.Init();
             AiForms.Renderers.iOS.SettingsViewInit.Init();
+            ContextMenuViewRenderer.Preserve();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
