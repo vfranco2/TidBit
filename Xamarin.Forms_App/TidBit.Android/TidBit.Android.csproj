@@ -52,6 +52,9 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="ContextViewCell">
+      <Version>2.0.1</Version>
+    </PackageReference>
     <PackageReference Include="modernhttpclient-updated">
       <Version>3.4.3</Version>
     </PackageReference>

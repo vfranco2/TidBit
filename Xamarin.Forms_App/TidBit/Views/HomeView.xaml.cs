@@ -2,6 +2,7 @@
 using TidBit.ViewModels;
 using Xamarin.Forms;
 using TidBit.Models;
+using System;
 
 namespace TidBit.Views
 {

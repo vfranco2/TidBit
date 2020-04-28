@@ -7,6 +7,7 @@ using Android.Support.V7.App;
 using static TidBit.App;
 using Android.Content.Res;
 using TidBit.Styles;
+using ContextMenu.Droid;
 
 namespace TidBit.Droid
 {
@@ -26,7 +27,7 @@ namespace TidBit.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             global::Xamarin.Forms.FormsMaterial.Init(this, savedInstanceState);
             AiForms.Renderers.Droid.SettingsViewInit.Init();
-
+            ContextMenuViewRenderer.Preserve();
             LoadApplication(new App());
             SetAppTheme();
         }
