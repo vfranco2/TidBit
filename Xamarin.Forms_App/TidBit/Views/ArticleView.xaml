@@ -50,7 +50,7 @@
                         <TapGestureRecognizer Tapped="OnFavoriteButtonClicked" />
                     </Frame.GestureRecognizers>
                     <Grid>
-                        <Image Grid.Row="0" Source="favorite.png" HeightRequest="60" Margin="-10"/>
+                        <Image Grid.Row="0" Source="favoritenav.png" HeightRequest="60" Margin="-10"/>
                     </Grid>
                 </Frame>
 

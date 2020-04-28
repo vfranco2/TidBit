@@ -62,7 +62,7 @@
 
                                     <Frame x:Name="WrapperFrame" Margin="0,0,0,8" CornerRadius="16" BackgroundColor="{StaticResource TBPurple}" HasShadow="False" Padding="0">
 
-                                        <context:SwipeActionContextHolder MovedCommand="{Binding Source={StaticResource vm}, Path=FavoriteTappedCommand}" VisibleWidthPercentage="0.4">
+                                        <context:SwipeActionContextHolder MovedCommand="{Binding Source={StaticResource vm}, Path=FavoriteTappedCommand}" VisibleWidthPercentage="0.25">
                                             <context:SwipeActionContextMenuView IsAutoCloseEnabled="true" >
                                                 <context:SwipeActionContextMenuView.View >
                                                     <Frame Margin="0" CornerRadius="16" Padding="8" HeightRequest="270" WidthRequest="{Binding Source={x:Reference WrapperFrame}, Path=Width, Converter={StaticResource MenuFitWidthConverter}, ConverterParameter='11'}" BackgroundColor="{DynamicResource CardBackground}" HasShadow="True">
@@ -119,7 +119,7 @@
                                                     </Frame>
                                                 </context:SwipeActionContextMenuView.View>
 
-                                                <context:SideContextMenuView.ContextTemplate >
+                                                <context:SwipeActionContextMenuView.ContextTemplate>
                                                     <DataTemplate >
                                                         <yummy:PancakeView BackgroundColor="{StaticResource TBPurple}" CornerRadius="0,16,0,16" IsClippedToBounds="True" >
                                                             <StackLayout Padding="12" VerticalOptions="Center" HorizontalOptions="End">
@@ -128,7 +128,7 @@
                                                             </StackLayout>
                                                         </yummy:PancakeView>
                                                     </DataTemplate>
-                                                </context:SideContextMenuView.ContextTemplate>
+                                                </context:SwipeActionContextMenuView.ContextTemplate>
 
                                             </context:SwipeActionContextMenuView>
                                         </context:SwipeActionContextHolder>
@@ -136,10 +136,10 @@
 
                                     <!--<Frame Margin="0,0,0,8" CornerRadius="16" BackgroundColor="{StaticResource TBPurple}" HasShadow="False" Padding="0">
                                         
-                                        <SwipeView Margin="0" BackgroundColor="Transparent">
+                                        <SwipeView SwipeStarted="OnSwipeStarted" Margin="0" BackgroundColor="Transparent">
 
                                             <SwipeView.RightItems>
-                                                <SwipeItems Mode="Execute">
+                                                <SwipeItems Mode="Reveal">
                                                     <SwipeItemView Command="{Binding Source={StaticResource vm}, Path=FavoriteTappedCommand}" CommandParameter="{Binding .}" BackgroundColor="{DynamicResource PageBackground}">
                                                         <yummy:PancakeView BackgroundColor="{StaticResource TBPurple}" CornerRadius="0,16,0,16">
                                                             <StackLayout Padding="12" VerticalOptions="Center" HorizontalOptions="Center">
