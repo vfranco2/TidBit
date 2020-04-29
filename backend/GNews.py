@@ -30,6 +30,9 @@ class GNewsScraper(object):
         self.article_sources = []
 
     def extract_info(self):
+        print('-'*100)
+        print()
+
          # Make Google News query
         try:
             self.response = requests.get('https://news.google.com/search?q='+self.search_param)
@@ -91,9 +94,11 @@ class GNewsScraper(object):
                 #Increment the card (i.e. get the next card on the webpage)
                 card = card.next_sibling
 
-            print(self.search_param+": successfully scraped data!")
+            print(self.search_param+": successfully scraped data!\n")
+            print("-"*100)
         except:
-            print(self.search_param+" ERROR: could not scrape data.")
+            print(self.search_param+" ERROR: could not scrape data.\n")
+            print("-"*100)
 
     def commit_to_database(self, mydb, catID):
 
@@ -108,10 +113,14 @@ class GNewsScraper(object):
                 % (self.article_headlines[i], self.article_sources[i], self.img_URLs[i], self.article_descriptions[i], self.article_URLs[i], self.article_times_updated[i], str(catID), str(i)))
 
                 mydb.commit()
-                print(f"Successfully committed {self.article_headlines[i]} to database")
+                print(f"Successfully committed `{self.article_headlines[i]}` to database")
+            print("-"*100)
+            print("\n")
             cursor.close()
         except:
-            print(f"ERROR: Could not commit {self.article_headlines[i]} to database")
+            print(f"ERROR: Could not commit `{self.article_headlines[i]}` to database")
+            print("-"*100)
+            print("\n")
             cursor.close()
         return
 
