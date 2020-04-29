@@ -46,6 +46,7 @@ def home():
     cursor = mydb.cursor()
     cursor.execute("SELECT * FROM articles WHERE categoryId IN (%s)"  % (queryCategories))
     result = cursor.fetchall()
+    cursor.close()
     mydb.close()
 
     return parse_articles(result)
