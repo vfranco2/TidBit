@@ -64,6 +64,7 @@ namespace TidBit.Services
             for (int i = 0; i < articleArray.Count; i++)
             {
                 dynamic articleContent = JObject.Parse(articleArray[i][0].ToString());
+                int apiId = articleContent.id;
                 int apiCategoryId = articleContent.categoryId;
                 string apiArticleTitle = articleContent.articleTitle;
                 string apiArticleSource = articleContent.articleSource;
@@ -74,6 +75,7 @@ namespace TidBit.Services
 
                 articles.Articles.Add(new Article()
                 {
+                    Id = apiId,
                     CategoryIcon = icons[apiCategoryId],
                     ArticleTitle = apiArticleTitle,
                     ArticleSource = apiArticleSource,
