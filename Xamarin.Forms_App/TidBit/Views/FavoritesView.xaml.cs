@@ -14,5 +14,13 @@ namespace TidBit.Views
         {
             InitializeComponent();
         }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+
+            listView.ItemsSource = await App.Database.GetArticlesAsync();
+        }
+
     }
 }
