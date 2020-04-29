@@ -63,10 +63,6 @@ namespace TidBit.ViewModels
             }
         }
 
-        
-
-        
-
         //Set refresh status
         public bool IsRefreshing
         {
@@ -95,8 +91,12 @@ namespace TidBit.ViewModels
         //Add to favorites
         private async void FavoriteTapped(object sender)
         {
+            //var favarticle = (FavArticle)BindingContext;
             var selectedArticle = sender as Article;
-            await Application.Current.MainPage.DisplayAlert("Added", "Added article to your favorites (Coming soon)", "OK");
+            
+            //string selectedArticleTitle = selectedArticle.ArticleTitle;
+            await App.Database.SaveArticleAsync(selectedArticle);
+            await Application.Current.MainPage.DisplayAlert("Added", "Article added to favorites", "OK");
         }
 
         //View article

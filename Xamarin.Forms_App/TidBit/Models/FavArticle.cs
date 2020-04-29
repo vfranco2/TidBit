@@ -1,10 +1,10 @@
 ﻿using SQLite;
 namespace TidBit.Models
 {
-    public class Article
+    public class FavArticle
     {
         [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
+        public int ID { get; set; }
         public int CategoryId { get; set; }
         public string CategoryIcon { get; set; }
         public string ArticleTitle { get; set; }
