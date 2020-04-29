@@ -319,6 +319,9 @@ ServiceFabricBackup/
 *.ldf
 *.ndf
 
+#Server/Scraper Output Logs
+backend/scrape_logs.txt
+
 # Business Intelligence projects
 *.rdl.data
 *.bim.layout

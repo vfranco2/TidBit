@@ -112,6 +112,7 @@ class GNewsScraper(object):
             cursor.close()
         except:
             print(f"ERROR: Could not commit {self.article_headlines[i]} to database")
+            cursor.close()
         return
 
 
