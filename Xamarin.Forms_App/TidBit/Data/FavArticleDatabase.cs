@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using SQLite;
 using TidBit.Models;
@@ -17,8 +18,7 @@ namespace TidBit.Data
 
         public Task<List<Article>> GetArticlesAsync()
         {
-            var dbtotable = _database.Table<Article>().ToListAsync();
-            return dbtotable;
+            return _database.Table<Article>().ToListAsync();
         }
 
         public Task<Article> GetArticleAsync(int id)
@@ -30,14 +30,7 @@ namespace TidBit.Data
 
         public Task<int> SaveArticleAsync(Article article)
         {
-            if (article.Id != 0)
-            {
-                return _database.InsertAsync(article);
-            }
-            else
-            {
-                return _database.InsertAsync(article);
-            }
+            return _database.InsertAsync(article);
         }
 
         public Task<int> DeleteArticleAsync(Article article)

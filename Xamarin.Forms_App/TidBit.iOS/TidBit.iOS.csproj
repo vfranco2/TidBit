@@ -269,10 +269,18 @@
     <ImageAsset Include="Assets.xcassets\favoritenav.imageset\favoritenav.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\favoritepane.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\favoritepane.imageset\favoritepane.png" />
-    <ImageAsset Include="Assets.xcassets\closepane.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\closepane.imageset\closepane.png" />
+    <ImageAsset Include="Assets.xcassets\favoritepane.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\favoritepane.imageset\favoritepane.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\closepane.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\closepane.imageset\closepane.png">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using TidBit.Models;
@@ -87,9 +88,16 @@ namespace TidBit.ViewModels
         private async void FavoriteTapped(object sender)
         {
             var selectedArticle = sender as Article;
-            //string selectedArticleTitle = selectedArticle.ArticleTitle;
-            await App.Database.SaveArticleAsync(selectedArticle);
-            await Application.Current.MainPage.DisplayAlert("Added", "Article added to favorites", "OK");
+            try 
+            {
+                await App.Database.SaveArticleAsync(selectedArticle);
+                await Application.Current.MainPage.DisplayAlert("Added", "Article added to favorites", "OK");
+            }
+            catch (Exception ex) 
+            {
+                await Application.Current.MainPage.DisplayAlert("Alert", "Article already in favorites", "OK");
+            }
+            
         }
 
         //View article
@@ -97,7 +105,6 @@ namespace TidBit.ViewModels
         {
             var selectedArticle = sender as Article;
             Shell.Current.Navigation.PushModalAsync(new ArticleView(selectedArticle));
-            
         }
 
     }

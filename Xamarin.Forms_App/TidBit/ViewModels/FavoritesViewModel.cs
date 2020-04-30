@@ -99,7 +99,8 @@ namespace TidBit.ViewModels
         {
             var selectedArticle = sender as Article;
             await App.Database.DeleteArticleAsync(selectedArticle);
-            await Application.Current.MainPage.DisplayAlert("Removed", "Article removed from favorites. Swipe down to refresh.", "OK");
+            await Application.Current.MainPage.DisplayAlert("Removed", "Article removed from favorites.", "OK");
+            LoadArticles();
         }
 
         //View article

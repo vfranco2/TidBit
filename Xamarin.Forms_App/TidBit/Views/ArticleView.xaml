@@ -45,14 +45,14 @@
                     </Grid>
                 </Frame>
 
-                <Frame HorizontalOptions="Start" WidthRequest="40" Margin="0" Grid.Column="2" BackgroundColor="{DynamicResource PageBackground}" HasShadow="False">
+                <!--<Frame HorizontalOptions="Start" WidthRequest="40" Margin="0" Grid.Column="2" BackgroundColor="{DynamicResource PageBackground}" HasShadow="False">
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnFavoriteButtonClicked" />
+                        <TapGestureRecognizer Command="{Binding Source={StaticResource vm}, Path=ArticleViewFavoriteTappedCommand}" CommandParameter="{Binding .}" />
                     </Frame.GestureRecognizers>
                     <Grid>
                         <Image Grid.Row="0" Source="favoritenav.png" HeightRequest="60" Margin="-10"/>
                     </Grid>
-                </Frame>
+                </Frame>-->
 
                 <Frame HorizontalOptions="End" WidthRequest="40" Margin="0" Grid.Column="4" BackgroundColor="{DynamicResource PageBackground}" HasShadow="False">
                     <Frame.GestureRecognizers>
