@@ -35,10 +35,10 @@ namespace TidBit.Views
             ShareUri(articleShareLink);
         }
 
-        void OnFavoriteButtonClicked(object sender, EventArgs e)
-        {
-            Application.Current.MainPage.DisplayAlert("Added", "Added article to your favorites (Coming soon)", "OK");
-        }
+        //void OnFavoriteButtonClicked(object sender, EventArgs e)
+        //{
+        //    Application.Current.MainPage.DisplayAlert("Added", "Added article to your favorites (Coming soon)", "OK");
+        //}
 
         async void OnDismissButtonClicked(object sender, EventArgs args)
         {
