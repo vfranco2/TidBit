@@ -1,9 +1,12 @@
-# TidBit  <img align="left" src="IconRepo/appicons/playstore.png" width="70" >  
+# TidBit  <img align="left" src="IconRepo/appicons/tbround.png" width="80" >  
 A cross-platform news aggregate Xamarin app that displays daily news articles tailored to your preferences.
 
-With an overwhelming variety of new articles published every day, absorbing information has become rather overwhelming in its unfiltered state. **TidBit** is a microlearning cross-platform app for iOS and Android made to help take away the overwhelming nature of the internet and filter it into digestible **_TidBit_** sized snippets tailored to _you_.
+## The Gist
+With an overwhelming variety of new articles published every day, absorbing information has become overwhelming in its unfiltered state. **TidBit** is a microlearning cross-platform app for iOS and Android made to help take away the overwhelming nature of the internet and filter it into digestible _TidBit_ sized snippets tailored to _you_.
 
-TidBit is a microlearning app that allows users to select categorical preferences that matter to you. Toggle your interests such as *Technology, Sports, Movies, Fashion, Photography* to recieve brief _'TidBits'_ of information on a daily basis relating to your preferred topics. 
+TidBit is a microlearning app that retrieves articles that matter to you. Toggle your interests such as *Technology, Sports, Movies, Fashion, Photography* to recieve brief _'TidBits'_ of information on a daily basis relating to your preferred topics. Tap on the article card to read more. _'Favorite'_ the article to save it for later.
+
+Sleek. Simple. **TidBit.**
 
 # Features
 ## Light vs. Dark
