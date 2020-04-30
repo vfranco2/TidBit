@@ -1,4 +1,5 @@
-﻿using TidBit.Models;
+﻿using System;
+using TidBit.Models;
 using TidBit.ViewModels.Base;
 using Xamarin.Forms;
 
@@ -6,13 +7,13 @@ namespace TidBit.ViewModels
 {
     public class ArticleViewModel : ViewModelBase
     {
-        /*public Command ArticleViewFavoriteTappedCommand { get; set; }
+        public Command ArticleViewFavoriteTappedCommand { get; set; }
 
         public ArticleViewModel()
         {
             ArticleViewFavoriteTappedCommand = new Command(ArticleViewFavoriteTapped);
         }
-        */
+        
         private Article article;
         public Article Article
         {
@@ -23,14 +24,20 @@ namespace TidBit.ViewModels
                 OnPropertyChanged("Article");
             }
         }
-        /*
+        
         private async void ArticleViewFavoriteTapped(object sender)
         {
-            var selectedArticle = sender as Article;
-            //string selectedArticleTitle = selectedArticle.ArticleTitle;
-            await App.Database.SaveArticleAsync(selectedArticle);
-            await Application.Current.MainPage.DisplayAlert("Added", "Article added to favorites", "OK");
+            var selectedArticle = article as Article;
+            try
+            {
+                await App.Database.SaveArticleAsync(selectedArticle);
+                await Application.Current.MainPage.DisplayAlert("Added", "Article added to favorites", "OK");
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Alert", "Article already in favorites", "OK");
+            }
         }
-        */
+        
     }
 }
