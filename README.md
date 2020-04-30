@@ -8,10 +8,13 @@ TidBit is a microlearning app that allows users to select categorical preference
 #Features
 ## Light vs. Dark
 View articles in style. TidBit adjusts to light and dark mode dynamically on your device.
-<img src="IconRepo/screenshots/ios-light-feed.png" width="250">         <img src="IconRepo/screenshots/ios-dark-feed.png" width="250">  
+<img src="IconRepo/screenshots/ios-light-feed.png" width="320">         <img src="IconRepo/screenshots/ios-dark-feed.png" width="320">  
 
 
 ## _Your_ Articles, _Your_ Way
 Select your interests in preferences, and let TidBit find new articles that match your interests.
-<img src="IconRepo/screenshots/ios-light-settings.png" width="250">         <img src="IconRepo/screenshots/ios-dark-settings.png" width="250">  
+<img src="IconRepo/screenshots/ios-light-settings.png" width="320">         <img src="IconRepo/screenshots/ios-dark-settings.png" width="320">  
 
+## Play for Keeps
+Save your favorite articles for later, and remove them when you're done.
+<img src="IconRepo/screenshots/ios-light-favdemo.gif" width="320">  
