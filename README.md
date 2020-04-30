@@ -11,17 +11,18 @@ View articles in style. TidBit adjusts to light and dark mode dynamically on you
 
  Light Mode            |  Dark Mode
 :-------------------------:|:-------------------------:
-![TidBit Light Mode](IconRepo/screenshots/ios-light-feed.png =250x)  |  ![TidBit Dark Mode](IconRepo/screenshots/ios-dark-feed.png =250x)
+<img src="IconRepo/screenshots/ios-light-feed.png" alt="ios light feed" width="250"/>  |  <img src="IconRepo/screenshots/ios-dark-feed.png" alt="ios dark feed" width="250"/> 
 
 ## _Your_ Articles, _Your_ Way
 Select your interests in preferences, and let TidBit find new articles that match your interests.
-            |  
+
+ Light Mode            |  Dark Mode
 :-------------------------:|:-------------------------:
-![TidBit Light Settings](IconRepo/screenshots/ios-light-settings.png =250x)  |  ![TidBit Dark Settings](IconRepo/screenshots/ios-dark-settings.png =250x)
+<img src="IconRepo/screenshots/ios-light-settings.png" alt="ios light settings" width="250"/>  |  <img src="IconRepo/screenshots/ios-dark-settings.png" alt="ios dark settings" width="250"/> 
 
 ## Play for Keeps
 Save your favorite articles for later, and remove them when you're done.
-            |  
-:-------------------------:|:-------------------------:
-![TidBit Light Settings](IconRepo/screenshots/ios-light-favdemo.gif =320x)  |  
+<br/><br/>
+<img src="IconRepo/screenshots/ios-light-favdemo.gif" alt="favorites demo" width="320"/> 
+
 
