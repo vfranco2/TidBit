@@ -9,17 +9,19 @@ using Xamarin.Forms;
 
 namespace TidBit.ViewModels
 {
-    public class HomeViewModel : ViewModelBase
+    public class FavoritesViewModel : ViewModelBase
     {
         public ObservableCollection<Article> Articles { get; set; }
 
         public Command ArticleTappedCommand { get; set; }
 
-        public Command FavoriteTappedCommand { get; set; }
+        public Command UnfavoriteTappedCommand { get; set; }
 
         private bool _isRefreshing = false;
 
-        public HomeViewModel()
+        private bool _isDefaultVisible = false;
+
+        public FavoritesViewModel()
         {
             Articles = new ObservableCollection<Article>();
 
@@ -27,34 +29,43 @@ namespace TidBit.ViewModels
 
             ArticleTappedCommand = new Command(ArticleTapped);
 
-            FavoriteTappedCommand = new Command(FavoriteTapped);
+            UnfavoriteTappedCommand = new Command(UnfavoriteTapped);
 
         }
 
         protected async Task LoadArticles()
         {
             Articles.Clear();
-            
+
             try
             {
-                this.IsBusy = true;
-                var articleResults = await this.TBService.GetAllArticles();
+                IsDefaultVisible = false;
+                var articleResults = await App.Database.GetArticlesAsync();
 
-                foreach (var counter in articleResults.Articles)
+                foreach (var counter in articleResults)
                 {
                     Articles.Add(counter);
                 }
 
-                await Task.Delay(500);
-                this.IsBusy = false;
-
-                if (articleResults.Articles.Count == 0)
-                    await App.Current.MainPage.DisplayAlert("Warning", "No articles found.", "OK");
+                if (articleResults.Count == 0)
+                    IsDefaultVisible = true;
 
             }
             catch (Exception ex)
             {
                 await App.Current.MainPage.DisplayAlert("Warning", "Could not retrieve articles.", "OK");
+                IsDefaultVisible = true;
+            }
+        }
+
+        //Set default text visibility
+        public bool IsDefaultVisible
+        {
+            get { return _isDefaultVisible; }
+            set
+            {
+                _isDefaultVisible = value;
+                OnPropertyChanged(nameof(IsDefaultVisible));
             }
         }
 
@@ -83,13 +94,12 @@ namespace TidBit.ViewModels
             }
         }
 
-        //Add to favorites
-        private async void FavoriteTapped(object sender)
+        //Remove from favorites
+        private async void UnfavoriteTapped(object sender)
         {
             var selectedArticle = sender as Article;
-            //string selectedArticleTitle = selectedArticle.ArticleTitle;
-            await App.Database.SaveArticleAsync(selectedArticle);
-            await Application.Current.MainPage.DisplayAlert("Added", "Article added to favorites", "OK");
+            await App.Database.DeleteArticleAsync(selectedArticle);
+            await Application.Current.MainPage.DisplayAlert("Removed", "Article removed from favorites. Swipe down to refresh.", "OK");
         }
 
         //View article
@@ -97,7 +107,7 @@ namespace TidBit.ViewModels
         {
             var selectedArticle = sender as Article;
             Shell.Current.Navigation.PushModalAsync(new ArticleView(selectedArticle));
-            
+
         }
 
     }
