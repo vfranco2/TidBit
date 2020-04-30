@@ -35,9 +35,7 @@
 
             <yummy:PancakeView Grid.Row="1" Margin="0" Padding="8" BackgroundColor="{DynamicResource PageBackground}" CornerRadius="35,35,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <sv:SettingsView BackgroundColor="{DynamicResource PageBackground}" HasUnevenRows="True" SeparatorColor="{DynamicResource TBPurpleDark}">
-                    <sv:Section>
-                        <sv:CommandCell BackgroundColor="{DynamicResource PageBackground}" Title="{Binding Source={StaticResource vm}, Path=tidbitVersion, StringFormat='About - Build Version {0:F0}'}" Description="Built by Vlad Franco and Harrison Lavins."/>
-                    </sv:Section>
+                    
                     <sv:Section Title="News Preferences" TextColor="{DynamicResource AccentText}">
                         <ViewCell>
                             <Grid BackgroundColor="{DynamicResource PageBackground}" Padding="18,8,8,8">
@@ -170,6 +168,11 @@
                         </ViewCell>
 
                     </sv:Section>
+
+                    <sv:Section>
+                        <sv:CommandCell BackgroundColor="{DynamicResource PageBackground}" Title="{Binding Source={StaticResource vm}, Path=tidbitVersion, StringFormat='About - Build Version {0:F0}'}" Description="Built by Vlad Franco and Harrison Lavins."/>
+                    </sv:Section>
+
                 </sv:SettingsView>
             </yummy:PancakeView>
 

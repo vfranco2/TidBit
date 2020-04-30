@@ -97,7 +97,6 @@ namespace TidBit.ViewModels
             {
                 await Application.Current.MainPage.DisplayAlert("Alert", "Article already in favorites", "OK");
             }
-            
         }
 
         //View article

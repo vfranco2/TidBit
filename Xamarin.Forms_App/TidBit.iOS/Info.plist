@@ -27,7 +27,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.tidbit.TidBit</string>
 	<key>CFBundleVersion</key>
-	<string>2.1.1</string>
+	<string>2.1.2</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
@@ -45,7 +45,5 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>CFBundleShortVersionString</key>
-	<string>2</string>
 </dict>
 </plist>
