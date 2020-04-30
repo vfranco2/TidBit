@@ -34,5 +34,7 @@
     <item name="android:windowIsTranslucent">false</item>
     <item name="android:windowIsFloating">false</item>
     <item name="android:backgroundDimEnabled">true</item>
+    <item name="android:navigationBarColor">#000000</item>
+    <item name="android:windowLightNavigationBar">false</item>
   </style>
 </resources>

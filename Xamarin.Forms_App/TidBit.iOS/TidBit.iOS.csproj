@@ -269,6 +269,10 @@
     <ImageAsset Include="Assets.xcassets\favoritenav.imageset\favoritenav.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\favoritepane.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\favoritepane.imageset\favoritepane.png" />
+    <ImageAsset Include="Assets.xcassets\closepane.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\closepane.imageset\closepane.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -323,6 +327,8 @@
     <Folder Include="Assets.xcassets\share.imageset\" />
     <Folder Include="Assets.xcassets\sports_basketball.imageset\" />
     <Folder Include="Assets.xcassets\videogame_asset.imageset\" />
+    <Folder Include="Assets.xcassets\favoritepane.imageset\" />
+    <Folder Include="Assets.xcassets\closepane.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Roboto-Bold.ttf" />

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TidBit.ViewModels.Base;
+﻿using TidBit.ViewModels.Base;
 using Xamarin.Essentials;
 
 namespace TidBit.ViewModels

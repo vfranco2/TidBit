@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="True"
+             xmlns:vm="clr-namespace:TidBit.ViewModels"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:context="clr-namespace:ContextMenu.Views;assembly=ContextMenu"
              xmlns:conv="clr-namespace:TidBit.Converters"
@@ -14,6 +15,8 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <StyleSheet Source="../Styles/styles.css"/>
+            <vm:FavoritesViewModel x:Key="vm"/>
+            <conv:MenuFitWidthConverter x:Key="MenuFitWidthConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -32,78 +35,105 @@
                 <Label TextColor="#f2f2f2" VerticalOptions="Center" Style="{StaticResource TitleTextStyle}" Text="Favorites"/>
             </Grid>
 
-            <yummy:PancakeView Grid.Row="1" Margin="0" Padding="8" BackgroundColor="{DynamicResource PageBackground}" CornerRadius="35,35,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <!--<StackLayout>
-                    <Label Text="Favorites Under Construction" TextColor="{DynamicResource AccentText}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-                </StackLayout>
+            <yummy:PancakeView Grid.Row="1" Margin="0" BackgroundColor="{DynamicResource PageBackground}" CornerRadius="35,35,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 
-                <ListView x:Name="listView" Margin="20">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <TextCell Text="{Binding ArticleTitle}" />
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>-->
+                <Frame Margin="0,0,0,8" Padding="0" CornerRadius="16" HasShadow="False" BackgroundColor="#00FFFFFF">
+                    <Grid Margin="0" Padding="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
 
-                <ListView HorizontalOptions="FillAndExpand"
-                            x:Name="listView"
-                            CachingStrategy="RecycleElement"
-                            HasUnevenRows="True"
-                            Margin="0"
-                            BackgroundColor="#00FFFFFF"
-                            SeparatorVisibility="None"
-                            VerticalOptions="Start">
+                        <ListView Grid.Row="0" HorizontalOptions="FillAndExpand"
+                                    x:Name="listView"
+                                    CachingStrategy="RecycleElement"
+                                    HasUnevenRows="True"
+                                    Margin="0"
+                                    BackgroundColor="#00FFFFFF"
+                                    SeparatorVisibility="None"
+                                    VerticalOptions="Start"
+                                    ItemsSource="{Binding Source={StaticResource vm}, Path=Articles}"
+                                    IsPullToRefreshEnabled="True"
+                                    RefreshCommand="{Binding Source={StaticResource vm}, Path=RefreshCommand}"
+                                    IsRefreshing="{Binding Source={StaticResource vm}, Path=IsRefreshing}">
 
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
 
-                                <Frame x:Name="WrapperFrame" Margin="0,0,0,8" CornerRadius="16" BackgroundColor="{StaticResource TBPurple}" HasShadow="False" Padding="0">
+                                        <Frame x:Name="WrapperFrame" Margin="0,0,0,8" CornerRadius="16" BackgroundColor="IndianRed" HasShadow="False" Padding="0">
 
-                                    <Frame Margin="0" CornerRadius="16" Padding="8" HeightRequest="270" WidthRequest="{Binding Source={x:Reference WrapperFrame}, Path=Width, Converter={StaticResource MenuFitWidthConverter}, ConverterParameter='11'}" BackgroundColor="{DynamicResource CardBackground}" HasShadow="True">
-                                        
-                                        <Grid Margin="0" RowSpacing="4">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="*"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                            </Grid.RowDefinitions>
+                                            <context:SwipeActionContextHolder MovedCommand="{Binding Source={StaticResource vm}, Path=UnfavoriteTappedCommand}" VisibleWidthPercentage="0.85">
+                                                    <context:SwipeActionContextMenuView IsAutoCloseEnabled="true" >
+                                                        <context:SwipeActionContextMenuView.View >
+                                                            <Frame Margin="0" CornerRadius="16" Padding="8" HeightRequest="270" WidthRequest="{Binding Source={x:Reference WrapperFrame}, Path=Width, Converter={StaticResource MenuFitWidthConverter}, ConverterParameter='11'}" BackgroundColor="{DynamicResource CardBackground}" HasShadow="True">
+                                                                <Frame.GestureRecognizers>
+                                                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={StaticResource vm}, Path=ArticleTappedCommand}" CommandParameter="{Binding .}"/>
+                                                                </Frame.GestureRecognizers>
 
-                                            <Grid Grid.Row="0" ColumnSpacing="8" Padding="0">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="40"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                </Grid.ColumnDefinitions>
+                                                                <Grid Margin="0" RowSpacing="4">
+                                                                    <Grid.RowDefinitions>
+                                                                        <RowDefinition Height="Auto"/>
+                                                                        <RowDefinition Height="*"/>
+                                                                        <RowDefinition Height="Auto"/>
+                                                                        <RowDefinition Height="Auto"/>
+                                                                    </Grid.RowDefinitions>
 
-                                                <Image Grid.Column="0" Source="{Binding CategoryIcon}" WidthRequest="35" HeightRequest="35" HorizontalOptions="Center" VerticalOptions="Start"/>
-                                                <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" LineBreakMode="TailTruncation" MaxLines="3" VerticalOptions="Center" TextColor="{DynamicResource TextColor}" Text="{Binding ArticleTitle}"/>
-                                            </Grid>
+                                                                    <Grid Grid.Row="0" ColumnSpacing="8" Padding="0">
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="40"/>
+                                                                            <ColumnDefinition Width="*"/>
+                                                                        </Grid.ColumnDefinitions>
 
-                                            <Frame Grid.Row="1" CornerRadius="8" HasShadow="False" BackgroundColor="#00FFFFFF" Padding="0" Margin="0">
-                                                <Image Source="{Binding ArticleImageUrl}" Aspect="AspectFill" HorizontalOptions="FillAndExpand"/>
-                                            </Frame>
+                                                                        <Image Grid.Column="0" Source="{Binding CategoryIcon}" WidthRequest="35" HeightRequest="35" HorizontalOptions="Center" VerticalOptions="Start"/>
+                                                                        <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" LineBreakMode="TailTruncation" MaxLines="3" VerticalOptions="Center" TextColor="{DynamicResource TextColor}" Text="{Binding ArticleTitle}"/>
+                                                                    </Grid>
 
-                                            <Label Grid.Row="2" Style="{StaticResource MediumTextStyle}" LineBreakMode="TailTruncation" MaxLines="3" VerticalOptions="Center" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleText}" />
-                                            <Grid Grid.Row="3" Margin="0" Padding="0">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                </Grid.ColumnDefinitions>
-                                                <Label Grid.Column="0" Style="{StaticResource MediumTextStyle}" VerticalOptions="Start" HorizontalOptions="Start" HorizontalTextAlignment="Start" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleSource}"/>
-                                                <Label Grid.Column="1" Style="{StaticResource MediumTextStyle}" VerticalOptions="Start" HorizontalOptions="End" HorizontalTextAlignment="End" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleDate}"/>
-                                            </Grid>
+                                                                    <Frame Grid.Row="1" CornerRadius="8" HasShadow="False" BackgroundColor="#00FFFFFF" Padding="0" Margin="0">
+                                                                        <Image Source="{Binding ArticleImageUrl}" Aspect="AspectFill" HorizontalOptions="FillAndExpand"/>
+                                                                    </Frame>
 
-                                        </Grid>
+                                                                    <Label Grid.Row="2" Style="{StaticResource MediumTextStyle}" LineBreakMode="TailTruncation" MaxLines="3" VerticalOptions="Center" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleText}"/>
+                                                                    <Grid Grid.Row="3" Margin="0" Padding="0">
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="Auto"/>
+                                                                            <ColumnDefinition Width="*"/>
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <Label Grid.Column="0" Style="{StaticResource MediumTextStyle}" VerticalOptions="Start" HorizontalOptions="Start" HorizontalTextAlignment="Start" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleSource}"/>
+                                                                        <Label Grid.Column="1" Style="{StaticResource MediumTextStyle}" VerticalOptions="Start" HorizontalOptions="End" HorizontalTextAlignment="End" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleDate}"/>
+                                                                    </Grid>
 
-                                    </Frame>
-                                </Frame>
+                                                                </Grid>
 
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
+                                                            </Frame>
+                                                        </context:SwipeActionContextMenuView.View>
 
-                </ListView>
+                                                        <context:SwipeActionContextMenuView.ContextTemplate>
+                                                            <DataTemplate >
+                                                                <yummy:PancakeView BackgroundColor="IndianRed" CornerRadius="0,16,0,16" IsClippedToBounds="True" >
+                                                                    <StackLayout Padding="12,12,24,12" VerticalOptions="Center" HorizontalOptions="End">
+                                                                        <ImageButton Grid.Row="0" Source="closepane.png" BackgroundColor="#00FFFFFF"/>
+                                                                        <Label Grid.Row="1" Text="Unfavorite" Style="{StaticResource MediumTextStyle}" TextColor="#f2f2f2" HorizontalTextAlignment="Center"/>
+                                                                    </StackLayout>
+                                                                </yummy:PancakeView>
+                                                            </DataTemplate>
+                                                        </context:SwipeActionContextMenuView.ContextTemplate>
+
+                                                    </context:SwipeActionContextMenuView>
+                                                </context:SwipeActionContextHolder>
+
+                                        </Frame>
+
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+
+                        </ListView>
+
+                        <Label Grid.Row="0" HorizontalOptions="Center" IsVisible="{Binding Source={StaticResource vm}, Path=IsDefaultVisible}" VerticalOptions="Start" Margin="24" HorizontalTextAlignment="Center" TextColor="{DynamicResource AccentText}" Style="{StaticResource MediumTextStyle}" Text="No articles found. Swipe left on an article to save it here."/>
+
+                    </Grid>
+                    
+                </Frame>
             </yummy:PancakeView>
 
         </Grid>

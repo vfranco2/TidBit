@@ -86,4 +86,24 @@
         <Setter Property="Grid.Column" Value="0"/>
     </Style>
 
+    <!-- Repeated Elements-->
+    <Style TargetType="Image" x:Key="SettingsIconStyle">
+        <Setter Property="Grid.Column" Value="0"/>
+        <Setter Property="HeightRequest" Value="40"/>
+        <Setter Property="WidthRequest" Value="40"/>
+        <Setter Property="Margin" Value="0,0,8,0"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="SettingsTextStyle" BasedOn="{StaticResource LargeTextStyle}">
+        <Setter Property="Grid.Column" Value="1"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+    </Style>
+
+    <Style TargetType="CheckBox" x:Key="SettingsCheckboxStyle">
+        <Setter Property="Grid.Column" Value="2"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="HorizontalOptions" Value="End"/>
+        <Setter Property="Color" Value="{StaticResource TBPurple}"/>
+    </Style>
+
 </ResourceDictionary>

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.IO;
 using TidBit.Data;
-using TidBit.Styles;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace TidBit
 {

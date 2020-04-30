@@ -32,7 +32,7 @@ namespace TidBit.Data
         {
             if (article.Id != 0)
             {
-                return _database.UpdateAsync(article);
+                return _database.InsertAsync(article);
             }
             else
             {

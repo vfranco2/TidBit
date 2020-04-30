@@ -44,9 +44,9 @@
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Grid.Column="0" Source="phonelink.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
+                                <Image Style="{StaticResource SettingsIconStyle}" Source="phonelink.png"/>
                                 <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Tech"/>
-                                <CheckBox Grid.Column="2" x:Name="TechActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Tech_Toggled" Color="{StaticResource TBPurple}"/>
+                                <CheckBox Style="{StaticResource SettingsCheckboxStyle}" x:Name="TechActive" IsChecked="True" CheckedChanged="Tech_Toggled"/>
                             </Grid>
                         </ViewCell>
 
@@ -57,9 +57,9 @@
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Grid.Column="0" Source="directions_car.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
-                                <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Auto"/>
-                                <CheckBox Grid.Column="2" x:Name="AutoActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Auto_Toggled" Color="{StaticResource TBPurple}"/>
+                                <Image Style="{StaticResource SettingsIconStyle}" Source="directions_car.png"/>
+                                <Label Style="{StaticResource SettingsTextStyle}" TextColor="{DynamicResource TextColor}" Text="Auto"/>
+                                <CheckBox Style="{StaticResource SettingsCheckboxStyle}" x:Name="AutoActive" IsChecked="True" CheckedChanged="Auto_Toggled"/>
                             </Grid>
                         </ViewCell>
 
@@ -70,9 +70,9 @@
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Grid.Column="0" Source="sports_basketball.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
-                                <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Sports"/>
-                                <CheckBox Grid.Column="2" x:Name="SportsActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Sports_Toggled" Color="{StaticResource TBPurple}"/>
+                                <Image Style="{StaticResource SettingsIconStyle}" Source="sports_basketball.png"/>
+                                <Label Style="{StaticResource SettingsTextStyle}" TextColor="{DynamicResource TextColor}" Text="Sports"/>
+                                <CheckBox Style="{StaticResource SettingsCheckboxStyle}" x:Name="SportsActive" IsChecked="True" CheckedChanged="Sports_Toggled"/>
                             </Grid>
                         </ViewCell>
                 
@@ -83,9 +83,9 @@
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Grid.Column="0" Source="local_mall.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
-                                <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Fashion"/>
-                                <CheckBox Grid.Column="2" x:Name="FashionActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Fashion_Toggled" Color="{StaticResource TBPurple}"/>
+                                <Image Style="{StaticResource SettingsIconStyle}" Source="local_mall.png"/>
+                                <Label Style="{StaticResource SettingsTextStyle}" TextColor="{DynamicResource TextColor}" Text="Fashion"/>
+                                <CheckBox Style="{StaticResource SettingsCheckboxStyle}" x:Name="FashionActive" IsChecked="True" CheckedChanged="Fashion_Toggled"/>
                             </Grid>
                         </ViewCell>
                 
@@ -96,9 +96,9 @@
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Grid.Column="0" Source="videogame_asset.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
-                                <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Gaming"/>
-                                <CheckBox Grid.Column="2" x:Name="GamingActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Gaming_Toggled" Color="{StaticResource TBPurple}"/>
+                                <Image Style="{StaticResource SettingsIconStyle}" Source="videogame_asset.png"/>
+                                <Label Style="{StaticResource SettingsTextStyle}" TextColor="{DynamicResource TextColor}" Text="Gaming"/>
+                                <CheckBox Style="{StaticResource SettingsCheckboxStyle}" x:Name="GamingActive" IsChecked="True" CheckedChanged="Gaming_Toggled"/>
                             </Grid>
                         </ViewCell>
 
@@ -109,9 +109,9 @@
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Grid.Column="0" Source="local_movies.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
-                                <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Film"/>
-                                <CheckBox Grid.Column="2" x:Name="FilmActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Film_Toggled" Color="{StaticResource TBPurple}"/>
+                                <Image Style="{StaticResource SettingsIconStyle}" Source="local_movies.png"/>
+                                <Label Style="{StaticResource SettingsTextStyle}" TextColor="{DynamicResource TextColor}" Text="Film"/>
+                                <CheckBox Style="{StaticResource SettingsCheckboxStyle}" x:Name="FilmActive" IsChecked="True" CheckedChanged="Film_Toggled"/>
                             </Grid>
                         </ViewCell>
 
@@ -122,9 +122,9 @@
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Grid.Column="0" Source="restaurant.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
-                                <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Food"/>
-                                <CheckBox Grid.Column="2" x:Name="FoodActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Food_Toggled" Color="{StaticResource TBPurple}"/>
+                                <Image Style="{StaticResource SettingsIconStyle}" Source="restaurant.png"/>
+                                <Label Style="{StaticResource SettingsTextStyle}" TextColor="{DynamicResource TextColor}" Text="Food"/>
+                                <CheckBox Style="{StaticResource SettingsCheckboxStyle}" x:Name="FoodActive" IsChecked="True" CheckedChanged="Food_Toggled"/>
                             </Grid>
                         </ViewCell>
 
@@ -135,9 +135,9 @@
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Grid.Column="0" Source="headset.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
-                                <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Music"/>
-                                <CheckBox Grid.Column="2" x:Name="MusicActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Music_Toggled" Color="{StaticResource TBPurple}"/>
+                                <Image Style="{StaticResource SettingsIconStyle}" Source="headset.png"/>
+                                <Label Style="{StaticResource SettingsTextStyle}" TextColor="{DynamicResource TextColor}" Text="Music"/>
+                                <CheckBox Style="{StaticResource SettingsCheckboxStyle}" x:Name="MusicActive" IsChecked="True" CheckedChanged="Music_Toggled"/>
                             </Grid>
                         </ViewCell>
 
@@ -148,9 +148,9 @@
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Grid.Column="0" Source="camera_alt.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
-                                <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Photography"/>
-                                <CheckBox Grid.Column="2" x:Name="PhotographyActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Photography_Toggled" Color="{StaticResource TBPurple}"/>
+                                <Image Style="{StaticResource SettingsIconStyle}" Source="camera_alt.png"/>
+                                <Label Style="{StaticResource SettingsTextStyle}" TextColor="{DynamicResource TextColor}" Text="Photography"/>
+                                <CheckBox Style="{StaticResource SettingsCheckboxStyle}" x:Name="PhotographyActive" IsChecked="True" CheckedChanged="Photography_Toggled"/>
                             </Grid>
                         </ViewCell>
 
@@ -161,9 +161,9 @@
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Grid.Column="0" Source="bar_chart.png" HeightRequest="40" WidthRequest="40" Margin="0,0,8,0"/>
-                                <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Text="Finance"/>
-                                <CheckBox Grid.Column="2" x:Name="FinanceActive" IsChecked="True" VerticalOptions="Center" HorizontalOptions="End" CheckedChanged="Finance_Toggled" Color="{StaticResource TBPurple}"/>
+                                <Image Style="{StaticResource SettingsIconStyle}" Source="bar_chart.png"/>
+                                <Label Style="{StaticResource SettingsTextStyle}" TextColor="{DynamicResource TextColor}" Text="Finance"/>
+                                <CheckBox Style="{StaticResource SettingsCheckboxStyle}" x:Name="FinanceActive" IsChecked="True" CheckedChanged="Finance_Toggled"/>
                             </Grid>
                         </ViewCell>
 
