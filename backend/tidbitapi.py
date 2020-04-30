@@ -33,7 +33,7 @@ def home():
 
     mydb = mysql.connector.connect(
         host= config['data']['host'],
-        user= config['data']['host'],
+        user= config['data']['user'],
         passwd= config['data']['pass'],
         database = config['data']['db']
     )
