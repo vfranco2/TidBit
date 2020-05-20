@@ -1,0 +1,226 @@
+/* Define Theme Colors */
+:root{
+    --tb-purple: #9575cd;
+
+    /* Light Theme */
+    --light-cardbg: white;
+    --light-pagebg:rgb(203, 203, 203);
+    --light-textcolor: hsl(0, 0%, 0%);
+    --light-feedbg: #eee;
+    --light-border-color:rgb(164, 164, 164);
+
+    /* Dark Theme */
+}
+
+
+*{
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+}
+
+body{
+    background: var(--light-pagebg);
+    font-size: 16px;
+}
+
+h1{
+    font-size: 1.2em;
+    color: var(--light-textcolor);
+}
+
+h3{
+    font-size: 1.0em;
+    color: var(--light-textcolor);
+    font-weight: 400;
+}
+
+.wrapper{
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.feed{
+    /* width: 100%; */
+    background:var(--light-feedbg);
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 10px 10px 10px 10px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* flex styles */
+.flex-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    max-height: 260px;
+    flex-basis: 250px; /* starting card width */
+   
+    background: var(--light-cardbg);
+    border-radius: 15px;
+    border-style: solid;
+    border-color: var(--light-border-color);
+    border-width: 1px;
+    padding: 0px 0px 0px 0px;
+    margin: 20px 5px 5px 0px;
+}
+
+
+.card-header{
+    /* Delete me */
+    border-radius: 15px 15px 0px 0px;
+
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    background: transparent;
+    min-height: 40px;
+    flex-grow: 1;
+}
+
+.header-left{
+   
+    background: transparent;
+    height: 100%;
+    flex-basis: 30px;
+    flex-grow: 1;
+}
+
+.category-icon{
+    width: 80%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header-center {
+    /* background: grey; */
+    height: 100%;
+    flex-basis: 100px;
+    flex-grow: 10;
+    margin-top: 2px;
+    margin-left: 5px;
+}
+
+.header-favorite-icon{
+    height: 100%;
+    flex-basis: 40px;
+    flex-grow: 1;
+
+    padding: 3px 3px 3px 3px;
+    background: transparent;
+    margin: auto;
+    text-align: center;
+    color: var(--tb-purple);
+}
+
+.favorite-icon{
+    width: 65%;
+    height: auto;    
+    margin: 2px 0px 5px auto;
+    padding: 3px 0px 3px 3px;
+
+    /* Hover Effect */
+    transform: scale(1.1);
+    opacity: 0.8;
+    transition: all .3s ease-in-out;
+}
+
+.favorite-icon:hover{
+    /* Hover Effect */
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+
+
+
+/* For use with image container as flex item
+.card-img-container{
+    border-radius: 10px;
+    min-height: 50px;
+    flex-grow: 2;
+    margin: 5px 5px 0px 5px;
+
+    overflow: hidden;
+} 
+
+.card-img{
+    border-radius: 10px;
+    Fill flex container with the image
+    height: 117px;
+    width: 483px;
+    Then use object-fit to crop the image (maintains aspect ratio) 
+    object-fit: cover;
+    
+   
+    Hover Effect
+    opacity: 0.8;
+    transition: all .3s ease-in-out;
+} */
+
+.card-img{
+    border-radius: 10px;
+    min-height: 50px;
+    flex-grow: 2;
+    margin: 5px 5px 0px 5px;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+    opacity: 0.8;
+    transition: all .3s ease-in-out;
+}
+
+.card-img:hover{
+    /* Hover Effect */
+    opacity: 1;
+    transform: scale(1.01);
+}
+
+
+
+
+
+
+
+
+.card-caption-container{
+    background: transparent;
+    min-height: 50px;
+    flex-grow: 4;
+    margin: 0px 5px 10px 5px;
+}
+
+
+.card-footer{
+    /* Delete me */
+    border-radius: 0px 0px 15px 15px;
+    
+    margin-bottom: 5px;
+    background: transparent;
+    min-height: 20px;
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+}
+
+.source{
+    margin-left: 5px;
+    font-style: italic;
+}
+
+.time-updated{
+    margin-right: 5px;
+    font-weight:300;
+}
+
