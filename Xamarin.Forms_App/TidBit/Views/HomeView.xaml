@@ -33,115 +33,140 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
+
                 <Label TextColor="#f2f2f2" VerticalOptions="Center" Style="{StaticResource TitleTextStyle}" Text="Feed"/>
+
             </Grid>
 
             <yummy:PancakeView Grid.Row="1" Margin="0" BackgroundColor="{DynamicResource PageBackground}" CornerRadius="35,35,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 
-                <Frame Margin="0,0,0,8" Padding="0" CornerRadius="16" HasShadow="False" BackgroundColor="#00FFFFFF">
+                <ListView HorizontalOptions="FillAndExpand"
+                          x:Name="ArticleListView"
+                          CachingStrategy="RecycleElement"
+                          HasUnevenRows="True"
+                          Margin="0"
+                          BackgroundColor="#00FFFFFF"
+                          SeparatorVisibility="None"
+                          VerticalOptions="Start"
+                          ItemsSource="{Binding Source={StaticResource vm}, Path=Articles}"
+                          IsPullToRefreshEnabled="True"
+                          RefreshCommand="{Binding Source={StaticResource vm}, Path=RefreshCommand}"
+                          IsRefreshing="{Binding Source={StaticResource vm}, Path=IsRefreshing}"
+                          sk:Skeleton.IsParent="True"
+                          sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
+                          sk:Skeleton.Animation="{sk:DefaultAnimation Beat}">
 
-                    <ListView HorizontalOptions="FillAndExpand"
-                                x:Name="ArticleListView"
-                                CachingStrategy="RecycleElement"
-                                HasUnevenRows="True"
-                                Margin="0"
-                                BackgroundColor="#00FFFFFF"
-                                SeparatorVisibility="None"
-                                VerticalOptions="Start"
-                                ItemsSource="{Binding Source={StaticResource vm}, Path=Articles}"
-                                IsPullToRefreshEnabled="True"
-                                RefreshCommand="{Binding Source={StaticResource vm}, Path=RefreshCommand}"
-                                IsRefreshing="{Binding Source={StaticResource vm}, Path=IsRefreshing}"
-                                sk:Skeleton.IsParent="True"
-                                sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
-                                sk:Skeleton.Animation="{sk:DefaultAnimation Beat}">
+                    <ListView.ItemTemplate>
 
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
+                        <DataTemplate>
 
-                                    <Frame x:Name="WrapperFrame" Margin="0,0,0,8" CornerRadius="16" BackgroundColor="{StaticResource TBPurple}" HasShadow="False" Padding="0">
+                            <ViewCell>
 
-                                        <context:SwipeActionContextHolder MovedCommand="{Binding Source={StaticResource vm}, Path=FavoriteTappedCommand}" VisibleWidthPercentage="0.85">
-                                            <context:SwipeActionContextMenuView IsAutoCloseEnabled="true">
-                                                <context:SwipeActionContextMenuView.View >
-                                                    <Frame Margin="0" CornerRadius="16" Padding="8" HeightRequest="270" WidthRequest="{Binding Source={x:Reference WrapperFrame}, Path=Width, Converter={StaticResource MenuFitWidthConverter}, ConverterParameter='11'}" BackgroundColor="{DynamicResource CardBackground}" HasShadow="True">
-                                                        <Frame.GestureRecognizers>
-                                                            <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={StaticResource vm}, Path=ArticleTappedCommand}" CommandParameter="{Binding .}"/>
-                                                        </Frame.GestureRecognizers>
+                                <Frame x:Name="WrapperFrame" Margin="0,0,0,8" CornerRadius="16" BackgroundColor="{StaticResource TBPurple}" HasShadow="False" Padding="0">
 
-                                                        <Grid Margin="0" RowSpacing="4">
-                                                            <Grid.RowDefinitions>
-                                                                <RowDefinition Height="Auto"/>
-                                                                <RowDefinition Height="*"/>
-                                                                <RowDefinition Height="Auto"/>
-                                                                <RowDefinition Height="Auto"/>
-                                                            </Grid.RowDefinitions>
+                                    <context:SwipeActionContextHolder MovedCommand="{Binding Source={StaticResource vm}, Path=FavoriteTappedCommand}" VisibleWidthPercentage="0.85">
 
-                                                            <Grid Grid.Row="0" ColumnSpacing="8" Padding="0">
-                                                                <Grid.ColumnDefinitions>
-                                                                    <ColumnDefinition Width="40"/>
-                                                                    <ColumnDefinition Width="*"/>
-                                                                </Grid.ColumnDefinitions>
+                                        <context:SwipeActionContextMenuView IsAutoCloseEnabled="true">
 
-                                                                <Image Grid.Column="0" Source="{Binding CategoryIcon}" WidthRequest="35" HeightRequest="35" HorizontalOptions="Center" VerticalOptions="Start" 
-                                                                sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
-                                                                sk:Skeleton.BackgroundColor="{StaticResource TBPurple}"/>
-                                                                <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" LineBreakMode="TailTruncation" MaxLines="3" VerticalOptions="Center" TextColor="{DynamicResource TextColor}" Text="{Binding ArticleTitle}"
-                                                                sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
-                                                                sk:Skeleton.BackgroundColor="{StaticResource TBPurple}"/>
-                                                            </Grid>
+                                            <context:SwipeActionContextMenuView.View >
 
-                                                            <Frame Grid.Row="1" CornerRadius="8" HasShadow="False" BackgroundColor="#00FFFFFF" Padding="0" Margin="0"
+                                                <Frame Margin="0" CornerRadius="16" Padding="8" HeightRequest="270" WidthRequest="{Binding Source={x:Reference WrapperFrame}, Path=Width, Converter={StaticResource MenuFitWidthConverter}, ConverterParameter='11'}" BackgroundColor="{DynamicResource CardBackground}" HasShadow="True">
+                                                    <Frame.GestureRecognizers>
+                                                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={StaticResource vm}, Path=ArticleTappedCommand}" CommandParameter="{Binding .}"/>
+                                                    </Frame.GestureRecognizers>
+
+                                                    <Grid Margin="0" RowSpacing="4">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="*"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                        </Grid.RowDefinitions>
+
+                                                        <Grid Grid.Row="0" ColumnSpacing="8" Padding="0">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="40"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <Image Grid.Column="0" Source="{Binding CategoryIcon}" WidthRequest="35" HeightRequest="35" HorizontalOptions="Center" VerticalOptions="Start" 
                                                             sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
-                                                            sk:Skeleton.BackgroundColor="{StaticResource TBPurple}">
-                                                                <Image Source="{Binding ArticleImageUrl}" Aspect="AspectFill" HorizontalOptions="FillAndExpand"/>
-                                                            </Frame>
+                                                            sk:Skeleton.BackgroundColor="{StaticResource TBPurple}"/>
 
-                                                            <Label Grid.Row="2" Style="{StaticResource MediumTextStyle}" LineBreakMode="TailTruncation" MaxLines="3" VerticalOptions="Center" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleText}"
+                                                            <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" LineBreakMode="TailTruncation" MaxLines="3" VerticalOptions="Center" TextColor="{DynamicResource TextColor}" Text="{Binding ArticleTitle}"
                                                             sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
-                                                            sk:Skeleton.BackgroundColor="{StaticResource TBPurple}" />
-                                                            <Grid Grid.Row="3" Margin="0" Padding="0">
-                                                                <Grid.ColumnDefinitions>
-                                                                    <ColumnDefinition Width="Auto"/>
-                                                                    <ColumnDefinition Width="*"/>
-                                                                </Grid.ColumnDefinitions>
-                                                                <Label Grid.Column="0" Style="{StaticResource MediumTextStyle}" VerticalOptions="Start" HorizontalOptions="Start" HorizontalTextAlignment="Start" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleSource}"
-                                                                sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
-                                                                sk:Skeleton.BackgroundColor="{StaticResource TBPurple}"/>
-                                                                <Label Grid.Column="1" Style="{StaticResource MediumTextStyle}" VerticalOptions="Start" HorizontalOptions="End" HorizontalTextAlignment="End" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleDate}"
-                                                                sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
-                                                                sk:Skeleton.BackgroundColor="{StaticResource TBPurple}"/>
-                                                            </Grid>
+                                                            sk:Skeleton.BackgroundColor="{StaticResource TBPurple}"/>
 
                                                         </Grid>
 
-                                                    </Frame>
-                                                </context:SwipeActionContextMenuView.View>
+                                                        <Frame Grid.Row="1" CornerRadius="8" HasShadow="False" BackgroundColor="#00FFFFFF" Padding="0" Margin="0"
+                                                        sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
+                                                        sk:Skeleton.BackgroundColor="{StaticResource TBPurple}">
 
-                                                <context:SwipeActionContextMenuView.ContextTemplate>
-                                                    <DataTemplate >
-                                                        <yummy:PancakeView BackgroundColor="{StaticResource TBPurple}" CornerRadius="0,16,0,16" IsClippedToBounds="True" >
-                                                            <StackLayout Padding="12,12,24,12" VerticalOptions="Center" HorizontalOptions="End">
-                                                                <ImageButton Grid.Row="0" Source="favoritepane.png" BackgroundColor="#00FFFFFF"/>
-                                                                <Label Grid.Row="1" Text="Favorite" Style="{StaticResource MediumTextStyle}" TextColor="#f2f2f2" HorizontalTextAlignment="Center"/>
-                                                            </StackLayout>
-                                                        </yummy:PancakeView>
-                                                    </DataTemplate>
-                                                </context:SwipeActionContextMenuView.ContextTemplate>
+                                                            <Image Source="{Binding ArticleImageUrl}" Aspect="AspectFill" HorizontalOptions="FillAndExpand"/>
 
-                                            </context:SwipeActionContextMenuView>
-                                        </context:SwipeActionContextHolder>
-                                    </Frame>
+                                                        </Frame>
 
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
+                                                        <Label Grid.Row="2" Style="{StaticResource MediumTextStyle}" LineBreakMode="TailTruncation" MaxLines="3" VerticalOptions="Center" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleText}"
+                                                        sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
+                                                        sk:Skeleton.BackgroundColor="{StaticResource TBPurple}" />
 
-                    </ListView>
+                                                        <Grid Grid.Row="3" Margin="0" Padding="0">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
 
-                </Frame>
-                
+                                                            <Label Grid.Column="0" Style="{StaticResource MediumTextStyle}" VerticalOptions="Start" HorizontalOptions="Start" HorizontalTextAlignment="Start" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleSource}"
+                                                            sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
+                                                            sk:Skeleton.BackgroundColor="{StaticResource TBPurple}"/>
+
+                                                            <Label Grid.Column="1" Style="{StaticResource MediumTextStyle}" VerticalOptions="Start" HorizontalOptions="End" HorizontalTextAlignment="End" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleDate}"
+                                                            sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
+                                                            sk:Skeleton.BackgroundColor="{StaticResource TBPurple}"/>
+
+                                                        </Grid>
+
+                                                    </Grid>
+
+                                                </Frame>
+
+                                            </context:SwipeActionContextMenuView.View>
+
+                                            <context:SwipeActionContextMenuView.ContextTemplate>
+
+                                                <DataTemplate >
+
+                                                    <yummy:PancakeView BackgroundColor="{StaticResource TBPurple}" CornerRadius="0,16,0,16" IsClippedToBounds="True" >
+
+                                                        <StackLayout Padding="12,12,24,12" VerticalOptions="Center" HorizontalOptions="End">
+
+                                                            <ImageButton Grid.Row="0" Source="favoritepane.png" BackgroundColor="#00FFFFFF"/>
+
+                                                            <Label Grid.Row="1" Text="Favorite" Style="{StaticResource MediumTextStyle}" TextColor="#f2f2f2" HorizontalTextAlignment="Center"/>
+
+                                                        </StackLayout>
+
+                                                    </yummy:PancakeView>
+
+                                                </DataTemplate>
+
+                                            </context:SwipeActionContextMenuView.ContextTemplate>
+
+                                        </context:SwipeActionContextMenuView>
+
+                                    </context:SwipeActionContextHolder>
+
+                                </Frame>
+
+                            </ViewCell>
+
+                        </DataTemplate>
+
+                    </ListView.ItemTemplate>
+
+                </ListView>
+
             </yummy:PancakeView>
 
         </Grid>

@@ -6,6 +6,5 @@ namespace TidBit.Services.Responses
     public class ArticlesRootObject
     {
         public List<Article> Articles { get; set; }
-
     }
 }
