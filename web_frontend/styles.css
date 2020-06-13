@@ -1,5 +1,5 @@
-/* Define Theme Colors */
 :root{
+    /* Define Theme Colors */
     --tb-purple: #9575cd;
     --tb-purple-dark: #673ab7;
 
@@ -9,6 +9,7 @@
     --light-textcolor: hsl(0, 0%, 0%);
     --light-feedbg: #eee;
     --light-border-color:rgb(164, 164, 164);
+    --light-dropshadow-color: #888888;
 
     /* Dark Theme */
 }
@@ -19,9 +20,19 @@
     margin: 0;
 }
 
+html{
+    /* Creates sticky footer */
+    height: 100%;
+}
+
 body{
     background: var(--light-pagebg);
     font-size: 16px;
+
+    /* Creates sticky footer */
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 h1{
@@ -46,6 +57,13 @@ h3{
 nav{
     background: var(--tb-purple-dark);
     width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    /* opacity: 0.9; */
+
+    /* Use to make the nav bar taller */
+    /* padding: 10px 0px; */
   }
   
   nav ul{
@@ -62,7 +80,7 @@ nav{
     display: block;
     padding: 10px;
 
-    transition: transform .2s ease-in-out;
+    transition: transform .2s linear;
   }
   
   nav a:hover{
@@ -79,7 +97,6 @@ nav{
 
   
   /* flex styles */
-
 @media screen and (min-width: 768px){
 
     nav ul{
@@ -92,27 +109,25 @@ nav{
       flex: 0 1 0;
     }
         
-    } /* end media 768 */
+} /* end media 768 */
 
 
 
 .feed{
-    /* width: 100%; */
     background:var(--light-feedbg);
+    box-shadow: 1px 1px 15px 0px var(--light-dropshadow-color);
+
     max-width: 500px;
     margin: 0 auto;
     padding: 10px 10px 10px 10px;
 
+    /* Extend feed to meet the footer even without content */
+    min-height: 100vh;
+
     display: flex;
     flex-direction: column;
 }
 
-
-/* flex styles */
-.flex-container{
-    display: flex;
-    flex-direction: column;
-}
 
 .card{
     box-sizing: content-box;
@@ -124,6 +139,8 @@ nav{
    
     background: var(--light-cardbg);
     border-radius: 15px;
+    box-shadow: 1px 1px 5px 0px var(--light-dropshadow-color);
+
     border-style: solid;
     border-color: var(--light-border-color);
     border-width: 1px;
@@ -284,5 +301,16 @@ nav{
 .time-updated{
     margin-right: 5px;
     font-weight:300;
+}
+
+
+footer{
+    text-align: center;
+
+    background: var(--tb-purple-dark);
+    color: var(--light-feedbg);
+    padding: 2em;
+
+    margin-top: auto;
 }
 
