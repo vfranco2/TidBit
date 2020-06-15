@@ -1,13 +1,9 @@
 ﻿using Newtonsoft.Json;
 using SQLite;
 using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 
 namespace TidBit.Models
 {
-    //string[] icons = new string[] { "phonelink.png", "directions_car.png", "sports_basketball.png", "local_mall.png", "videogame_asset.png", "local_movies.png", "restaurant.png", "headset.png", "camera_alt.png", "bar_chart.png" };
     enum categoryIcons
     {
         phonelink, 
@@ -21,8 +17,8 @@ namespace TidBit.Models
         camera_alt, 
         bar_chart
     }
+
     public class Article
-        //: INotifyPropertyChanged
     {
         [JsonProperty("id")]
         [PrimaryKey, AutoIncrement]
@@ -30,29 +26,11 @@ namespace TidBit.Models
 
         [JsonProperty("categoryId")]
         public int CategoryId { get; set; }
-        //public int CategoryId { get; set; }
-
-        //[JsonProperty("categoryId")]
-        //string tempIcon;
-
-        /*public string CategoryIcon
-        {
-            get { return tempIcon; }
-            set 
-            {
-                tempIcon = Enum.GetName(typeof(categoryIcons), this.CategoryId);
-                OnPropertyChanged();
-            }
-        }*/
-        string tempString;
 
         public string CategoryIcon
         {
-            get { return tempString; }
-            set 
-            {
-                tempString = Enum.GetName(typeof(categoryIcons), this.CategoryId);
-            }
+            get { return Enum.GetName(typeof(categoryIcons), this.CategoryId); }
+            set {}
         }
 
         [JsonProperty("articleTitle")]
@@ -74,11 +52,5 @@ namespace TidBit.Models
         [JsonProperty("articleDate")]
         public string ArticleDate { get; set; }
 
-        /*public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string tempIndex = null)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            handler?.Invoke(this, new PropertyChangedEventArgs(tempIndex));
-        }*/
     }
 }
