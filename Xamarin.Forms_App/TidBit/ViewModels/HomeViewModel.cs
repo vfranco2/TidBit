@@ -12,6 +12,21 @@ namespace TidBit.ViewModels
 {
     public class HomeViewModel : ViewModelBase
     {
+        enum categoryIcons
+        {
+            phonelink, 
+            directions_car, 
+            sports_basketball, 
+            local_mall, 
+            videogame_asset, 
+            local_movies, 
+            restaurant,
+            headset,
+            camera_alt, 
+            bar_chart
+        }
+        
+
         public ObservableCollection<Article> Articles { get; set; }
 
         public Command ArticleTappedCommand { get; set; }
@@ -19,6 +34,8 @@ namespace TidBit.ViewModels
         public Command FavoriteTappedCommand { get; set; }
 
         private bool _isRefreshing = false;
+
+        public string categoryIcon { get; set; }
 
         public HomeViewModel()
         {
@@ -30,6 +47,7 @@ namespace TidBit.ViewModels
 
             FavoriteTappedCommand = new Command(FavoriteTapped);
 
+            //categoryIcon = getCategoryIcon();
         }
 
         protected async Task LoadArticles()
@@ -58,6 +76,23 @@ namespace TidBit.ViewModels
                 await App.Current.MainPage.DisplayAlert("Warning", "Could not retrieve articles.", "OK");
             }
         }
+
+        /*public static string getCategoryIcon()
+        {
+            List<int> prefCategories = new List<int>();
+            foreach (int i in Enum.GetValues(typeof(categoryTypes)))
+            {
+                string name = Enum.GetName(typeof(categoryTypes), i);
+                if (Preferences.Get(name, true))
+                {
+                    prefCategories.Add(i);
+                    Debug.WriteLine(i);
+                }
+                else { }
+            }
+            int[] prefArray = prefCategories.ToArray();
+            return prefArray;
+        }*/
 
         //Set refresh status
         public bool IsRefreshing

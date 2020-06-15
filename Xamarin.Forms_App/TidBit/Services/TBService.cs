@@ -50,7 +50,7 @@ namespace TidBit.Services
 
         public async Task<ArticlesRootObject> GetAllArticles()
         {
-            string[] icons = new string[] { "phonelink.png", "directions_car.png", "sports_basketball.png", "local_mall.png", "videogame_asset.png", "local_movies.png", "restaurant.png", "headset.png", "camera_alt.png", "bar_chart.png" };
+            //string[] icons = new string[] { "phonelink.png", "directions_car.png", "sports_basketball.png", "local_mall.png", "videogame_asset.png", "local_movies.png", "restaurant.png", "headset.png", "camera_alt.png", "bar_chart.png" };
 
             int[] categoryArray = categoryChecker();
             string cat = String.Join("+", categoryArray);
