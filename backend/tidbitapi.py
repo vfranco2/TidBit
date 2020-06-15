@@ -19,7 +19,7 @@ def parse_articles(result):
 
         currentArticle = [{'id': article[0], 'categoryId': article[1], 'articleCount': article[2], 'articleTitle': articleTitle, 'articleSource': articleSource, 'articleImageUrl': article[5], 'articleText': articleText, 'articleUrl': article[7], 'articleDate': article[8]}]
         #dummyarticle[0] = dummyarticle[0].replace('@', "'")
-        listofarticles.append(currentArticle)
+        listofarticles.extend(currentArticle)
     random.shuffle(listofarticles)
     return jsonify(listofarticles)
 
