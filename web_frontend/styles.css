@@ -71,7 +71,7 @@ nav{
     padding: 20px;
   }
   
-  nav a{
+  nav li{
     text-decoration: none;
     text-align: center;
     font-weight: 400;
@@ -79,11 +79,12 @@ nav{
     color: var(--tb-purple);
     display: block;
     padding: 10px;
+    cursor: pointer;
 
-    transition: transform .2s linear;
+    transition: transform .3s ease-in-out;
   }
   
-  nav a:hover{
+  nav li:hover{
     /* background-color: #555; */
     transform: scale(1.1);
     color: var(--light-cardbg);
