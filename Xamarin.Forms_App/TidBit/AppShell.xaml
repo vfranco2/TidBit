@@ -12,31 +12,35 @@
             <Style x:Key="BaseStyle" TargetType="Element">
                 <Setter Property="Shell.BackgroundColor" Value="{DynamicResource TBPurpleDark}" />
                 <Setter Property="Shell.ForegroundColor" Value="{DynamicResource TBPurpleDark}" />
-                <Setter Property="Shell.TitleColor" Value="{DynamicResource TextColor}" />
+                <Setter Property="Shell.TitleColor" Value="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" />
                 <Setter Property="Shell.DisabledColor" Value="{DynamicResource TBPurple}" />
                 <Setter Property="Shell.UnselectedColor" Value="{DynamicResource TBPurple}" />
-                <Setter Property="Shell.TabBarBackgroundColor" Value="{DynamicResource PageBackground}" />
-                <Setter Property="Shell.TabBarForegroundColor" Value="{DynamicResource PageBackground}" />
-                <Setter Property="Shell.TabBarUnselectedColor" Value="{DynamicResource TextColor}" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" />
+                <Setter Property="Shell.TabBarUnselectedColor" Value="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" />
                 <Setter Property="Shell.TabBarTitleColor" Value="{DynamicResource TBPurple}" />
             </Style>
             <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
             
         </ResourceDictionary>
     </Shell.Resources>
-    
-    
+
+    <!--
+    <ShellItem Route="login">
+        <ShellContent ContentTemplate="{DataTemplate views:LoginView}"/>
+    </ShellItem>-->
+
     <TabBar Route="main">
 
-        <Tab Title="Feed" Icon="dashboard.png">
+        <Tab Title="Feed" Icon="{AppThemeBinding Light=dashboardlight.png, Dark=dashboarddark.png}">
             <ShellContent ContentTemplate="{DataTemplate views:HomeView}"/>
         </Tab>
 
-        <Tab Title="Favorites" Icon="favorite.png">
+        <Tab Title="Favorites" Icon="{AppThemeBinding Light=favoritelight.png, Dark=favoritedark.png}">
             <ShellContent ContentTemplate="{DataTemplate views:FavoritesView}"/>
         </Tab>
-        
-        <Tab Title="Settings" Icon="settings.png">
+
+        <Tab Title="Settings" Icon="{AppThemeBinding Light=settingslight.png, Dark=settingsdark.png}">
             <ShellContent ContentTemplate="{DataTemplate views:SettingsView}"/>
         </Tab>
 

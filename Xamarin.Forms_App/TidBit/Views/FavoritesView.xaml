@@ -64,92 +64,68 @@
                                 <DataTemplate>
 
                                     <ViewCell>
+                                        
+                                        <yummy:PancakeView x:Name="WrapperFrame" Margin="0,0,0,8" CornerRadius="16,16,16,16" BackgroundColor="{DynamicResource CardBackground}" Padding="0" HeightRequest="270">
+                                            <yummy:PancakeView.GestureRecognizers>
+                                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={StaticResource vm}, Path=ArticleTappedCommand}" CommandParameter="{Binding .}"/>
+                                            </yummy:PancakeView.GestureRecognizers>
+                                            <!-- Top/Bottom split-->
+                                            <Grid Margin="0" Padding="0" RowSpacing="4">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="2*"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
 
-                                        <Frame x:Name="WrapperFrame" Margin="0,0,0,8" CornerRadius="16" BackgroundColor="IndianRed" HasShadow="False" Padding="0">
 
-                                            <context:SwipeActionContextHolder MovedCommand="{Binding Source={StaticResource vm}, Path=UnfavoriteTappedCommand}" VisibleWidthPercentage="0.85">
+                                                <!-- Image-->
+                                                <Frame Grid.Row="0" CornerRadius="16" HasShadow="False" BackgroundColor="#00FFFFFF" Padding="0" Margin="0">
 
-                                                <context:SwipeActionContextMenuView IsAutoCloseEnabled="true" >
+                                                    <Image Source="{Binding ArticleImageUrl}" Aspect="AspectFill" HorizontalOptions="FillAndExpand"/>
 
-                                                    <context:SwipeActionContextMenuView.View >
+                                                </Frame>
 
-                                                        <Frame Margin="0" CornerRadius="16" Padding="8" HeightRequest="270" WidthRequest="{Binding Source={x:Reference WrapperFrame}, Path=Width, Converter={StaticResource MenuFitWidthConverter}, ConverterParameter='11'}" BackgroundColor="{DynamicResource CardBackground}" HasShadow="True">
-                                                            <Frame.GestureRecognizers>
-                                                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={StaticResource vm}, Path=ArticleTappedCommand}" CommandParameter="{Binding .}"/>
-                                                            </Frame.GestureRecognizers>
+                                                <!-- Gradient overlay-->
+                                                <yummy:PancakeView Grid.Row="0" Padding="0" Margin="0" BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="0,1">
+                                                    <yummy:PancakeView.BackgroundGradientStops>
+                                                        <yummy:GradientStopCollection>
+                                                            <yummy:GradientStop Color="#000000" Offset="0" />
+                                                            <yummy:GradientStop Color="#00FFFFFF" Offset="1" />
+                                                        </yummy:GradientStopCollection>
+                                                    </yummy:PancakeView.BackgroundGradientStops>
+                                                </yummy:PancakeView>
 
-                                                            <Grid Margin="0" RowSpacing="4">
-                                                                <Grid.RowDefinitions>
-                                                                    <RowDefinition Height="Auto"/>
-                                                                    <RowDefinition Height="*"/>
-                                                                    <RowDefinition Height="Auto"/>
-                                                                    <RowDefinition Height="Auto"/>
-                                                                </Grid.RowDefinitions>
+                                                <!-- Top info-->
+                                                <Grid Grid.Row="0" ColumnSpacing="8" Margin="16,8,0,0" Padding="0" VerticalOptions="Start">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="40"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
 
-                                                                <Grid Grid.Row="0" ColumnSpacing="8" Padding="0">
-                                                                    <Grid.ColumnDefinitions>
-                                                                        <ColumnDefinition Width="40"/>
-                                                                        <ColumnDefinition Width="*"/>
-                                                                    </Grid.ColumnDefinitions>
+                                                    <Image Grid.Column="0" Source="{Binding CategoryIcon}" WidthRequest="30" HeightRequest="30" HorizontalOptions="Center" VerticalOptions="Start" />
 
-                                                                    <Image Grid.Column="0" Source="{Binding CategoryIcon}" WidthRequest="35" HeightRequest="35" HorizontalOptions="Center" VerticalOptions="Start"/>
+                                                    <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" LineBreakMode="TailTruncation" MaxLines="3" VerticalOptions="Center" TextColor="{DynamicResource TitleColor}" Text="{Binding ArticleTitle}"/>
 
-                                                                    <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" LineBreakMode="TailTruncation" MaxLines="3" VerticalOptions="Center" TextColor="{DynamicResource TextColor}" Text="{Binding ArticleTitle}"/>
+                                                </Grid>
 
-                                                                </Grid>
+                                                <!-- Bottom info-->
 
-                                                                <Frame Grid.Row="1" CornerRadius="8" HasShadow="False" BackgroundColor="#00FFFFFF" Padding="0" Margin="0">
+                                                <Label Grid.Row="1" Style="{StaticResource MediumTextStyle}" Margin="8,0,8,0" LineBreakMode="TailTruncation" MaxLines="3" VerticalOptions="Center" TextColor="{DynamicResource TextColor}" Text="{Binding ArticleText}"/>
 
-                                                                    <Image Source="{Binding ArticleImageUrl}" Aspect="AspectFill" HorizontalOptions="FillAndExpand"/>
+                                                <StackLayout Grid.Row="2" Margin="16,0,16,8" Padding="0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
 
-                                                                </Frame>
+                                                    <Label Style="{StaticResource MediumTextStyle}" VerticalOptions="Start" HorizontalOptions="Start" HorizontalTextAlignment="Start" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleSource, StringFormat='{0:F0}  | '}"/>
 
-                                                                <Label Grid.Row="2" Style="{StaticResource MediumTextStyle}" LineBreakMode="TailTruncation" MaxLines="3" VerticalOptions="Center" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleText}"/>
+                                                    <Label Style="{StaticResource MediumTextStyle}" Margin="0" VerticalOptions="Start" HorizontalOptions="End" HorizontalTextAlignment="End" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleDate}"/>
 
-                                                                <Grid Grid.Row="3" Margin="0" Padding="0">
-                                                                    <Grid.ColumnDefinitions>
-                                                                        <ColumnDefinition Width="Auto"/>
-                                                                        <ColumnDefinition Width="*"/>
-                                                                    </Grid.ColumnDefinitions>
+                                                    <ImageButton Source="close.png" Command="{Binding Source={StaticResource vm}, Path=UnfavoriteTappedCommand}" CommandParameter="{Binding .}" WidthRequest="30" HeightRequest="30" HorizontalOptions="EndAndExpand" VerticalOptions="Start" BackgroundColor="#00FFFFFF"/>
 
-                                                                    <Label Grid.Column="0" Style="{StaticResource MediumTextStyle}" VerticalOptions="Start" HorizontalOptions="Start" HorizontalTextAlignment="Start" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleSource}"/>
+                                                </StackLayout>
 
-                                                                    <Label Grid.Column="1" Style="{StaticResource MediumTextStyle}" VerticalOptions="Start" HorizontalOptions="End" HorizontalTextAlignment="End" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleDate}"/>
+                                            </Grid>
 
-                                                                </Grid>
-
-                                                            </Grid>
-
-                                                        </Frame>
-
-                                                    </context:SwipeActionContextMenuView.View>
-
-                                                    <context:SwipeActionContextMenuView.ContextTemplate>
-
-                                                        <DataTemplate >
-
-                                                            <yummy:PancakeView BackgroundColor="IndianRed" CornerRadius="0,16,0,16" IsClippedToBounds="True" >
-
-                                                                <StackLayout Padding="12,12,24,12" VerticalOptions="Center" HorizontalOptions="End">
-
-                                                                    <ImageButton Grid.Row="0" Source="closepane.png" BackgroundColor="#00FFFFFF"/>
-
-                                                                    <Label Grid.Row="1" Text="Unfavorite" Style="{StaticResource MediumTextStyle}" TextColor="#f2f2f2" HorizontalTextAlignment="Center"/>
-
-                                                                </StackLayout>
-
-                                                            </yummy:PancakeView>
-
-                                                        </DataTemplate>
-
-                                                    </context:SwipeActionContextMenuView.ContextTemplate>
-
-                                                </context:SwipeActionContextMenuView>
-
-                                                </context:SwipeActionContextHolder>
-
-                                        </Frame>
-
+                                        </yummy:PancakeView>
+                                        
                                     </ViewCell>
 
                                 </DataTemplate>
@@ -158,7 +134,7 @@
 
                         </ListView>
 
-                        <Label Grid.Row="0" HorizontalOptions="Center" IsVisible="{Binding Source={StaticResource vm}, Path=IsDefaultVisible}" VerticalOptions="Start" Margin="24" HorizontalTextAlignment="Center" TextColor="{DynamicResource AccentText}" Style="{StaticResource MediumTextStyle}" Text="No articles found. Swipe left on an article to save it here."/>
+                        <Label Grid.Row="0" HorizontalOptions="Center" IsVisible="{Binding Source={StaticResource vm}, Path=IsDefaultVisible}" VerticalOptions="Start" Margin="24" HorizontalTextAlignment="Center" TextColor="{DynamicResource AccentText}" Style="{StaticResource MediumTextStyle}" Text="No articles found. Tap the heart on an article to save it here."/>
 
                     </Grid>
                     

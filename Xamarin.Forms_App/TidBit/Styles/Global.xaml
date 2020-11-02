@@ -5,7 +5,21 @@
 
     <Color x:Key="TBPurple">#9575cd</Color>
     <Color x:Key="TBPurpleDark">#673ab7</Color>
+    
+    <!-- Light Theme Colors-->
+    <Color x:Key="TextColorLight">#000000</Color>
+    <Color x:Key="PageBackgroundLight">#E8E8E8</Color>
+    <Color x:Key="AccentTextLight">#393939</Color>
+    <Color x:Key="CardBackgroundLight">#FFFFFF</Color>
+    <Color x:Key="TitleColorLight">#F4F4F4</Color>
 
+    <!-- Dark THeme Colors-->
+    <Color x:Key="TextColorDark">#F4F4F4</Color>
+    <Color x:Key="PageBackgroundDark">#121212</Color>
+    <Color x:Key="AccentTextDark">#B2ADAD</Color>
+    <Color x:Key="CardBackgroundDark">#2C2C2C</Color>
+    <Color x:Key="TitleColorDark">#F4F4F4</Color>
+    
     <OnPlatform x:TypeArguments="x:String" x:Key="RegularRobotoFont">
         <On Platform="Android" Value="Roboto-Regular.ttf#Roboto" />
         <On Platform="iOS" Value="Roboto-Regular" />
@@ -63,6 +77,7 @@
                 <OnPlatform x:TypeArguments="x:Double" Android="16" iOS="18" />
             </Setter.Value>
         </Setter>
+
     </Style>
 
     <Style TargetType="Label" x:Key="MediumTextStyleBold" BasedOn="{StaticResource MediumTextStyle}">
@@ -104,6 +119,16 @@
         <Setter Property="VerticalOptions" Value="Center"/>
         <Setter Property="HorizontalOptions" Value="End"/>
         <Setter Property="Color" Value="{StaticResource TBPurple}"/>
+    </Style>
+
+    <!-- Login labels-->
+    <Style TargetType="Label" x:Key="LoginValueStyle" >
+        <Setter Property="FontFamily" Value="{StaticResource RegularRobotoFont}"/>
+        <Setter Property="FontSize">
+            <Setter.Value>
+                <OnPlatform x:TypeArguments="x:Double" Android="12" iOS="12" />
+            </Setter.Value>
+        </Setter>
     </Style>
 
 </ResourceDictionary>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using TidBit.Data;
+using TidBit.Views;
 using Xamarin.Forms;
 
 namespace TidBit
@@ -21,24 +22,11 @@ namespace TidBit
             }
         }
 
-        public static Theme AppTheme
-        {
-            get; set;
-        }
-
-        public enum UITheme { Light, Dark }
-
         public App()
         {
             InitializeComponent();
 
             MainPage = new AppShell();
-        }
-
-        public enum Theme
-        {
-            Light,
-            Dark
         }
 
     }

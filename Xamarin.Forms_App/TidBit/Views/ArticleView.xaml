@@ -4,7 +4,7 @@
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="True"
              xmlns:vm="clr-namespace:TidBit.ViewModels"
-             BackgroundColor="{DynamicResource PageBackground}"
+             BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}"
              Visual="Material"
              x:Class="TidBit.Views.ArticleView">
 
@@ -16,7 +16,7 @@
     </ContentPage.Resources>
     
     <ContentPage.Content>
-        <StackLayout BackgroundColor="{DynamicResource PageBackground}">
+        <StackLayout BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}">
 
             <Grid HorizontalOptions="FillAndExpand" Margin="0" Padding="0">
 
@@ -27,7 +27,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Frame HorizontalOptions="Start" WidthRequest="40" Margin="0" Grid.Column="0" BackgroundColor="{DynamicResource PageBackground}" HasShadow="False">
+                <Frame HorizontalOptions="Start" WidthRequest="40" Margin="0" Grid.Column="0" BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" HasShadow="False">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnReloadButtonClicked" />
                     </Frame.GestureRecognizers>
@@ -36,7 +36,7 @@
                     </Grid>
                 </Frame>
 
-                <Frame HorizontalOptions="Start" WidthRequest="40" Margin="0" Grid.Column="1" BackgroundColor="{DynamicResource PageBackground}" HasShadow="False">
+                <Frame HorizontalOptions="Start" WidthRequest="40" Margin="0" Grid.Column="1" BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" HasShadow="False">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnShareButtonClicked" />
                     </Frame.GestureRecognizers>
@@ -45,7 +45,7 @@
                     </Grid>
                 </Frame>
 
-                <Frame HorizontalOptions="Start" WidthRequest="40" Margin="0" Grid.Column="2" BackgroundColor="{DynamicResource PageBackground}" HasShadow="False">
+                <Frame HorizontalOptions="Start" WidthRequest="40" Margin="0" Grid.Column="2" BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" HasShadow="False">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding Source={StaticResource vm}, Path=ArticleViewFavoriteTappedCommand}" CommandParameter="{Binding .}" />
                     </Frame.GestureRecognizers>
@@ -54,7 +54,7 @@
                     </Grid>
                 </Frame>
 
-                <Frame HorizontalOptions="End" WidthRequest="40" Margin="0" Grid.Column="4" BackgroundColor="{DynamicResource PageBackground}" HasShadow="False">
+                <Frame HorizontalOptions="End" WidthRequest="40" Margin="0" Grid.Column="4" BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" HasShadow="False">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnDismissButtonClicked" />
                     </Frame.GestureRecognizers>

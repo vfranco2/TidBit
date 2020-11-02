@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             xmlns:vm="clr-namespace:TidBit.ViewModels"
+             xmlns:sk="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:context="clr-namespace:ContextMenu.Views;assembly=ContextMenu"
+             xmlns:conv="clr-namespace:TidBit.Converters"
+             BackgroundColor="{DynamicResource PageBackground}"
+             Visual="Material"
+             Shell.NavBarIsVisible="False"
+             x:Class="TidBit.Views.LoginView">
+    <ContentPage.Content>
+
+        <yummy:PancakeView BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="1,1" Padding="0" Margin="0">
+            <yummy:PancakeView.BackgroundGradientStops>
+                <yummy:GradientStopCollection>
+                    <yummy:GradientStop Color="#673ab7" Offset="0" />
+                    <yummy:GradientStop Color="#121212" Offset="1" />
+                </yummy:GradientStopCollection>
+            </yummy:PancakeView.BackgroundGradientStops>
+            
+            <yummy:PancakeView CornerRadius="50,0,0,50" BackgroundColor="{DynamicResource CardBackground}" Padding="40" Margin="48,120" >
+
+                <StackLayout VerticalOptions="Center">
+
+                    <Label Style="{StaticResource HeaderLabelStyle}" Text="Sign In To Your Account" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+
+                    <Entry BackgroundColor="#00FFFFFF" Placeholder="Username" TextColor="{DynamicResource TextColor}" Style="{StaticResource LoginValueStyle}" HorizontalOptions="FillAndExpand" />
+
+                    <Entry BackgroundColor="#00FFFFFF" Placeholder="Password" TextColor="{DynamicResource TextColor}" Style="{StaticResource LoginValueStyle}" HorizontalOptions="FillAndExpand" IsPassword="True" />
+
+                    <Frame CornerRadius="50" Padding="0" Margin="6">
+                        
+                        <Button Text="Sign In" x:Name="btnLogin" Margin="0" Padding="8" BackgroundColor="{StaticResource TBPurple}" HorizontalOptions="Fill" VerticalOptions="End"/>
+
+                    </Frame>
+
+                </StackLayout>
+
+            </yummy:PancakeView>
+
+        </yummy:PancakeView>
+        
+    </ContentPage.Content>
+    
+</ContentPage>

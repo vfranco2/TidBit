@@ -63,9 +63,11 @@ namespace TidBit.Services
                 client.DefaultRequestHeaders.CacheControl.NoStore = true;
                 client.Timeout = new TimeSpan(0, 0, 30);
 
-                var request = new HttpRequestMessage(HttpMethod.Get, "http://35.193.77.38:5000/articles?categories=" + cat);
+                //var request = new HttpRequestMessage(HttpMethod.Get, "http://35.193.77.38:5000/articles?categories=" + cat);
+                //var apiResponse = await client.SendAsync(request);
+                var request = "http://35.193.77.38:5000/articles?categories=" + cat;
+                HttpResponseMessage apiResponse = client.GetAsync(request).Result;
 
-                var apiResponse = await client.SendAsync(request);
                 var apiContent = await apiResponse.Content.ReadAsStringAsync();
                 articles.Articles = JsonConvert.DeserializeObject<List<Article>>(apiContent);
             }

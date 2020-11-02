@@ -6,6 +6,6 @@
              mc:Ignorable="d" 
              x:Class="TidBit.App">
     <Application.Resources>
-        <ResourceDictionary Source="Styles/LightTheme.xaml"/>
+        <ResourceDictionary Source="Styles/Global.xaml"/>
     </Application.Resources>
 </Application>

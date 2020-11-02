@@ -1,12 +1,12 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace TidBit.Styles
+namespace TidBit.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LightTheme : ResourceDictionary
+    public partial class LoginView : ContentPage
     {
-        public LightTheme()
+        public LoginView()
         {
             InitializeComponent();
         }
