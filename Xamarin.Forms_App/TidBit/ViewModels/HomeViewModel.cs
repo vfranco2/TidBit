@@ -57,9 +57,9 @@ namespace TidBit.ViewModels
 
             FeaturedArticles = new ObservableCollection<Article>();
 
-            LoadArticles();
-
             LoadFeaturedArticles();
+
+            LoadArticles();
 
             ArticleTappedCommand = new Command(ArticleTapped);
 
@@ -82,7 +82,6 @@ namespace TidBit.ViewModels
                     Articles.Add(counter);
                 }
 
-                await Task.Delay(500);
                 this.IsBusy = false;
 
                 if (articleResults.Articles.Count == 0)
@@ -97,7 +96,7 @@ namespace TidBit.ViewModels
 
         protected async Task LoadFeaturedArticles()
         {
-            Articles.Clear();
+            FeaturedArticles.Clear();
 
             try
             {
@@ -106,19 +105,18 @@ namespace TidBit.ViewModels
 
                 foreach (var counter in articleResults.Articles)
                 {
-                    Articles.Add(counter);
+                    FeaturedArticles.Add(counter);
                 }
 
-                await Task.Delay(500);
                 this.IsBusy = false;
 
                 if (articleResults.Articles.Count == 0)
-                    await App.Current.MainPage.DisplayAlert("Warning", "No articles found.", "OK");
+                    await App.Current.MainPage.DisplayAlert("Warning", "No featured articles found.", "OK");
 
             }
             catch (Exception ex)
             {
-                await App.Current.MainPage.DisplayAlert("Warning", "Could not retrieve articles.", "OK");
+                await App.Current.MainPage.DisplayAlert("Warning", "Could not retrieve featured articles.", "OK");
             }
         }
 
