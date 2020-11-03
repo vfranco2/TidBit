@@ -19454,10 +19454,10 @@ namespace TidBit.Droid
 			public const int closepane = 2131165290;
 			
 			// aapt resource value: 0x7F07006B
-			public const int dashboarddark = 2131165291;
+			public const int dashboard = 2131165291;
 			
 			// aapt resource value: 0x7F07006C
-			public const int dashboardlight = 2131165292;
+			public const int dashboarddark = 2131165292;
 			
 			// aapt resource value: 0x7F07006D
 			public const int design_bottom_navigation_item_background = 2131165293;
@@ -19484,10 +19484,10 @@ namespace TidBit.Droid
 			public const int divider = 2131165300;
 			
 			// aapt resource value: 0x7F070075
-			public const int favoritedark = 2131165301;
+			public const int favorite = 2131165301;
 			
 			// aapt resource value: 0x7F070076
-			public const int favoritelight = 2131165302;
+			public const int favoritedark = 2131165302;
 			
 			// aapt resource value: 0x7F070077
 			public const int favoritenav = 2131165303;
@@ -19577,10 +19577,10 @@ namespace TidBit.Droid
 			public const int restaurant = 2131165331;
 			
 			// aapt resource value: 0x7F070094
-			public const int settingsdark = 2131165332;
+			public const int settings = 2131165332;
 			
 			// aapt resource value: 0x7F070095
-			public const int settingslight = 2131165333;
+			public const int settingsdark = 2131165333;
 			
 			// aapt resource value: 0x7F070096
 			public const int share = 2131165334;

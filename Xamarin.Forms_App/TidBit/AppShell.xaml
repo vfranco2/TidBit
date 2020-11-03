@@ -28,22 +28,43 @@
     <!--
     <ShellItem Route="login">
         <ShellContent ContentTemplate="{DataTemplate views:LoginView}"/>
-    </ShellItem>-->
+    </ShellItem>
 
-    <TabBar Route="main">
 
-        <Tab Title="Feed" Icon="{AppThemeBinding Light=dashboardlight.png, Dark=dashboarddark.png}">
+    
+    <Tab Title="Feed" Icon="{AppThemeBinding Light=dashboardlight.png, Dark=dashboarddark.png}">
             <ShellContent ContentTemplate="{DataTemplate views:HomeView}"/>
         </Tab>
 
-        <Tab Title="Favorites" Icon="{AppThemeBinding Light=favoritelight.png, Dark=favoritedark.png}">
+
+    <Tab Title="Feed" >
+            <Tab.Icon>
+                <OnPlatform x:TypeArguments="ImageSource">
+                    <OnPlatform.Platforms>
+                        <On Platform="iOS" Value="dashboard.png" />
+                        <On Platform="Android" Value="{AppThemeBinding Light=dashboardlight.png, Dark=dashboarddark.png}" />
+                    </OnPlatform.Platforms>
+                </OnPlatform>
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate views:HomeView}"/>
+        </Tab>-->
+
+    <TabBar Route="main">
+
+        <Tab Title="Feed" Icon="dashboard.png">
+            <ShellContent ContentTemplate="{DataTemplate views:HomeView}"/>
+        </Tab>
+        
+        <Tab Title="Favorites" Icon="favorite.png">
             <ShellContent ContentTemplate="{DataTemplate views:FavoritesView}"/>
         </Tab>
 
-        <Tab Title="Settings" Icon="{AppThemeBinding Light=settingslight.png, Dark=settingsdark.png}">
+        <Tab Title="Settings" Icon="settings.png">
             <ShellContent ContentTemplate="{DataTemplate views:SettingsView}"/>
         </Tab>
 
     </TabBar>
+
+    <!-- -->
     
 </Shell>

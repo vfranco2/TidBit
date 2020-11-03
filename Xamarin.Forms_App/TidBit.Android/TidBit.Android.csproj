@@ -163,7 +163,7 @@
       <Generator>
       </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\settingslight.png">
+    <AndroidResource Include="Resources\drawable\settings.png">
       <SubType>
       </SubType>
       <Generator>
@@ -181,13 +181,13 @@
       <Generator>
       </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\dashboardlight.png">
+    <AndroidResource Include="Resources\drawable\dashboard.png">
       <SubType>
       </SubType>
       <Generator>
       </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\favoritelight.png">
+    <AndroidResource Include="Resources\drawable\favorite.png">
       <SubType>
       </SubType>
       <Generator>

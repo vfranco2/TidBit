@@ -20,23 +20,52 @@
 
     <ContentPage.Content>
 
-        <Grid BackgroundColor="{StaticResource TBPurpleDark}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-                    
-            <Grid Grid.Row="0" Padding="12">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                </Grid.RowDefinitions>
+        <RefreshView Command="{Binding Source={StaticResource vm}, Path=RefreshCommand}" 
+                         IsRefreshing="{Binding Source={StaticResource vm}, Path=IsRefreshing}" Margin="0" Padding="0">
+        <ScrollView Padding="0" Margin="0">
 
-                <Label TextColor="#f2f2f2" VerticalOptions="Center" Style="{StaticResource TitleTextStyle}" Text="Feed"/>
+        <Grid BackgroundColor="{AppThemeBinding Light={StaticResource CardBackgroundLight}, Dark={StaticResource CardBackgroundDark}}" RowDefinitions="Auto,Auto,Auto,Auto">
+
+            <Grid Grid.Row="0" Padding="12" RowDefinitions="30">
+
+                <Label TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" VerticalOptions="Center" Style="{StaticResource TitleTextStyle}" Text="Featured"/>
 
             </Grid>
 
-            <yummy:PancakeView Grid.Row="1" Margin="0" BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" CornerRadius="35,35,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <yummy:PancakeView Grid.Row="1" Margin="0" BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" CornerRadius="35" HeightRequest="300" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                
+                <StackLayout>
 
+                    <CarouselView ItemsSource="{Binding Source={StaticResource vm}, Path=Articles} " 
+                                   PeekAreaInsets="0" VerticalOptions="FillAndExpand" HorizontalOptions="Fill" Loop="False">
+                        <CarouselView.ItemTemplate>
+
+                            <DataTemplate>
+
+                                <Label Text="Big teest" Margin="40" TextColor="White"/>
+
+                            </DataTemplate>
+
+                        </CarouselView.ItemTemplate>
+
+                    </CarouselView>
+                    <!--
+                    IndicatorView="indicatorView"
+                    <IndicatorView x:Name="indicatorView" IndicatorColor="{StaticResource CardBackgroundColor}" SelectedIndicatorColor="{StaticResource TBPurple}" HorizontalOptions="Center"/>
+                    -->
+                </StackLayout>
+
+            </yummy:PancakeView>
+
+                    
+            <Grid Grid.Row="2" Padding="12" RowDefinitions="30">
+
+                <Label TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" VerticalOptions="Center" Style="{StaticResource TitleTextStyle}" Text="News For You"/>
+
+            </Grid>
+
+            <yummy:PancakeView Grid.Row="3" Margin="0" BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" CornerRadius="35,35,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                
                 <ListView HorizontalOptions="FillAndExpand"
                           x:Name="ArticleListView"
                           CachingStrategy="RecycleElement"
@@ -47,13 +76,13 @@
                           VerticalOptions="Start"
                           VerticalScrollBarVisibility="Never"
                           ItemsSource="{Binding Source={StaticResource vm}, Path=Articles}"
-                          IsPullToRefreshEnabled="True"
-                          RefreshCommand="{Binding Source={StaticResource vm}, Path=RefreshCommand}"
-                          IsRefreshing="{Binding Source={StaticResource vm}, Path=IsRefreshing}"
+                          IsPullToRefreshEnabled="False"
                           sk:Skeleton.IsParent="True"
                           sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
                           sk:Skeleton.Animation="{sk:DefaultAnimation Beat}">
-
+                    <!--
+                          RefreshCommand="{Binding Source={StaticResource vm}, Path=RefreshCommand}"
+                          IsRefreshing="{Binding Source={StaticResource vm}, Path=IsRefreshing}"-->
                     <ListView.ItemTemplate>
 
                         <DataTemplate>
@@ -65,12 +94,7 @@
                                         <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={StaticResource vm}, Path=ArticleTappedCommand}" CommandParameter="{Binding .}"/>
                                     </yummy:PancakeView.GestureRecognizers>
                                     <!-- Top/Bottom split-->
-                                    <Grid Margin="0" Padding="0" RowSpacing="4">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="2*"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
+                                    <Grid Margin="0" Padding="0" RowSpacing="4" RowDefinitions="2*, Auto, Auto">
                                                 
                                         <!-- Image-->
                                         <Frame Grid.Row="0" CornerRadius="16" HasShadow="False" BackgroundColor="#00FFFFFF" Padding="0" Margin="0"
@@ -92,11 +116,7 @@
                                         </yummy:PancakeView>
 
                                         <!-- Top info-->
-                                        <Grid Grid.Row="0" ColumnSpacing="8" Margin="16,8,0,0" Padding="0" VerticalOptions="Start">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="40"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
+                                        <Grid Grid.Row="0" ColumnSpacing="8" Margin="16,8,0,0" Padding="0" VerticalOptions="Start" ColumnDefinitions="40, *">
 
                                             <Image Grid.Column="0" Source="{Binding CategoryIcon}" WidthRequest="30" HeightRequest="30" HorizontalOptions="Center" VerticalOptions="Start" 
                                                     sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
@@ -198,6 +218,10 @@
             </yummy:PancakeView>
 
         </Grid>
+
+            </ScrollView>
+
+        </RefreshView>
                 
     </ContentPage.Content>
     

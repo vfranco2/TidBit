@@ -28,6 +28,8 @@ namespace TidBit.ViewModels
         
         public ObservableCollection<Article> Articles { get; set; }
 
+        public ObservableCollection<Article> FeaturedArticles { get; set; }
+
         public Command ArticleTappedCommand { get; set; }
 
         public Command FavoriteTappedCommand { get; set; }
@@ -36,11 +38,28 @@ namespace TidBit.ViewModels
 
         public string categoryIcon { get; set; }
 
+        public bool IsRefreshing
+        {
+            get { return _isRefreshing; }
+            set
+            {
+                _isRefreshing = value;
+                OnPropertyChanged(nameof(IsRefreshing));
+            }
+        }
+
+        public ICommand RefreshCommand => new Command(async () => await RefreshDataAsync());
+
+
         public HomeViewModel()
         {
             Articles = new ObservableCollection<Article>();
 
+            FeaturedArticles = new ObservableCollection<Article>();
+
             LoadArticles();
+
+            LoadFeaturedArticles();
 
             ArticleTappedCommand = new Command(ArticleTapped);
 
@@ -76,29 +95,42 @@ namespace TidBit.ViewModels
             }
         }
 
-        //Set refresh status
-        public bool IsRefreshing
+        protected async Task LoadFeaturedArticles()
         {
-            get { return _isRefreshing; }
-            set
+            Articles.Clear();
+
+            try
             {
-                _isRefreshing = value;
-                OnPropertyChanged(nameof(IsRefreshing));
+                this.IsBusy = true;
+                var articleResults = await this.TBService.GetFeaturedArticles();
+
+                foreach (var counter in articleResults.Articles)
+                {
+                    Articles.Add(counter);
+                }
+
+                await Task.Delay(500);
+                this.IsBusy = false;
+
+                if (articleResults.Articles.Count == 0)
+                    await App.Current.MainPage.DisplayAlert("Warning", "No articles found.", "OK");
+
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert("Warning", "Could not retrieve articles.", "OK");
             }
         }
 
-        //Refresh articles
-        public ICommand RefreshCommand
+        //Set refresh status
+        async Task RefreshDataAsync()
         {
-            get
-            {
-                return new Command(async () =>
-                {
-                    IsRefreshing = true;
-                    LoadArticles();
-                    IsRefreshing = false;
-                });
-            }
+            IsRefreshing = true;
+            await Task.Delay(1000);
+            LoadFeaturedArticles();
+            LoadArticles();
+            IsRefreshing = false;
+
         }
 
         //Add to favorites
