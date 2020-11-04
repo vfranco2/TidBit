@@ -7,5 +7,6 @@ namespace TidBit.Interfaces
     {
         Task<ArticlesRootObject> GetAllArticles();
         Task<ArticlesRootObject> GetFeaturedArticles();
+        Task<ArticlePreferencesRootObject> GetAllPreferences();
     }
 }

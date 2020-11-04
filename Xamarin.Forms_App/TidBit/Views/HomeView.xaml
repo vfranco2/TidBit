@@ -4,7 +4,7 @@
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="True"
              xmlns:vm="clr-namespace:TidBit.ViewModels"
-             xmlns:sk="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
+             xmlns:Controls="clr-namespace:TidBit.Controls"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              BackgroundColor="{StaticResource TBPurpleDark}"
              Visual="Material"
@@ -20,88 +20,80 @@
 
     <ContentPage.Content>
 
-        <RefreshView Command="{Binding Source={StaticResource vm}, Path=RefreshCommand}" 
-                         IsRefreshing="{Binding Source={StaticResource vm}, Path=IsRefreshing}" Margin="0" Padding="0">
-        <ScrollView Padding="0" Margin="0">
+        <RefreshView Command="{Binding Source={StaticResource vm}, Path=RefreshCommand}" IsRefreshing="{Binding Source={StaticResource vm}, Path=IsRefreshing}" Margin="0" Padding="0">
 
-        <Grid BackgroundColor="{AppThemeBinding Light={StaticResource CardBackgroundLight}, Dark={StaticResource CardBackgroundDark}}" RowDefinitions="Auto,Auto,Auto,Auto">
+            <ScrollView Padding="0" Margin="0">
 
-            <Grid Grid.Row="0" Padding="12" RowDefinitions="30">
+                <Grid BackgroundColor="{AppThemeBinding Light={StaticResource CardBackgroundLight}, Dark={StaticResource CardBackgroundDark}}" RowDefinitions="Auto,Auto,Auto,Auto">
 
-                <Label TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" VerticalOptions="Center" Style="{StaticResource TitleTextStyle}" Text="Featured"/>
+                    <Grid Grid.Row="0" Padding="12" RowDefinitions="30">
 
-            </Grid>
+                        <Label TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" VerticalOptions="Center" Style="{StaticResource TitleTextStyle}" Text="Featured"/>
 
-            <yummy:PancakeView Grid.Row="1" Margin="0" BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" CornerRadius="35" HeightRequest="300" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                
-                <StackLayout Padding="0,0,0,8">
+                    </Grid>
 
-                    <CarouselView ItemsSource="{Binding Source={StaticResource vm}, Path=FeaturedArticles}" 
-                                  IndicatorView="indicatorView" PeekAreaInsets="0" VerticalOptions="FillAndExpand" HorizontalOptions="Fill" Loop="False">
-                        <CarouselView.ItemTemplate>
+                    <yummy:PancakeView Grid.Row="1" Margin="0" BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" CornerRadius="35" HeightRequest="300" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 
-                            <DataTemplate>
+                        <StackLayout Padding="0,0,0,8">
 
-                                    <yummy:PancakeView x:Name="WrapperFrame" Margin="0,0,0,8" CornerRadius="16,16,16,16" BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" Padding="0" HeightRequest="270">
-                                        <yummy:PancakeView.GestureRecognizers>
-                                            <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={StaticResource vm}, Path=ArticleTappedCommand}" CommandParameter="{Binding .}"/>
-                                        </yummy:PancakeView.GestureRecognizers>
-                                        <!-- Top/Bottom split-->
-                                        <Grid Margin="0" Padding="0" RowSpacing="4" RowDefinitions="2*, Auto, Auto">
+                            <CarouselView ItemsSource="{Binding Source={StaticResource vm}, Path=FeaturedArticles}" 
+                                      IndicatorView="indicatorView" PeekAreaInsets="0" VerticalOptions="FillAndExpand" HorizontalOptions="Fill" Loop="False">
+                                <CarouselView.ItemTemplate>
 
-                                            <!-- Image-->
-                                            <Frame Grid.Row="0" CornerRadius="16" HasShadow="False" BackgroundColor="#00FFFFFF" Padding="0" Margin="0"
-                                                    sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
-                                                    sk:Skeleton.BackgroundColor="{StaticResource TBPurple}">
+                                    <DataTemplate>
 
-                                                <Image Source="{Binding ArticleImageUrl}" Aspect="AspectFill" HorizontalOptions="FillAndExpand"/>
+                                        <yummy:PancakeView x:Name="WrapperFrame" Margin="0,0,0,8" CornerRadius="16,16,16,16" BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" Padding="0" HeightRequest="270">
+                                            <yummy:PancakeView.GestureRecognizers>
+                                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={StaticResource vm}, Path=ArticleTappedCommand}" CommandParameter="{Binding .}"/>
+                                            </yummy:PancakeView.GestureRecognizers>
 
-                                            </Frame>
+                                            <Grid Margin="0" Padding="0">
 
-                                            <!-- Gradient overlay-->
-                                            <yummy:PancakeView Grid.Row="0" Padding="0" Margin="0" BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="0,1">
-                                                <yummy:PancakeView.BackgroundGradientStops>
-                                                    <yummy:GradientStopCollection>
-                                                        <yummy:GradientStop Color="#000000" Offset="0" />
-                                                        <yummy:GradientStop Color="#00FFFFFF" Offset="1" />
-                                                    </yummy:GradientStopCollection>
-                                                </yummy:PancakeView.BackgroundGradientStops>
-                                            </yummy:PancakeView>
+                                                <Controls:ArticleCard Grid.Row="0" Margin="0"/>
 
-                                            <!-- Top info-->
-                                            <Grid Grid.Row="0" ColumnSpacing="8" Margin="16,8,0,0" Padding="0" VerticalOptions="Start" ColumnDefinitions="40, *">
-
-                                                <Image Grid.Column="0" Source="{Binding CategoryIcon}" WidthRequest="30" HeightRequest="30" HorizontalOptions="Center" VerticalOptions="Start" 
-                                                        sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
-                                                        sk:Skeleton.BackgroundColor="{StaticResource TBPurple}"/>
-
-                                                <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" LineBreakMode="TailTruncation" MaxLines="3" VerticalOptions="Center" Text="{Binding ArticleTitle}" TextColor="{AppThemeBinding Light={StaticResource TitleColorDark}, Dark={StaticResource TitleColorDark}}"
-                                                        sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
-                                                        sk:Skeleton.BackgroundColor="{StaticResource TBPurple}"/>
+                                                <ImageButton Grid.Row="0" Source="favoritenav.png" Command="{Binding Source={StaticResource vm}, Path=FavoriteTappedCommand}" CommandParameter="{Binding .}" WidthRequest="30" HeightRequest="30" HorizontalOptions="End" VerticalOptions="End" BackgroundColor="#00FFFFFF"/>
 
                                             </Grid>
 
-                                            <!-- Bottom info-->
+                                        </yummy:PancakeView>
 
-                                            <Label Grid.Row="1" Style="{StaticResource MediumTextStyle}" Margin="8,0,8,0" LineBreakMode="TailTruncation" MaxLines="3" VerticalOptions="Center" Text="{Binding ArticleText}" TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}"
-                                                sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
-                                                sk:Skeleton.BackgroundColor="{StaticResource TBPurple}" />
+                                    </DataTemplate>
 
-                                            <StackLayout Grid.Row="2" Margin="16,0,16,8" Padding="0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                </CarouselView.ItemTemplate>
 
-                                                <Label Style="{StaticResource MediumTextStyle}" VerticalOptions="Start" HorizontalOptions="Start" HorizontalTextAlignment="Start" TextColor="{AppThemeBinding Light={StaticResource AccentTextLight}, Dark={StaticResource AccentTextDark}}" Text="{Binding ArticleSource, StringFormat='{0:F0}  | '}"
-                                    sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
-                                    sk:Skeleton.BackgroundColor="{StaticResource TBPurple}"/>
+                            </CarouselView>
 
-                                                <Label Style="{StaticResource MediumTextStyle}" Margin="0" VerticalOptions="Start" HorizontalOptions="End" HorizontalTextAlignment="End" TextColor="{AppThemeBinding Light={StaticResource AccentTextLight}, Dark={StaticResource AccentTextDark}}" Text="{Binding ArticleDate}"
-                                    sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
-                                    sk:Skeleton.BackgroundColor="{StaticResource TBPurple}"/>
+                            <IndicatorView x:Name="indicatorView" IndicatorColor="{StaticResource CardBackgroundLight}" SelectedIndicatorColor="{StaticResource TBPurple}" HorizontalOptions="Center"/>
 
-                                                <!--<Image Source="favoritenav.png" WidthRequest="30" HeightRequest="30" HorizontalOptions="EndAndExpand" VerticalOptions="Start"/>-->
-                                                <ImageButton Source="favoritenav.png" Command="{Binding Source={StaticResource vm}, Path=FavoriteTappedCommand}" CommandParameter="{Binding .}" WidthRequest="30" HeightRequest="30" HorizontalOptions="EndAndExpand" VerticalOptions="Start" BackgroundColor="#00FFFFFF"/>
+                        </StackLayout>
 
-                                            </StackLayout>
+                    </yummy:PancakeView>
 
+                    <Grid Grid.Row="2" Padding="12" RowDefinitions="30">
+
+                        <Label TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" VerticalOptions="Center" Style="{StaticResource TitleTextStyle}" Text="News For You"/>
+
+                    </Grid>
+
+                    <yummy:PancakeView Grid.Row="3" Margin="0" BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" CornerRadius="35,35,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+                        <StackLayout x:Name="ArticleListView" HorizontalOptions="FillAndExpand" BindableLayout.ItemsSource="{Binding Source={StaticResource vm}, Path=Articles}" Spacing="0" Margin="0">
+
+                            <BindableLayout.ItemTemplate>
+
+                                <DataTemplate>
+
+                                    <!-- Card-->
+                                    <yummy:PancakeView x:Name="WrapperFrame" Margin="0,0,0,8" CornerRadius="16,16,16,16" BackgroundColor="{AppThemeBinding Light={StaticResource CardBackgroundLight}, Dark={StaticResource CardBackgroundDark}}" Padding="0" HeightRequest="270">
+                                        <yummy:PancakeView.GestureRecognizers>
+                                            <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={StaticResource vm}, Path=ArticleTappedCommand}" CommandParameter="{Binding .}"/>
+                                        </yummy:PancakeView.GestureRecognizers>
+
+                                        <Grid Margin="0" Padding="0">
+
+                                            <Controls:ArticleCard Grid.Row="0" Margin="0"/>
+
+                                            <ImageButton Grid.Row="0" Source="favoritenav.png" Command="{Binding Source={StaticResource vm}, Path=FavoriteTappedCommand}" CommandParameter="{Binding .}" WidthRequest="30" HeightRequest="30" HorizontalOptions="End" VerticalOptions="End" BackgroundColor="#00FFFFFF"/>
 
                                         </Grid>
 
@@ -109,180 +101,18 @@
 
                                 </DataTemplate>
 
-                        </CarouselView.ItemTemplate>
+                            </BindableLayout.ItemTemplate>
 
-                    </CarouselView>
-                    
-                    <IndicatorView x:Name="indicatorView" IndicatorColor="{StaticResource CardBackgroundLight}" SelectedIndicatorColor="{StaticResource TBPurple}" HorizontalOptions="Center"/>
-                    
-                </StackLayout>
+                        </StackLayout>
 
-            </yummy:PancakeView>
+                    </yummy:PancakeView>
 
-                    
-            <Grid Grid.Row="2" Padding="12" RowDefinitions="30">
-
-                <Label TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" VerticalOptions="Center" Style="{StaticResource TitleTextStyle}" Text="News For You"/>
-
-            </Grid>
-
-            <yummy:PancakeView Grid.Row="3" Margin="0" BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" CornerRadius="35,35,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-
-                        <ListView HorizontalOptions="FillAndExpand"
-                          x:Name="ArticleListView"
-                          CachingStrategy="RecycleElement"
-                          HasUnevenRows="True"
-                          Margin="0"
-                          BackgroundColor="#00FFFFFF"
-                          SeparatorVisibility="None"
-                          VerticalOptions="Start"
-                          VerticalScrollBarVisibility="Never"
-                          ItemsSource="{Binding Source={StaticResource vm}, Path=Articles}"
-                          IsPullToRefreshEnabled="False"
-                          sk:Skeleton.IsParent="True"
-                          sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
-                          sk:Skeleton.Animation="{sk:DefaultAnimation Beat}">
-                            
-                            <ListView.ItemTemplate>
-
-                        <DataTemplate>
-
-                            <ViewCell>
-                                <!-- Card-->
-                                <yummy:PancakeView x:Name="WrapperFrame" Margin="0,0,0,8" CornerRadius="16,16,16,16" BackgroundColor="{AppThemeBinding Light={StaticResource CardBackgroundLight}, Dark={StaticResource CardBackgroundDark}}" Padding="0" HeightRequest="270">
-                                    <yummy:PancakeView.GestureRecognizers>
-                                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={StaticResource vm}, Path=ArticleTappedCommand}" CommandParameter="{Binding .}"/>
-                                    </yummy:PancakeView.GestureRecognizers>
-                                    <!-- Top/Bottom split-->
-                                    <Grid Margin="0" Padding="0" RowSpacing="4" RowDefinitions="2*, Auto, Auto">
-                                                
-                                        <!-- Image-->
-                                        <Frame Grid.Row="0" CornerRadius="16" HasShadow="False" BackgroundColor="#00FFFFFF" Padding="0" Margin="0"
-                                                sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
-                                                sk:Skeleton.BackgroundColor="{StaticResource TBPurple}">
-
-                                            <Image Source="{Binding ArticleImageUrl}" Aspect="AspectFill" HorizontalOptions="FillAndExpand"/>
-
-                                        </Frame>
-
-                                        <!-- Gradient overlay-->
-                                        <yummy:PancakeView Grid.Row="0" Padding="0" Margin="0" BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="0,1">
-                                            <yummy:PancakeView.BackgroundGradientStops>
-                                                <yummy:GradientStopCollection>
-                                                    <yummy:GradientStop Color="#000000" Offset="0" />
-                                                    <yummy:GradientStop Color="#00FFFFFF" Offset="1" />
-                                                </yummy:GradientStopCollection>
-                                            </yummy:PancakeView.BackgroundGradientStops>
-                                        </yummy:PancakeView>
-
-                                        <!-- Top info-->
-                                        <Grid Grid.Row="0" ColumnSpacing="8" Margin="16,8,0,0" Padding="0" VerticalOptions="Start" ColumnDefinitions="40, *">
-
-                                            <Image Grid.Column="0" Source="{Binding CategoryIcon}" WidthRequest="30" HeightRequest="30" HorizontalOptions="Center" VerticalOptions="Start" 
-                                                    sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
-                                                    sk:Skeleton.BackgroundColor="{StaticResource TBPurple}"/>
-
-                                            <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" LineBreakMode="TailTruncation" MaxLines="3" VerticalOptions="Center" Text="{Binding ArticleTitle}" TextColor="{AppThemeBinding Light={StaticResource TitleColorDark}, Dark={StaticResource TitleColorDark}}"
-                                                    sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
-                                                    sk:Skeleton.BackgroundColor="{StaticResource TBPurple}"/>
-
-                                        </Grid>
-
-                                        <!-- Bottom info-->
-
-                                        <Label Grid.Row="1" Style="{StaticResource MediumTextStyle}" Margin="8,0,8,0" LineBreakMode="TailTruncation" MaxLines="3" VerticalOptions="Center" Text="{Binding ArticleText}" TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}"
-                                            sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
-                                            sk:Skeleton.BackgroundColor="{StaticResource TBPurple}" />
-
-                                        <StackLayout Grid.Row="2" Margin="16,0,16,8" Padding="0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-
-                                            <Label Style="{StaticResource MediumTextStyle}" VerticalOptions="Start" HorizontalOptions="Start" HorizontalTextAlignment="Start" TextColor="{AppThemeBinding Light={StaticResource AccentTextLight}, Dark={StaticResource AccentTextDark}}" Text="{Binding ArticleSource, StringFormat='{0:F0}  | '}"
-                                                sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
-                                                sk:Skeleton.BackgroundColor="{StaticResource TBPurple}"/>
-
-                                            <Label Style="{StaticResource MediumTextStyle}" Margin="0" VerticalOptions="Start" HorizontalOptions="End" HorizontalTextAlignment="End" TextColor="{AppThemeBinding Light={StaticResource AccentTextLight}, Dark={StaticResource AccentTextDark}}" Text="{Binding ArticleDate}"
-                                                sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
-                                                sk:Skeleton.BackgroundColor="{StaticResource TBPurple}"/>
-
-                                            <!--<Image Source="favoritenav.png" WidthRequest="30" HeightRequest="30" HorizontalOptions="EndAndExpand" VerticalOptions="Start"/>-->
-                                            <ImageButton Source="favoritenav.png" Command="{Binding Source={StaticResource vm}, Path=FavoriteTappedCommand}" CommandParameter="{Binding .}" WidthRequest="30" HeightRequest="30" HorizontalOptions="EndAndExpand" VerticalOptions="Start" BackgroundColor="#00FFFFFF"/>
-
-                                        </StackLayout>
-                                        
-
-                                    </Grid>
-                                    <!--<Grid Margin="8" RowSpacing="4">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="*"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
-
-                                        <Grid Grid.Row="0" ColumnSpacing="8" Padding="0">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="40"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-
-                                            <Image Grid.Column="0" Source="{Binding CategoryIcon}" WidthRequest="35" HeightRequest="35" HorizontalOptions="Center" VerticalOptions="Start" 
-                                                    sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
-                                                    sk:Skeleton.BackgroundColor="{StaticResource TBPurple}"/>
-
-                                            <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" LineBreakMode="TailTruncation" MaxLines="3" VerticalOptions="Center" TextColor="{DynamicResource TextColor}" Text="{Binding ArticleTitle}"
-                                                    sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
-                                                    sk:Skeleton.BackgroundColor="{StaticResource TBPurple}"/>
-
-                                        </Grid>
-
-                                        <Frame Grid.Row="1" CornerRadius="8" HasShadow="False" BackgroundColor="#00FFFFFF" Padding="0" Margin="0"
-                                                sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
-                                                sk:Skeleton.BackgroundColor="{StaticResource TBPurple}">
-
-                                            <Image Source="{Binding ArticleImageUrl}" Aspect="AspectFill" HorizontalOptions="FillAndExpand"/>
-
-                                        </Frame>
-
-                                        <Label Grid.Row="2" Style="{StaticResource MediumTextStyle}" LineBreakMode="TailTruncation" MaxLines="3" VerticalOptions="Center" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleText}"
-                                                sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
-                                                sk:Skeleton.BackgroundColor="{StaticResource TBPurple}" />
-
-                                        <Grid Grid.Row="3" Margin="0" Padding="0">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-
-                                            <Label Grid.Column="0" Style="{StaticResource MediumTextStyle}" VerticalOptions="Start" HorizontalOptions="Start" HorizontalTextAlignment="Start" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleSource}"
-                                                    sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
-                                                    sk:Skeleton.BackgroundColor="{StaticResource TBPurple}"/>
-
-                                            <Label Grid.Column="1" Style="{StaticResource MediumTextStyle}" VerticalOptions="Start" HorizontalOptions="End" HorizontalTextAlignment="End" TextColor="{DynamicResource AccentText}" Text="{Binding ArticleDate}"
-                                                    sk:Skeleton.IsBusy="{Binding Source={StaticResource vm}, Path=IsBusy}"
-                                                    sk:Skeleton.BackgroundColor="{StaticResource TBPurple}"/>
-
-                                        </Grid>
-
-                                    </Grid>-->
-
-                                </yummy:PancakeView>
-
-                            </ViewCell>
-
-                        </DataTemplate>
-
-                    </ListView.ItemTemplate>
-
-                </ListView>
-
-            </yummy:PancakeView>
-
-        </Grid>
+                </Grid>
 
             </ScrollView>
 
         </RefreshView>
-                
+
     </ContentPage.Content>
     
 </ContentPage>

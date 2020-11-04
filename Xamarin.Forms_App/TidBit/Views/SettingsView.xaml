@@ -25,7 +25,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-                    
+
             <Grid Grid.Row="0" Padding="12">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
@@ -34,137 +34,27 @@
             </Grid>
 
             <yummy:PancakeView Grid.Row="1" Margin="0" Padding="8" BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" CornerRadius="35,35,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
                 <sv:SettingsView BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" HasUnevenRows="True" SeparatorColor="{DynamicResource TBPurpleDark}">
 
                     <sv:Section Title="News Preferences" TextColor="{AppThemeBinding Light={StaticResource AccentTextLight}, Dark={StaticResource AccentTextDark}}">
-                        <ViewCell>
-                            <Grid BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" Padding="18,8,8,8">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Style="{StaticResource SettingsIconStyle}" Source="phonelink.png"/>
-                                <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" VerticalOptions="Center" Text="Tech"/>
-                                <CheckBox Style="{StaticResource SettingsCheckboxStyle}" x:Name="TechActive" IsChecked="True" CheckedChanged="Tech_Toggled"/>
-                            </Grid>
-                        </ViewCell>
 
                         <ViewCell>
-                            <Grid BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" Padding="18,8,8,8">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Style="{StaticResource SettingsIconStyle}" Source="directions_car.png"/>
-                                <Label Style="{StaticResource SettingsTextStyle}" TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" Text="Auto"/>
-                                <CheckBox Style="{StaticResource SettingsCheckboxStyle}" x:Name="AutoActive" IsChecked="True" CheckedChanged="Auto_Toggled"/>
-                            </Grid>
-                        </ViewCell>
 
-                        <ViewCell>
-                            <Grid BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" Padding="18,8,8,8">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Style="{StaticResource SettingsIconStyle}" Source="sports_basketball.png"/>
-                                <Label Style="{StaticResource SettingsTextStyle}" TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" Text="Sports"/>
-                                <CheckBox Style="{StaticResource SettingsCheckboxStyle}" x:Name="SportsActive" IsChecked="True" CheckedChanged="Sports_Toggled"/>
-                            </Grid>
-                        </ViewCell>
+                            <StackLayout BindableLayout.ItemsSource="{Binding Source={StaticResource vm}, Path=ArticlePreferences}">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
 
-                        <ViewCell>
-                            <Grid BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" Padding="18,8,8,8">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Style="{StaticResource SettingsIconStyle}" Source="local_mall.png"/>
-                                <Label Style="{StaticResource SettingsTextStyle}" TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" Text="Fashion"/>
-                                <CheckBox Style="{StaticResource SettingsCheckboxStyle}" x:Name="FashionActive" IsChecked="True" CheckedChanged="Fashion_Toggled"/>
-                            </Grid>
-                        </ViewCell>
+                                        <Grid BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" Padding="0" ColumnDefinitions="Auto, Auto, *">
+                                            <Image Grid.Column="0" Style="{StaticResource SettingsIconStyle}" Source="{Binding PreferenceIcon}" HeightRequest="30"/>
+                                            <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" VerticalOptions="Center" Text="{Binding PreferenceTitle}"/>
+                                            <CheckBox Grid.Column="2" Style="{StaticResource SettingsCheckboxStyle}" x:Name="{Binding PreferenceBoxName}" IsChecked="{Binding PreferenceState}" CheckedChanged="Preference_Toggled"/>
+                                        </Grid>
 
-                        <ViewCell>
-                            <Grid BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" Padding="18,8,8,8">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Style="{StaticResource SettingsIconStyle}" Source="videogame_asset.png"/>
-                                <Label Style="{StaticResource SettingsTextStyle}" TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" Text="Gaming"/>
-                                <CheckBox Style="{StaticResource SettingsCheckboxStyle}" x:Name="GamingActive" IsChecked="True" CheckedChanged="Gaming_Toggled"/>
-                            </Grid>
-                        </ViewCell>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
 
-                        <ViewCell>
-                            <Grid BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" Padding="18,8,8,8">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Style="{StaticResource SettingsIconStyle}" Source="local_movies.png"/>
-                                <Label Style="{StaticResource SettingsTextStyle}" TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" Text="Film"/>
-                                <CheckBox Style="{StaticResource SettingsCheckboxStyle}" x:Name="FilmActive" IsChecked="True" CheckedChanged="Film_Toggled"/>
-                            </Grid>
-                        </ViewCell>
-
-                        <ViewCell>
-                            <Grid BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" Padding="18,8,8,8">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Style="{StaticResource SettingsIconStyle}" Source="restaurant.png"/>
-                                <Label Style="{StaticResource SettingsTextStyle}" TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" Text="Food"/>
-                                <CheckBox Style="{StaticResource SettingsCheckboxStyle}" x:Name="FoodActive" IsChecked="True" CheckedChanged="Food_Toggled"/>
-                            </Grid>
-                        </ViewCell>
-
-                        <ViewCell>
-                            <Grid BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" Padding="18,8,8,8">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Style="{StaticResource SettingsIconStyle}" Source="headset.png"/>
-                                <Label Style="{StaticResource SettingsTextStyle}" TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" Text="Music"/>
-                                <CheckBox Style="{StaticResource SettingsCheckboxStyle}" x:Name="MusicActive" IsChecked="True" CheckedChanged="Music_Toggled"/>
-                            </Grid>
-                        </ViewCell>
-
-                        <ViewCell>
-                            <Grid BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" Padding="18,8,8,8">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Style="{StaticResource SettingsIconStyle}" Source="camera_alt.png"/>
-                                <Label Style="{StaticResource SettingsTextStyle}" TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" Text="Photography"/>
-                                <CheckBox Style="{StaticResource SettingsCheckboxStyle}" x:Name="PhotographyActive" IsChecked="True" CheckedChanged="Photography_Toggled"/>
-                            </Grid>
-                        </ViewCell>
-
-                        <ViewCell>
-                            <Grid BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" Padding="18,8,8,8">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Style="{StaticResource SettingsIconStyle}" Source="bar_chart.png"/>
-                                <Label Style="{StaticResource SettingsTextStyle}" TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" Text="Finance"/>
-                                <CheckBox Style="{StaticResource SettingsCheckboxStyle}" x:Name="FinanceActive" IsChecked="True" CheckedChanged="Finance_Toggled"/>
-                            </Grid>
                         </ViewCell>
 
                     </sv:Section>
@@ -174,9 +64,10 @@
                     </sv:Section>
 
                 </sv:SettingsView>
+
             </yummy:PancakeView>
 
         </Grid>
-
+        
     </ContentPage.Content>
 </ContentPage>

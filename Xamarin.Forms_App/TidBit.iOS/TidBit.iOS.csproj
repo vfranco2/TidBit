@@ -290,11 +290,8 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="ContextViewCell">
-      <Version>2.0.1</Version>
-    </PackageReference>
     <PackageReference Include="sqlite-net-pcl">
-      <Version>1.6.292</Version>
+      <Version>1.7.335</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.1558-pre3" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.0-pre2" />
@@ -320,6 +317,7 @@
     <Folder Include="Assets.xcassets\camera_alt.imageset\" />
     <Folder Include="Assets.xcassets\close.imageset\" />
     <Folder Include="Assets.xcassets\closepane.imageset\" />
+    <Folder Include="Assets.xcassets\dashboard.imageset\" />
     <Folder Include="Assets.xcassets\directions_car.imageset\" />
     <Folder Include="Assets.xcassets\favorite.imageset\" />
     <Folder Include="Assets.xcassets\favoritepane.imageset\" />
@@ -335,7 +333,6 @@
     <Folder Include="Assets.xcassets\share.imageset\" />
     <Folder Include="Assets.xcassets\sports_basketball.imageset\" />
     <Folder Include="Assets.xcassets\videogame_asset.imageset\" />
-    <Folder Include="Assets.xcassets\dashboard.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Roboto-Bold.ttf" />

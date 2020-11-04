@@ -124,5 +124,72 @@ namespace TidBit.Services
             return JsonConvert.DeserializeObject<T>(value);
         }
 
+        public async Task<ArticlePreferencesRootObject> GetAllPreferences()
+        {
+            var articlepreferences = new ArticlePreferencesRootObject();
+            articlepreferences.ArticlePreferences = new List<ArticlePreference>();
+            articlepreferences.ArticlePreferences.Add(new ArticlePreference()
+            {
+                PreferenceBoxName = "TechActive",
+                PreferenceTitle = "Tech",
+                PreferenceIcon = "phonelink.png"
+            });
+            articlepreferences.ArticlePreferences.Add(new ArticlePreference()
+            {
+                PreferenceBoxName = "AutoActive",
+                PreferenceTitle = "Auto",
+                PreferenceIcon = "directions_car.png"
+            });
+            articlepreferences.ArticlePreferences.Add(new ArticlePreference()
+            {
+                PreferenceBoxName = "SportsActive",
+                PreferenceTitle = "Sports",
+                PreferenceIcon = "sports_basketball.png"
+            });
+            articlepreferences.ArticlePreferences.Add(new ArticlePreference()
+            {
+                PreferenceBoxName = "FashionActive",
+                PreferenceTitle = "Fashion",
+                PreferenceIcon = "local_mall.png"
+            });
+            articlepreferences.ArticlePreferences.Add(new ArticlePreference()
+            {
+                PreferenceBoxName = "GamingActive",
+                PreferenceTitle = "Gaming",
+                PreferenceIcon = "videogame_asset.png"
+            });
+            articlepreferences.ArticlePreferences.Add(new ArticlePreference()
+            {
+                PreferenceBoxName = "FilmActive",
+                PreferenceTitle = "Film",
+                PreferenceIcon = "local_movies.png"
+            });
+            articlepreferences.ArticlePreferences.Add(new ArticlePreference()
+            {
+                PreferenceBoxName = "FoodActive",
+                PreferenceTitle = "Food",
+                PreferenceIcon = "restaurant.png"
+            });
+            articlepreferences.ArticlePreferences.Add(new ArticlePreference()
+            {
+                PreferenceBoxName = "MusicActive",
+                PreferenceTitle = "Music",
+                PreferenceIcon = "headset.png"
+            });
+            articlepreferences.ArticlePreferences.Add(new ArticlePreference()
+            {
+                PreferenceBoxName = "PhotographyActive",
+                PreferenceTitle = "Photography",
+                PreferenceIcon = "camera_alt.png"
+            });
+            articlepreferences.ArticlePreferences.Add(new ArticlePreference()
+            {
+                PreferenceBoxName = "FinanceActive",
+                PreferenceTitle = "Finance",
+                PreferenceIcon = "bar_chart.png"
+            });
+            return articlepreferences;
+        }
+
     }
 }

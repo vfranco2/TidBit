@@ -54,9 +54,6 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="ContextViewCell">
-      <Version>2.0.1</Version>
-    </PackageReference>
     <PackageReference Include="modernhttpclient-updated">
       <Version>3.4.3</Version>
     </PackageReference>
@@ -78,7 +75,7 @@
       <Version>5.0.0.1558-pre3</Version>
     </PackageReference>
     <PackageReference Include="AsyncAwaitBestPractices">
-      <Version>4.3.0</Version>
+      <Version>5.0.2</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

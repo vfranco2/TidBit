@@ -4,8 +4,8 @@
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="True"
              xmlns:vm="clr-namespace:TidBit.ViewModels"
+             xmlns:Controls="clr-namespace:TidBit.Controls"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             xmlns:conv="clr-namespace:TidBit.Converters"
              BackgroundColor="{StaticResource TBPurpleDark}"
              Visual="Material"
              Shell.NavBarIsVisible="False"
@@ -55,51 +55,15 @@
                                         <yummy:PancakeView.GestureRecognizers>
                                             <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={StaticResource vm}, Path=ArticleTappedCommand}" CommandParameter="{Binding .}"/>
                                         </yummy:PancakeView.GestureRecognizers>
-                                        <!-- Top/Bottom split-->
-                                        <Grid Margin="0" Padding="0" RowSpacing="4" RowDefinitions="2*, Auto, Auto">
-                                                
-                                            <!-- Image-->
-                                            <Frame Grid.Row="0" CornerRadius="16" HasShadow="False" BackgroundColor="#00FFFFFF" Padding="0" Margin="0">
 
-                                                <Image Source="{Binding ArticleImageUrl}" Aspect="AspectFill" HorizontalOptions="FillAndExpand"/>
+                                        <Grid Margin="0" Padding="0">
 
-                                            </Frame>
+                                            <Controls:ArticleCard Grid.Row="0" Margin="0"/>
 
-                                            <!-- Gradient overlay-->
-                                            <yummy:PancakeView Grid.Row="0" Padding="0" Margin="0" BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="0,1">
-                                                <yummy:PancakeView.BackgroundGradientStops>
-                                                    <yummy:GradientStopCollection>
-                                                        <yummy:GradientStop Color="#000000" Offset="0" />
-                                                        <yummy:GradientStop Color="#00FFFFFF" Offset="1" />
-                                                    </yummy:GradientStopCollection>
-                                                </yummy:PancakeView.BackgroundGradientStops>
-                                            </yummy:PancakeView>
+                                            <ImageButton Grid.Row="0" Source="close.png" Command="{Binding Source={StaticResource vm}, Path=UnfavoriteTappedCommand}" CommandParameter="{Binding .}" WidthRequest="30" HeightRequest="30" HorizontalOptions="End" VerticalOptions="End" BackgroundColor="#00FFFFFF"/>
 
-                                            <!-- Top info-->
-                                            <Grid Grid.Row="0" ColumnSpacing="8" Margin="16,8,0,0" Padding="0" VerticalOptions="Start" ColumnDefinitions="40, *">
-
-                                                <Image Grid.Column="0" Source="{Binding CategoryIcon}" WidthRequest="30" HeightRequest="30" HorizontalOptions="Center" VerticalOptions="Start" />
-
-                                                <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" LineBreakMode="TailTruncation" MaxLines="3" VerticalOptions="Center" Text="{Binding ArticleTitle}" TextColor="{AppThemeBinding Light={StaticResource TitleColorDark}, Dark={StaticResource TitleColorDark}}"/>
-
-                                            </Grid>
-
-                                            <!-- Bottom info-->
-
-                                            <Label Grid.Row="1" Style="{StaticResource MediumTextStyle}" Margin="8,0,8,0" LineBreakMode="TailTruncation" MaxLines="3" VerticalOptions="Center" Text="{Binding ArticleText}" TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}"/>
-
-                                            <StackLayout Grid.Row="2" Margin="16,0,16,8" Padding="0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-
-                                                <Label Style="{StaticResource MediumTextStyle}" VerticalOptions="Start" HorizontalOptions="Start" HorizontalTextAlignment="Start" TextColor="{AppThemeBinding Light={StaticResource AccentTextLight}, Dark={StaticResource AccentTextDark}}" Text="{Binding ArticleSource, StringFormat='{0:F0}  | '}"/>
-
-                                                <Label Style="{StaticResource MediumTextStyle}" Margin="0" VerticalOptions="Start" HorizontalOptions="End" HorizontalTextAlignment="End" TextColor="{AppThemeBinding Light={StaticResource AccentTextLight}, Dark={StaticResource AccentTextDark}}" Text="{Binding ArticleDate}"/>
-
-                                                <ImageButton Source="close.png" Command="{Binding Source={StaticResource vm}, Path=UnfavoriteTappedCommand}" CommandParameter="{Binding .}" WidthRequest="30" HeightRequest="30" HorizontalOptions="EndAndExpand" VerticalOptions="Start" BackgroundColor="#00FFFFFF"/>
-
-                                            </StackLayout>
-                                        
                                         </Grid>
-                                    
+                                        
                                     </yummy:PancakeView>
 
                                 </ViewCell>
