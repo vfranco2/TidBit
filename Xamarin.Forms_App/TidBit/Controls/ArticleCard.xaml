@@ -26,14 +26,14 @@
             <yummy:PancakeView Grid.Row="0" Padding="0" Margin="0" BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="0,1">
                 <yummy:PancakeView.BackgroundGradientStops>
                     <yummy:GradientStopCollection>
-                        <yummy:GradientStop Color="#000000" Offset="0" />
-                        <yummy:GradientStop Color="#00FFFFFF" Offset="1" />
+                        <yummy:GradientStop Color="#000000" Offset="1" />
+                        <yummy:GradientStop Color="#00FFFFFF" Offset="0" />
                     </yummy:GradientStopCollection>
                 </yummy:PancakeView.BackgroundGradientStops>
             </yummy:PancakeView>
 
             <!-- Top info-->
-            <Grid Grid.Row="0" ColumnSpacing="8" Margin="16,8,0,0" Padding="0" VerticalOptions="Start" ColumnDefinitions="40, *">
+            <Grid Grid.Row="0" ColumnSpacing="8" Margin="16,10,0,10" Padding="0" VerticalOptions="EndAndExpand" ColumnDefinitions="24, *">
 
                 <Image Grid.Column="0" Source="{Binding CategoryIcon}" WidthRequest="30" HeightRequest="30" HorizontalOptions="Center" VerticalOptions="Start" />
 

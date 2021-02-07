@@ -37,7 +37,7 @@
 
                 <sv:SettingsView BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" HasUnevenRows="True" SeparatorColor="{DynamicResource TBPurpleDark}">
 
-                    <sv:Section Title="News Preferences" TextColor="{AppThemeBinding Light={StaticResource AccentTextLight}, Dark={StaticResource AccentTextDark}}">
+                    <sv:Section Title="My Preferences" TextColor="{AppThemeBinding Light={StaticResource AccentTextLight}, Dark={StaticResource AccentTextDark}}">
 
                         <ViewCell>
 
@@ -45,8 +45,8 @@
                                 <BindableLayout.ItemTemplate>
                                     <DataTemplate>
 
-                                        <Grid BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" Padding="0" ColumnDefinitions="Auto, Auto, *">
-                                            <Image Grid.Column="0" Style="{StaticResource SettingsIconStyle}" Source="{Binding PreferenceIcon}" HeightRequest="30"/>
+                                        <Grid BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" Padding="8,0" ColumnDefinitions="30, Auto, *">
+                                            <Image Grid.Column="0" Style="{StaticResource SettingsIconStyle}" Source="{Binding PreferenceIcon}" HeightRequest="20"/>
                                             <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" VerticalOptions="Center" Text="{Binding PreferenceTitle}"/>
                                             <CheckBox Grid.Column="2" Style="{StaticResource SettingsCheckboxStyle}" x:Name="{Binding PreferenceBoxName}" IsChecked="{Binding PreferenceState}" CheckedChanged="Preference_Toggled"/>
                                         </Grid>
