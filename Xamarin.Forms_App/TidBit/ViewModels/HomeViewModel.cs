@@ -2,9 +2,11 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using TidBit.Controls;
 using TidBit.Models;
 using TidBit.ViewModels.Base;
 using TidBit.Views;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace TidBit.ViewModels
@@ -24,7 +26,7 @@ namespace TidBit.ViewModels
             camera_alt, 
             bar_chart
         }
-        
+
         public ObservableCollection<Article> Articles { get; set; }
 
         public ObservableCollection<Article> FeaturedArticles { get; set; }
@@ -32,6 +34,8 @@ namespace TidBit.ViewModels
         public Command ArticleTappedCommand { get; set; }
 
         public Command FavoriteTappedCommand { get; set; }
+
+        public Command LayoutToggledCommand { get; set; }
 
         private bool _isRefreshing = false;
 
@@ -49,12 +53,45 @@ namespace TidBit.ViewModels
 
         public ICommand RefreshCommand => new Command(async () => await RefreshDataAsync());
 
+        private bool _switchStatus = true;
+        public bool SwitchStatus
+        {
+            get { return _switchStatus; }
+            set
+            {
+                _switchStatus = value;
+                OnPropertyChanged(nameof(SwitchStatus));
+            }
+        }
+        private bool _standardStatus = false;
+        public bool StandardStatus
+        {
+            get { return _standardStatus; }
+            set
+            {
+                _standardStatus = value;
+                OnPropertyChanged(nameof(StandardStatus));
+            }
+        }
+
+        private int _cardHeight = 270;
+        public int CardHeight
+        {
+            get { return _cardHeight; }
+            set
+            {
+                _cardHeight = value;
+                OnPropertyChanged(nameof(CardHeight));
+            }
+        }
 
         public HomeViewModel()
         {
             Articles = new ObservableCollection<Article>();
 
             FeaturedArticles = new ObservableCollection<Article>();
+
+            InitLayout();
 
             LoadFeaturedArticles();
 
@@ -64,7 +101,55 @@ namespace TidBit.ViewModels
 
             FavoriteTappedCommand = new Command(FavoriteTapped);
 
-            //categoryIcon = getCategoryIcon();
+            MessagingCenter.Subscribe<HomeView>(this, "HomeLayoutChanged", (sender) =>
+            {
+                SetLayout();
+                LoadArticles();
+            });
+
+        }
+
+        protected async Task InitLayout()
+        {
+            string layoutStatus = await SecureStorage.GetAsync("HomeLayout");
+            if (layoutStatus == "Mosaic")
+            {
+                SwitchStatus = true;
+                StandardStatus = false;
+                CardHeight = 200;
+            }
+            else if (layoutStatus == "Standard")
+            {
+                StandardStatus = true;
+                SwitchStatus = false;
+                CardHeight = 270;
+            }
+            else
+            {
+                await SecureStorage.SetAsync("HomeLayout", "Standard");
+                StandardStatus = true;
+                SwitchStatus = false;
+                CardHeight = 270;
+            }
+        }
+
+        protected async Task SetLayout()
+        {
+            string layoutStatus = SwitchStatus == true ? "Mosaic" : "Standard";
+            await SecureStorage.SetAsync("HomeLayout", layoutStatus);
+            if (layoutStatus == "Mosaic")
+            {
+                SwitchStatus = true;
+                StandardStatus = false;
+                CardHeight = 200;
+            }
+            else
+            {
+                await SecureStorage.SetAsync("HomeLayout", "Standard");
+                StandardStatus = true;
+                SwitchStatus = false;
+                CardHeight = 270;
+            }
         }
 
         protected async Task LoadArticles()
@@ -84,12 +169,15 @@ namespace TidBit.ViewModels
                 this.IsBusy = false;
 
                 if (articleResults.Articles.Count == 0)
-                    await App.Current.MainPage.DisplayAlert("Warning", "No articles found.", "OK");
+                {
+
+                }
+                    //await App.Current.MainPage.DisplayAlert("Warning", "No articles found.", "OK");
 
             }
             catch (Exception ex)
             {
-                await App.Current.MainPage.DisplayAlert("Warning", "Could not retrieve articles.", "OK");
+                //await App.Current.MainPage.DisplayAlert("Warning", "Could not retrieve articles.", "OK");
             }
         }
 
@@ -110,12 +198,15 @@ namespace TidBit.ViewModels
                 this.IsBusy = false;
 
                 if (articleResults.Articles.Count == 0)
-                    await App.Current.MainPage.DisplayAlert("Warning", "No featured articles found.", "OK");
+                {
+
+                }
+                    //await App.Current.MainPage.DisplayAlert("Warning", "No featured articles found.", "OK");
 
             }
             catch (Exception ex)
             {
-                await App.Current.MainPage.DisplayAlert("Warning", "Could not retrieve featured articles.", "OK");
+                //await App.Current.MainPage.DisplayAlert("Warning", "Could not retrieve featured articles.", "OK");
             }
         }
 
@@ -137,11 +228,11 @@ namespace TidBit.ViewModels
             try 
             {
                 await App.Database.SaveArticleAsync(selectedArticle);
-                await Application.Current.MainPage.DisplayAlert("Added", "Article added to favorites", "OK");
+                await Application.Current.MainPage.DisplayAlert("Added", "Article added to favorites!", "OK");
             }
             catch (Exception ex) 
             {
-                await Application.Current.MainPage.DisplayAlert("Alert", "Article already in favorites", "OK");
+                await Application.Current.MainPage.DisplayAlert("Alert", "Article already in favorites!", "OK");
             }
         }
 

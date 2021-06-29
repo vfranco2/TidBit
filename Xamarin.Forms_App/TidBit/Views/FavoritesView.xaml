@@ -5,7 +5,6 @@
              ios:Page.UseSafeArea="True"
              xmlns:vm="clr-namespace:TidBit.ViewModels"
              xmlns:Controls="clr-namespace:TidBit.Controls"
-             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              BackgroundColor="{StaticResource TBPurpleDark}"
              Visual="Material"
              Shell.NavBarIsVisible="False"
@@ -13,74 +12,72 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <StyleSheet Source="../Styles/styles.css"/>
             <vm:FavoritesViewModel x:Key="vm"/>
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ContentPage.Content>
 
-        <Grid BackgroundColor="{AppThemeBinding Light={StaticResource CardBackgroundLight}, Dark={StaticResource CardBackgroundDark}}" RowDefinitions="Auto, *">
-                    
-            <Grid Grid.Row="0" Padding="12" RowDefinitions="30">
+        <RefreshView Command="{Binding Source={StaticResource vm}, Path=RefreshCommand}" IsRefreshing="{Binding Source={StaticResource vm}, Path=IsRefreshing}" Margin="0" Padding="0">
 
-                <Label TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" VerticalOptions="Center" Style="{StaticResource TitleTextStyle}" Text="Favorites"/>
+            <ScrollView Padding="0" Margin="0">
 
-            </Grid>
+                <Grid BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" RowDefinitions="Auto, Auto" Padding="0" Margin="0">
 
-            <yummy:PancakeView Grid.Row="1" Margin="0" BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" CornerRadius="35,35,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid Grid.Row="0" Padding="12" RowDefinitions="30" ColumnDefinitions="*, *, Auto">
 
-                <Grid Margin="0" Padding="0" RowDefinitions="*">
+                        <Label Grid.Column="0" TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" VerticalOptions="Center" Style="{StaticResource HeaderTextStyle}" Text="Favorites"/>
+                        
+                        <Label Grid.Column="1" TextColor="{AppThemeBinding Light={StaticResource AccentTextLight}, Dark={StaticResource AccentTextDark}}" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalOptions="End" Style="{StaticResource MediumTextStyle}" Text="Mosaic"/>
 
-                    <ListView Grid.Row="0" HorizontalOptions="FillAndExpand"
-                                x:Name="listView"
-                                CachingStrategy="RecycleElement"
-                                HasUnevenRows="True"
-                                Margin="0"
-                                BackgroundColor="#00FFFFFF"
-                                SeparatorVisibility="None"
-                                VerticalOptions="Start"
-                                ItemsSource="{Binding Source={StaticResource vm}, Path=Articles}"
-                                IsPullToRefreshEnabled="True"
-                                RefreshCommand="{Binding Source={StaticResource vm}, Path=RefreshCommand}"
-                                IsRefreshing="{Binding Source={StaticResource vm}, Path=IsRefreshing}">
+                        <Switch Grid.Column="2" IsToggled="{Binding Source={StaticResource vm}, Path=SwitchStatus}" Toggled="LayoutSwitchToggled" OnColor="{StaticResource TBPurple}" ThumbColor="{StaticResource TBPurpleDark}" VerticalOptions="Center"/>
 
-                        <ListView.ItemTemplate>
+                    </Grid>
 
-                            <DataTemplate>
+                    <Frame Grid.Row="1" Margin="0" Padding="0" BackgroundColor="{AppThemeBinding Light={StaticResource BorderBackgroundLight}, Dark={StaticResource BorderBackgroundDark}}" CornerRadius="35" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False">
 
-                                <ViewCell>
-                                    <!-- Card-->
-                                    <yummy:PancakeView x:Name="WrapperFrame" Margin="0,0,0,8" CornerRadius="16,16,16,16" BackgroundColor="{AppThemeBinding Light={StaticResource CardBackgroundLight}, Dark={StaticResource CardBackgroundDark}}" Padding="0" HeightRequest="270">
-                                        <yummy:PancakeView.GestureRecognizers>
-                                            <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={StaticResource vm}, Path=ArticleTappedCommand}" CommandParameter="{Binding .}"/>
-                                        </yummy:PancakeView.GestureRecognizers>
+                        <Grid Margin="0" Padding="0,16" RowDefinitions="*">
 
-                                        <Grid Margin="0" Padding="0">
+                            <FlexLayout x:Name="FavoritesStackLayout" BindableLayout.ItemsSource="{Binding Source={StaticResource vm}, Path=Articles}" Wrap="Wrap" JustifyContent="SpaceEvenly" Direction="Row" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
 
-                                            <Controls:ArticleCard Grid.Row="0" Margin="0"/>
+                                <BindableLayout.ItemTemplate>
 
-                                            <ImageButton Grid.Row="0" Source="close.png" Command="{Binding Source={StaticResource vm}, Path=UnfavoriteTappedCommand}" CommandParameter="{Binding .}" WidthRequest="30" HeightRequest="30" HorizontalOptions="End" VerticalOptions="End" BackgroundColor="#00FFFFFF"/>
+                                    <DataTemplate>
 
-                                        </Grid>
-                                        
-                                    </yummy:PancakeView>
+                                        <Frame x:Name="WrapperFrame" Margin="0,0,0,16" Padding="0" CornerRadius="16" BackgroundColor="{AppThemeBinding Light={StaticResource CardBackgroundLight}, Dark={StaticResource CardBackgroundDark}}" HasShadow="False" VerticalOptions="Start" HeightRequest="{Binding Source={StaticResource vm}, Path=CardHeight}">
+                                            <Frame.GestureRecognizers>
+                                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={StaticResource vm}, Path=ArticleTappedCommand}" CommandParameter="{Binding .}"/>
+                                            </Frame.GestureRecognizers>
 
-                                </ViewCell>
+                                            <Grid Margin="0" Padding="0" RowDefinitions="*,40" ColumnDefinitions="*,40" IsClippedToBounds="False">
 
-                            </DataTemplate>
+                                                <Controls:ArticleCard Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0" IsVisible="{Binding Source={StaticResource vm}, Path=StandardStatus}"/>
 
-                        </ListView.ItemTemplate>
+                                                <Controls:ArticleCardMosaic Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0" IsVisible="{Binding Source={StaticResource vm}, Path=SwitchStatus}" HeightRequest="200"/>
 
-                    </ListView>
+                                                <ImageButton Grid.Row="1" Grid.Column="1" Source="close.png" Command="{Binding Source={StaticResource vm}, Path=UnfavoriteTappedCommand}" CommandParameter="{Binding .}" WidthRequest="30" HeightRequest="30" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="#00FFFFFF"/>
 
-                    <Label Grid.Row="0" HorizontalOptions="Center" IsVisible="{Binding Source={StaticResource vm}, Path=IsDefaultVisible}" VerticalOptions="Start" Margin="24" HorizontalTextAlignment="Center" TextColor="{DynamicResource AccentText}" Style="{StaticResource MediumTextStyle}" Text="No articles found. Tap the heart on an article to save it here."/>
+                                            </Grid>
+
+                                        </Frame>
+
+                                    </DataTemplate>
+
+                                </BindableLayout.ItemTemplate>
+
+                            </FlexLayout>
+
+                            <Label Grid.Row="0" HorizontalOptions="Center" IsVisible="{Binding Source={StaticResource vm}, Path=IsDefaultVisible}" VerticalOptions="Start" Margin="24" HorizontalTextAlignment="Center" TextColor="{DynamicResource AccentText}" Style="{StaticResource MediumTextStyle}" Text="No articles found. Tap the heart on an article to save it here."/>
+
+                        </Grid>
+
+                    </Frame>
 
                 </Grid>
-                    
-            </yummy:PancakeView>
 
-        </Grid>
+            </ScrollView>
+            
+        </RefreshView>
 
     </ContentPage.Content>
 

@@ -21,33 +21,9 @@
                 <Setter Property="Shell.TabBarTitleColor" Value="{DynamicResource TBPurple}" />
             </Style>
             <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
-            
+
         </ResourceDictionary>
     </Shell.Resources>
-
-    <!--
-    <ShellItem Route="login">
-        <ShellContent ContentTemplate="{DataTemplate views:LoginView}"/>
-    </ShellItem>
-
-
-    
-    <Tab Title="Feed" Icon="{AppThemeBinding Light=dashboardlight.png, Dark=dashboarddark.png}">
-            <ShellContent ContentTemplate="{DataTemplate views:HomeView}"/>
-        </Tab>
-
-
-    <Tab Title="Feed" >
-            <Tab.Icon>
-                <OnPlatform x:TypeArguments="ImageSource">
-                    <OnPlatform.Platforms>
-                        <On Platform="iOS" Value="dashboard.png" />
-                        <On Platform="Android" Value="{AppThemeBinding Light=dashboardlight.png, Dark=dashboarddark.png}" />
-                    </OnPlatform.Platforms>
-                </OnPlatform>
-            </Tab.Icon>
-            <ShellContent ContentTemplate="{DataTemplate views:HomeView}"/>
-        </Tab>-->
 
     <TabBar Route="main">
 
@@ -65,6 +41,4 @@
 
     </TabBar>
 
-    <!-- -->
-    
 </Shell>

@@ -5,6 +5,7 @@ using System.Windows.Input;
 using TidBit.Models;
 using TidBit.ViewModels.Base;
 using TidBit.Views;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace TidBit.ViewModels
@@ -21,9 +22,43 @@ namespace TidBit.ViewModels
 
         private bool _isDefaultVisible = false;
 
+        private bool _switchStatus = true;
+        public bool SwitchStatus
+        {
+            get { return _switchStatus; }
+            set
+            {
+                _switchStatus = value;
+                OnPropertyChanged(nameof(SwitchStatus));
+            }
+        }
+        private bool _standardStatus = false;
+        public bool StandardStatus
+        {
+            get { return _standardStatus; }
+            set
+            {
+                _standardStatus = value;
+                OnPropertyChanged(nameof(StandardStatus));
+            }
+        }
+
+        private int _cardHeight = 270;
+        public int CardHeight
+        {
+            get { return _cardHeight; }
+            set
+            {
+                _cardHeight = value;
+                OnPropertyChanged(nameof(CardHeight));
+            }
+        }
+
         public FavoritesViewModel()
         {
             Articles = new ObservableCollection<Article>();
+
+            InitLayout();
 
             LoadArticles();
 
@@ -31,6 +66,54 @@ namespace TidBit.ViewModels
 
             UnfavoriteTappedCommand = new Command(UnfavoriteTapped);
 
+            MessagingCenter.Subscribe<FavoritesView>(this, "FavoritesLayoutChanged", (sender) =>
+            {
+                SetLayout();
+                LoadArticles();
+            });
+        }
+
+        protected async Task InitLayout()
+        {
+            string layoutStatus = await SecureStorage.GetAsync("HomeLayout");
+            if (layoutStatus == "Mosaic")
+            {
+                SwitchStatus = true;
+                StandardStatus = false;
+                CardHeight = 200;
+            }
+            else if (layoutStatus == "Standard")
+            {
+                StandardStatus = true;
+                SwitchStatus = false;
+                CardHeight = 270;
+            }
+            else
+            {
+                await SecureStorage.SetAsync("HomeLayout", "Standard");
+                StandardStatus = true;
+                SwitchStatus = false;
+                CardHeight = 270;
+            }
+        }
+
+        protected async Task SetLayout()
+        {
+            string layoutStatus = SwitchStatus == true ? "Mosaic" : "Standard";
+            await SecureStorage.SetAsync("HomeLayout", layoutStatus);
+            if (layoutStatus == "Mosaic")
+            {
+                SwitchStatus = true;
+                StandardStatus = false;
+                CardHeight = 200;
+            }
+            else
+            {
+                await SecureStorage.SetAsync("HomeLayout", "Standard");
+                StandardStatus = true;
+                SwitchStatus = false;
+                CardHeight = 270;
+            }
         }
 
         protected async Task LoadArticles()

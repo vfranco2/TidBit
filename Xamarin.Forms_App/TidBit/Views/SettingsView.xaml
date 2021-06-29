@@ -4,8 +4,6 @@
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="True"
              xmlns:vm="clr-namespace:TidBit.ViewModels"
-             xmlns:sv="clr-namespace:AiForms.Renderers;assembly=SettingsView"
-             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              BackgroundColor="{StaticResource TBPurpleDark}"
              Visual="Material"
              Shell.NavBarIsVisible="False"
@@ -13,61 +11,48 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <StyleSheet Source="../Styles/styles.css"/>
             <vm:SettingsViewModel x:Key="vm"/>
         </ResourceDictionary>
     </ContentPage.Resources>
     
     <ContentPage.Content>
 
-        <Grid BackgroundColor="{StaticResource TBPurpleDark}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+        <Grid BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" RowDefinitions="Auto, *">
 
-            <Grid Grid.Row="0" Padding="12">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                </Grid.RowDefinitions>
-                <Label TextColor="#f2f2f2" VerticalOptions="Center" Style="{StaticResource TitleTextStyle}" Text="Settings"/>
+            <Grid Grid.Row="0" Padding="12" RowDefinitions="30">
+
+                <Label TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" VerticalOptions="Center" Style="{StaticResource HeaderTextStyle}" Text="Settings"/>
+
             </Grid>
 
-            <yummy:PancakeView Grid.Row="1" Margin="0" Padding="8" BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" CornerRadius="35,35,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Frame Grid.Row="1" Margin="0" Padding="8" BackgroundColor="{AppThemeBinding Light={StaticResource BorderBackgroundLight}, Dark={StaticResource BorderBackgroundDark}}" CornerRadius="35" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 
-                <sv:SettingsView BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" HasUnevenRows="True" SeparatorColor="{DynamicResource TBPurpleDark}">
+                <StackLayout BindableLayout.ItemsSource="{Binding Source={StaticResource vm}, Path=ArticlePreferences}">
+                    
+                    <BindableLayout.ItemTemplate>
+                        
+                        <DataTemplate>
 
-                    <sv:Section Title="My Preferences" TextColor="{AppThemeBinding Light={StaticResource AccentTextLight}, Dark={StaticResource AccentTextDark}}">
+                            <Grid Padding="8,0" ColumnDefinitions="30, Auto, *">
+                                <Image Grid.Column="0" Style="{StaticResource SettingsIconStyle}" Source="{Binding PreferenceIcon}" HeightRequest="20"/>
+                                <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" VerticalOptions="Center" Text="{Binding PreferenceTitle}"/>
+                                <CheckBox Grid.Column="2" Style="{StaticResource SettingsCheckboxStyle}" x:Name="{Binding PreferenceBoxName}" IsChecked="{Binding PreferenceState}" CheckedChanged="Preference_Toggled"/>
+                            </Grid>
 
-                        <ViewCell>
+                        </DataTemplate>
+                        
+                    </BindableLayout.ItemTemplate>
 
-                            <StackLayout BindableLayout.ItemsSource="{Binding Source={StaticResource vm}, Path=ArticlePreferences}">
-                                <BindableLayout.ItemTemplate>
-                                    <DataTemplate>
+                    <Label Padding="8,0" TextColor="{AppThemeBinding Light={StaticResource AccentTextLight}, Dark={StaticResource AccentTextDark}}" Text="{Binding Source={StaticResource vm}, Path=tidbitVersion, StringFormat='About - Build Version {0:F0}'}"/>
+                    
+                    <Label Padding="8,0" TextColor="{AppThemeBinding Light={StaticResource AccentTextLight}, Dark={StaticResource AccentTextDark}}" Text="Built by Vlad Franco and Harrison Lavins."/>
 
-                                        <Grid BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" Padding="8,0" ColumnDefinitions="30, Auto, *">
-                                            <Image Grid.Column="0" Style="{StaticResource SettingsIconStyle}" Source="{Binding PreferenceIcon}" HeightRequest="20"/>
-                                            <Label Grid.Column="1" Style="{StaticResource LargeTextStyle}" TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" VerticalOptions="Center" Text="{Binding PreferenceTitle}"/>
-                                            <CheckBox Grid.Column="2" Style="{StaticResource SettingsCheckboxStyle}" x:Name="{Binding PreferenceBoxName}" IsChecked="{Binding PreferenceState}" CheckedChanged="Preference_Toggled"/>
-                                        </Grid>
+                </StackLayout>
 
-                                    </DataTemplate>
-                                </BindableLayout.ItemTemplate>
-                            </StackLayout>
-
-                        </ViewCell>
-
-                    </sv:Section>
-
-                    <sv:Section>
-                        <sv:CommandCell BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" Title="{Binding Source={StaticResource vm}, Path=tidbitVersion, StringFormat='About - Build Version {0:F0}'}" Description="Built by Vlad Franco and Harrison Lavins."/>
-                    </sv:Section>
-
-                </sv:SettingsView>
-
-            </yummy:PancakeView>
+            </Frame>
 
         </Grid>
-        
+
     </ContentPage.Content>
+    
 </ContentPage>

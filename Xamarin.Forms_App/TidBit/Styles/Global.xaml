@@ -5,21 +5,23 @@
 
     <Color x:Key="TBPurple">#9575cd</Color>
     <Color x:Key="TBPurpleDark">#673ab7</Color>
-    
+
     <!-- Light Theme Colors-->
     <Color x:Key="TextColorLight">#000000</Color>
     <Color x:Key="PageBackgroundLight">#E8E8E8</Color>
+    <Color x:Key="BorderBackgroundLight">#FFFFFF</Color>
     <Color x:Key="AccentTextLight">#393939</Color>
     <Color x:Key="CardBackgroundLight">#FFFFFF</Color>
-    <Color x:Key="TitleColorLight">#F4F4F4</Color>
+    <Color x:Key="TitleColorLight">#000000</Color>
 
-    <!-- Dark THeme Colors-->
+    <!-- Dark Theme Colors-->
     <Color x:Key="TextColorDark">#F4F4F4</Color>
     <Color x:Key="PageBackgroundDark">#121212</Color>
+    <Color x:Key="BorderBackgroundDark">#2C2C2C</Color>
     <Color x:Key="AccentTextDark">#B2ADAD</Color>
-    <Color x:Key="CardBackgroundDark">#2C2C2C</Color>
+    <Color x:Key="CardBackgroundDark">#D92C2C2C</Color>
     <Color x:Key="TitleColorDark">#F4F4F4</Color>
-    
+
     <OnPlatform x:TypeArguments="x:String" x:Key="RegularRobotoFont">
         <On Platform="Android" Value="Roboto-Regular.ttf#Roboto" />
         <On Platform="iOS" Value="Roboto-Regular" />
@@ -47,58 +49,103 @@
 
 
     <!-- Globally Used Label Styles-->
-    <Style TargetType="Label" x:Key="TitleTextStyle">
+
+    <!-- XLHEADER TEXT STYLE-->
+    <Style TargetType="Label" x:Key="XLHeaderTextStyle">
+        <Setter Property="FontSize">
+            <Setter.Value>
+                <OnPlatform x:TypeArguments="x:Double" Android="28" iOS="30" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="XLHeaderTextStyleBold" BasedOn="{StaticResource XLHeaderTextStyle}">
+        <Setter Property="FontFamily" Value="{StaticResource BoldRobotoFont}"/>
+    </Style>
+
+    <!-- HEADER TEXT STYLE-->
+    <Style TargetType="Label" x:Key="HeaderTextStyle">
+        <Setter Property="FontSize">
+            <Setter.Value>
+                <OnPlatform x:TypeArguments="x:Double" Android="24" iOS="26" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="HeaderTextStyleBold" BasedOn="{StaticResource HeaderTextStyle}">
+        <Setter Property="FontFamily" Value="{StaticResource BoldRobotoFont}"/>
+    </Style>
+
+    <!-- XXLARGE TEXT STYLE-->
+    <Style TargetType="Label" x:Key="XXLargeTextStyle">
         <Setter Property="FontSize">
             <Setter.Value>
                 <OnPlatform x:TypeArguments="x:Double" Android="22" iOS="24" />
             </Setter.Value>
         </Setter>
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}"/>
     </Style>
 
-    <Style TargetType="Label" x:Key="TitleTextStyleBold" BasedOn="{StaticResource TitleTextStyle}">
+    <Style TargetType="Label" x:Key="XXLargeTextStyleBold" BasedOn="{StaticResource XXLargeTextStyle}">
         <Setter Property="FontFamily" Value="{StaticResource BoldRobotoFont}"/>
     </Style>
 
-    <Style TargetType="Label" x:Key="LargeTextStyle">
+    <!-- XLARGE TEXT STYLE-->
+    <Style TargetType="Label" x:Key="XLargeTextStyle">
         <Setter Property="FontSize">
             <Setter.Value>
                 <OnPlatform x:TypeArguments="x:Double" Android="20" iOS="22" />
             </Setter.Value>
         </Setter>
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="XLargeTextStyleBold" BasedOn="{StaticResource XLargeTextStyle}">
+        <Setter Property="FontFamily" Value="{StaticResource BoldRobotoFont}"/>
+    </Style>
+
+    <!-- LARGE TEXT STYLE-->
+    <Style TargetType="Label" x:Key="LargeTextStyle">
+        <Setter Property="FontSize">
+            <Setter.Value>
+                <OnPlatform x:TypeArguments="x:Double" Android="18" iOS="20" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}"/>
     </Style>
 
     <Style TargetType="Label" x:Key="LargeTextStyleBold" BasedOn="{StaticResource LargeTextStyle}">
         <Setter Property="FontFamily" Value="{StaticResource BoldRobotoFont}"/>
     </Style>
 
+    <!-- MEDIUM TEXT STYLE-->
     <Style TargetType="Label" x:Key="MediumTextStyle">
         <Setter Property="FontSize">
             <Setter.Value>
                 <OnPlatform x:TypeArguments="x:Double" Android="16" iOS="18" />
             </Setter.Value>
         </Setter>
-
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}"/>
     </Style>
 
     <Style TargetType="Label" x:Key="MediumTextStyleBold" BasedOn="{StaticResource MediumTextStyle}">
         <Setter Property="FontFamily" Value="{StaticResource BoldRobotoFont}"/>
     </Style>
 
+    <!-- SMALL TEXT STYLE-->
     <Style TargetType="Label" x:Key="SmallTextStyle">
         <Setter Property="FontSize">
             <Setter.Value>
                 <OnPlatform x:TypeArguments="x:Double" Android="14" iOS="15" />
             </Setter.Value>
         </Setter>
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}"/>
     </Style>
 
     <Style TargetType="Label" x:Key="SmallTextStyleBold" BasedOn="{StaticResource SmallTextStyle}">
         <Setter Property="FontFamily" Value="{StaticResource BoldRobotoFont}"/>
-    </Style>
-
-    <Style TargetType="Label" x:Key="HeaderLabelStyle" BasedOn="{StaticResource TitleTextStyleBold}">
-        <Setter Property="VerticalOptions" Value="Center"/>
-        <Setter Property="Grid.Column" Value="0"/>
     </Style>
 
     <!-- Repeated Elements-->
@@ -121,14 +168,5 @@
         <Setter Property="Color" Value="{StaticResource TBPurple}"/>
     </Style>
 
-    <!-- Login labels-->
-    <Style TargetType="Label" x:Key="LoginValueStyle" >
-        <Setter Property="FontFamily" Value="{StaticResource RegularRobotoFont}"/>
-        <Setter Property="FontSize">
-            <Setter.Value>
-                <OnPlatform x:TypeArguments="x:Double" Android="12" iOS="12" />
-            </Setter.Value>
-        </Setter>
-    </Style>
 
 </ResourceDictionary>

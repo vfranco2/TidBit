@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using Xamarin.Forms;
 
 namespace TidBit.Views
 {
@@ -8,6 +9,10 @@ namespace TidBit.Views
         {
             InitializeComponent();
         }
-        
+
+        void LayoutSwitchToggled(Object sender, ToggledEventArgs e)
+        {
+            MessagingCenter.Send<FavoritesView>(this, "FavoritesLayoutChanged");
+        }
     }
 }

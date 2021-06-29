@@ -63,7 +63,7 @@ namespace TidBit.Services
                 client.DefaultRequestHeaders.CacheControl.NoStore = true;
                 client.Timeout = new TimeSpan(0, 0, 30);
 
-                var request = "http://35.193.77.38:5000/articles?categories=" + cat;
+                var request = "http://104.197.171.160:5000/articles?categories=" + cat;
                 HttpResponseMessage apiResponse = client.GetAsync(request).Result;
 
                 var apiContent = await apiResponse.Content.ReadAsStringAsync();
@@ -73,7 +73,7 @@ namespace TidBit.Services
             }
             catch (Exception ex)
             {
-                await App.Current.MainPage.DisplayAlert("Warning", string.Format("Error: {0}", ex.Message), "OK");
+                //await App.Current.MainPage.DisplayAlert("Warning", string.Format("Error: {0}", ex.Message), "OK");
             }
 
             return articles;
@@ -93,7 +93,7 @@ namespace TidBit.Services
                 client.DefaultRequestHeaders.CacheControl.NoStore = true;
                 client.Timeout = new TimeSpan(0, 0, 30);
 
-                var request = "http://35.193.77.38:5000/articles?categories=0+1";
+                var request = "http://104.197.171.160:5000/articles?categories=0+1";
                 HttpResponseMessage apiResponse = client.GetAsync(request).Result;
 
                 var apiContent = await apiResponse.Content.ReadAsStringAsync();
@@ -103,7 +103,7 @@ namespace TidBit.Services
             }
             catch (Exception ex)
             {
-                await App.Current.MainPage.DisplayAlert("Warning", string.Format("Error: {0}", ex.Message), "OK");
+                //await App.Current.MainPage.DisplayAlert("Warning", string.Format("Error: {0}", ex.Message), "OK");
             }
 
             return articles;

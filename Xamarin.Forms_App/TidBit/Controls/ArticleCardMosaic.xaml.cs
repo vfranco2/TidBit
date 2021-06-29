@@ -3,9 +3,9 @@ using Xamarin.Forms;
 
 namespace TidBit.Controls
 {
-    public partial class ArticleCard : ContentView
+    public partial class ArticleCardMosaic : ContentView
     {
-        private double _articleCardWidth = (float)DeviceDisplay.MainDisplayInfo.Width * 0.333;
+        private double _articleCardWidth = (float)DeviceDisplay.MainDisplayInfo.Width * 0.157;
         public double ArticleCardWidth
         {
             get { return _articleCardWidth; }
@@ -15,15 +15,16 @@ namespace TidBit.Controls
                 OnPropertyChanged(nameof(ArticleCardWidth));
             }
         }
-        public ArticleCard()
+        public ArticleCardMosaic()
         {
             InitializeComponent();
             SetBlurParent();
-            StandardArticleCardGrid.WidthRequest = ArticleCardWidth;
+            MosaicArticleCardGrid.WidthRequest = ArticleCardWidth;
         }
         void SetBlurParent()
         {
-            CardContentMaterial.AndroidBlurRootElement = StandardArticleCardGrid;
+            MosaicCardContentMaterial.AndroidBlurRootElement = MosaicArticleCardGrid;
+            //MosaicCardContentIcon.AndroidBlurRootElement = ArticleCardGrid;
         }
     }
 }

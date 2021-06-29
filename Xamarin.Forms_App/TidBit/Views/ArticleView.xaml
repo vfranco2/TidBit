@@ -10,13 +10,12 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <StyleSheet Source="../Styles/styles.css"/>
             <vm:ArticleViewModel x:Key="vm"/>
         </ResourceDictionary>
     </ContentPage.Resources>
     
     <ContentPage.Content>
-        <StackLayout BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}">
+        <StackLayout BackgroundColor="{AppThemeBinding Light={StaticResource BorderBackgroundLight}, Dark={StaticResource PageBackgroundDark}}">
 
             <Grid HorizontalOptions="FillAndExpand" Margin="0" Padding="0">
 

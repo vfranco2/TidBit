@@ -5,7 +5,6 @@
              ios:Page.UseSafeArea="True"
              xmlns:vm="clr-namespace:TidBit.ViewModels"
              xmlns:Controls="clr-namespace:TidBit.Controls"
-             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              BackgroundColor="{StaticResource TBPurpleDark}"
              Visual="Material"
              Shell.NavBarIsVisible="False"
@@ -13,7 +12,6 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <StyleSheet Source="../Styles/styles.css"/>
             <vm:HomeViewModel x:Key="vm"/>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -24,15 +22,15 @@
 
             <ScrollView Padding="0" Margin="0">
 
-                <Grid BackgroundColor="{AppThemeBinding Light={StaticResource CardBackgroundLight}, Dark={StaticResource CardBackgroundDark}}" RowDefinitions="Auto,Auto,Auto,Auto">
+                <Grid BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" RowDefinitions="Auto,Auto,Auto,Auto">
 
                     <Grid Grid.Row="0" Padding="12" RowDefinitions="30">
 
-                        <Label TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" VerticalOptions="Center" Style="{StaticResource TitleTextStyle}" Text="Featured"/>
+                        <Label TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" VerticalOptions="Center" Style="{StaticResource HeaderTextStyle}" Text="Featured"/>
 
                     </Grid>
 
-                    <yummy:PancakeView Grid.Row="1" Margin="0" BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" CornerRadius="35" HeightRequest="300" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Frame Grid.Row="1" Margin="0" BackgroundColor="{AppThemeBinding Light={StaticResource BorderBackgroundLight}, Dark={StaticResource BorderBackgroundDark}}" CornerRadius="35" HeightRequest="300" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 
                         <StackLayout Padding="0,0,0,8">
 
@@ -42,12 +40,12 @@
 
                                     <DataTemplate>
 
-                                        <yummy:PancakeView x:Name="WrapperFrame" Margin="0,0,0,8" CornerRadius="16,16,16,16" BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" Padding="0" HeightRequest="270">
-                                            <yummy:PancakeView.GestureRecognizers>
+                                        <Frame x:Name="WrapperFrame" Margin="0,0,0,8" CornerRadius="16" Padding="0" HasShadow="False">
+                                            <Frame.GestureRecognizers>
                                                 <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={StaticResource vm}, Path=ArticleTappedCommand}" CommandParameter="{Binding .}"/>
-                                            </yummy:PancakeView.GestureRecognizers>
+                                            </Frame.GestureRecognizers>
 
-                                            <Grid Margin="0" Padding="0" RowDefinitions="*, 40" ColumnDefinitions="*, 40">
+                                            <Grid Margin="0" Padding="0" RowDefinitions="*, 40" ColumnDefinitions="*, 50">
 
                                                 <Controls:ArticleCard Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0"/>
 
@@ -55,7 +53,7 @@
 
                                             </Grid>
 
-                                        </yummy:PancakeView>
+                                        </Frame>
 
                                     </DataTemplate>
 
@@ -63,49 +61,54 @@
 
                             </CarouselView>
 
-                            <IndicatorView x:Name="indicatorView" IndicatorColor="{StaticResource CardBackgroundLight}" SelectedIndicatorColor="{StaticResource TBPurple}" HorizontalOptions="Center"/>
+                            <IndicatorView x:Name="indicatorView" IndicatorColor="{StaticResource PageBackgroundLight}" SelectedIndicatorColor="{StaticResource TBPurple}" HorizontalOptions="Center"/>
 
                         </StackLayout>
 
-                    </yummy:PancakeView>
+                    </Frame>
 
-                    <Grid Grid.Row="2" Padding="12" RowDefinitions="30">
+                    <Grid Grid.Row="2" Padding="12" RowDefinitions="30" ColumnDefinitions="*, *, Auto">
 
-                        <Label TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" VerticalOptions="Center" Style="{StaticResource TitleTextStyle}" Text="News For You"/>
+                        <Label Grid.Column="0" TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" VerticalOptions="Center" Style="{StaticResource HeaderTextStyle}" Text="Your News"/>
+
+                        <Label Grid.Column="1" TextColor="{AppThemeBinding Light={StaticResource AccentTextLight}, Dark={StaticResource AccentTextDark}}" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalOptions="End" Style="{StaticResource MediumTextStyle}" Text="Mosaic"/>
+
+                        <Switch Grid.Column="2" IsToggled="{Binding Source={StaticResource vm}, Path=SwitchStatus}" Toggled="LayoutSwitchToggled" OnColor="{StaticResource TBPurple}" ThumbColor="{StaticResource TBPurpleDark}" VerticalOptions="Center"/>
 
                     </Grid>
 
-                    <yummy:PancakeView Grid.Row="3" Margin="0" BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}" CornerRadius="35,35,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Frame Grid.Row="3" Margin="0" Padding="0,16" BackgroundColor="{AppThemeBinding Light={StaticResource BorderBackgroundLight}, Dark={StaticResource BorderBackgroundDark}}" CornerRadius="35" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 
-                        <StackLayout x:Name="ArticleListView" HorizontalOptions="FillAndExpand" BindableLayout.ItemsSource="{Binding Source={StaticResource vm}, Path=Articles}" Spacing="0" Margin="0">
+                        <FlexLayout x:Name="ArticleListView" BindableLayout.ItemsSource="{Binding Source={StaticResource vm}, Path=Articles}" Wrap="Wrap" JustifyContent="SpaceEvenly" Direction="Row" Margin="0" HorizontalOptions="FillAndExpand">
 
                             <BindableLayout.ItemTemplate>
 
                                 <DataTemplate>
 
-                                    <!-- Card-->
-                                    <yummy:PancakeView x:Name="WrapperFrame" Margin="0,0,0,8" CornerRadius="16,16,16,16" BackgroundColor="{AppThemeBinding Light={StaticResource CardBackgroundLight}, Dark={StaticResource CardBackgroundDark}}" Padding="0" HeightRequest="270">
-                                        <yummy:PancakeView.GestureRecognizers>
+                                    <Frame x:Name="WrapperFrame" Margin="0,0,0,16" Padding="0" CornerRadius="16" BackgroundColor="{AppThemeBinding Light={StaticResource CardBackgroundLight}, Dark={StaticResource CardBackgroundDark}}" HeightRequest="{Binding Source={StaticResource vm}, Path=CardHeight}">
+                                        <Frame.GestureRecognizers>
                                             <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={StaticResource vm}, Path=ArticleTappedCommand}" CommandParameter="{Binding .}"/>
-                                        </yummy:PancakeView.GestureRecognizers>
+                                        </Frame.GestureRecognizers>
 
-                                        <Grid Margin="0" Padding="0" RowDefinitions="*, 40" ColumnDefinitions="*, 40">
+                                        <Grid Margin="0" Padding="0" RowDefinitions="*,40" ColumnDefinitions="*,40" IsClippedToBounds="False">
 
-                                            <Controls:ArticleCard Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0"/>
+                                            <Controls:ArticleCard Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0" IsVisible="{Binding Source={StaticResource vm}, Path=StandardStatus}"/>
+
+                                            <Controls:ArticleCardMosaic Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0" IsVisible="{Binding Source={StaticResource vm}, Path=SwitchStatus}"/>
 
                                             <ImageButton Grid.Row="1" Grid.Column="1" Source="favoritenav.png" Command="{Binding Source={StaticResource vm}, Path=FavoriteTappedCommand}" CommandParameter="{Binding .}" WidthRequest="30" HeightRequest="30" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="#00FFFFFF"/>
 
                                         </Grid>
 
-                                    </yummy:PancakeView>
+                                    </Frame>
 
                                 </DataTemplate>
 
                             </BindableLayout.ItemTemplate>
 
-                        </StackLayout>
+                        </FlexLayout>
 
-                    </yummy:PancakeView>
+                    </Frame>
 
                 </Grid>
 

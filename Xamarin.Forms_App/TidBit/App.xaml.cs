@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using TidBit.Data;
-using TidBit.Views;
 using Xamarin.Forms;
 
 namespace TidBit
@@ -25,6 +24,8 @@ namespace TidBit
         public App()
         {
             InitializeComponent();
+
+            Sharpnado.MaterialFrame.Initializer.Initialize(loggerEnable: false, debugLogEnable: false);
 
             MainPage = new AppShell();
         }

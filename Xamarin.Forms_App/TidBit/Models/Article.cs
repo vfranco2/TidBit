@@ -17,6 +17,19 @@ namespace TidBit.Models
         camera_alt, 
         bar_chart
     }
+    enum categoryNames
+    {
+        Tech,
+        Auto,
+        Sports,
+        Fashion,
+        Gaming,
+        Film,
+        Food,
+        Music,
+        Photography,
+        Finance
+    }
 
     public class Article
     {
@@ -30,7 +43,13 @@ namespace TidBit.Models
         public string CategoryIcon
         {
             get { return Enum.GetName(typeof(categoryIcons), this.CategoryId); }
-            set {}
+            set { }
+        }
+
+        public string CategoryName
+        {
+            get { return Enum.GetName(typeof(categoryNames), this.CategoryId); }
+            set { }
         }
 
         [JsonProperty("articleTitle")]
