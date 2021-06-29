@@ -1,11 +1,13 @@
-﻿using Xamarin.Essentials;
+﻿using System.Diagnostics;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace TidBit.Controls
 {
     public partial class ArticleCardMosaic : ContentView
     {
-        private double _articleCardWidth = (float)DeviceDisplay.MainDisplayInfo.Width * 0.157;
+        //(Screen width in pixels * Scaler) + Constant = Card width
+        private double _articleCardWidth = ((float)DeviceDisplay.MainDisplayInfo.Width * 0.0277) + 140.12;
         public double ArticleCardWidth
         {
             get { return _articleCardWidth; }
@@ -20,6 +22,12 @@ namespace TidBit.Controls
             InitializeComponent();
             SetBlurParent();
             MosaicArticleCardGrid.WidthRequest = ArticleCardWidth;
+            //Debug.WriteLine("Screen width: " + DeviceDisplay.MainDisplayInfo.Width);
+            //Debug.WriteLine("Card width: " + ArticleCardWidth);
+            //Galaxy s10+
+            //Total Width: 1440, Target: 180
+            //Pixel 3a emulator
+            //Total Width: 1080, Target: 170
         }
         void SetBlurParent()
         {
