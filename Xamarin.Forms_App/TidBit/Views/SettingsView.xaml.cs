@@ -3,17 +3,14 @@ using TidBit.Models;
 using TidBit.ViewModels;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace TidBit.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SettingsView : ContentPage
     {
         public SettingsView()
         {
             InitializeComponent();
-
             BindingContext = new SettingsViewModel();
         }
 

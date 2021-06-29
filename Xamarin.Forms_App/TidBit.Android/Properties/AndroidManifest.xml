@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="3.0.0B" package="com.tidbit.TidBit">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="3.1.0B" package="com.tidbit.TidBit" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="29" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<application android:label="TidBit.Android"></application>
