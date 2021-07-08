@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Foundation;
+using Sharpnado.MaterialFrame.iOS;
 using UIKit;
 using Xamarin.Forms;
 
@@ -25,6 +26,7 @@ namespace TidBit.iOS
             Forms.SetFlags("SwipeView_Experimental");
             global::Xamarin.Forms.Forms.Init();
             global::Xamarin.Forms.FormsMaterial.Init();
+            iOSMaterialFrameRenderer.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
