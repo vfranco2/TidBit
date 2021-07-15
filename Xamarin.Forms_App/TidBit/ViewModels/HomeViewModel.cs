@@ -103,7 +103,6 @@ namespace TidBit.ViewModels
             MessagingCenter.Subscribe<HomeView>(this, "HomeLayoutChanged", (sender) =>
             {
                 LoadMosaicSwitchState();
-                LoadArticles();
             });
         }
 

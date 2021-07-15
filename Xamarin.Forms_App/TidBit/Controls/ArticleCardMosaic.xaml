@@ -16,9 +16,9 @@
 
             </Frame>
             
-            <Frame x:Name="MosaicCardContentIcon" Grid.Row="0" Grid.Column="0" CornerRadius="20" Padding="0" Margin="5" HasShadow="False" BackgroundColor="{StaticResource CardBackgroundDark}">
+            <Frame x:Name="MosaicCardContentIcon" Grid.Row="0" Grid.Column="0" CornerRadius="15" Padding="5" Margin="5" HasShadow="False" BackgroundColor="{StaticResource CardBackgroundDark}">
 
-                <Image Source="{Binding CategoryIcon}" HorizontalOptions="Center" VerticalOptions="Center" Margin="4"/>
+                <Image Source="{Binding CategoryIcon}" HorizontalOptions="Center" VerticalOptions="Center" Margin="0"/>
 
             </Frame>
 

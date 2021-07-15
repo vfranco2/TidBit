@@ -70,7 +70,6 @@ namespace TidBit.ViewModels
             MessagingCenter.Subscribe<FavoritesView>(this, "FavoritesLayoutChanged", (sender) =>
             {
                 LoadMosaicSwitchState();
-                LoadArticles();
             });
         }
 
