@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using TidBit.Controls;
 using TidBit.Models;
 using TidBit.ViewModels.Base;
 using TidBit.Views;
@@ -37,10 +36,9 @@ namespace TidBit.ViewModels
 
         public Command LayoutToggledCommand { get; set; }
 
-        private bool _isRefreshing = false;
-
         public string categoryIcon { get; set; }
 
+        private bool _isRefreshing = false;
         public bool IsRefreshing
         {
             get { return _isRefreshing; }
@@ -53,24 +51,25 @@ namespace TidBit.ViewModels
 
         public ICommand RefreshCommand => new Command(async () => await RefreshDataAsync());
 
-        private bool _switchStatus = true;
-        public bool SwitchStatus
+        private bool _mosaicSwitchStatus = false;
+        public bool MosaicSwitchStatus
         {
-            get { return _switchStatus; }
+            get { return _mosaicSwitchStatus; }
             set
             {
-                _switchStatus = value;
-                OnPropertyChanged(nameof(SwitchStatus));
+                _mosaicSwitchStatus = value;
+                OnPropertyChanged(nameof(MosaicSwitchStatus));
             }
         }
-        private bool _standardStatus = false;
-        public bool StandardStatus
+
+        private bool _listSwitchStatus = true;
+        public bool ListSwitchStatus
         {
-            get { return _standardStatus; }
+            get { return _listSwitchStatus; }
             set
             {
-                _standardStatus = value;
-                OnPropertyChanged(nameof(StandardStatus));
+                _listSwitchStatus = value;
+                OnPropertyChanged(nameof(ListSwitchStatus));
             }
         }
 
@@ -87,11 +86,11 @@ namespace TidBit.ViewModels
 
         public HomeViewModel()
         {
+            LoadMosaicSwitchState();
+
             Articles = new ObservableCollection<Article>();
 
             FeaturedArticles = new ObservableCollection<Article>();
-
-            InitLayout();
 
             LoadFeaturedArticles();
 
@@ -103,53 +102,20 @@ namespace TidBit.ViewModels
 
             MessagingCenter.Subscribe<HomeView>(this, "HomeLayoutChanged", (sender) =>
             {
-                SetLayout();
-                LoadArticles();
+                LoadMosaicSwitchState();
             });
-
         }
 
-        protected async Task InitLayout()
+        protected async Task LoadMosaicSwitchState()
         {
-            string layoutStatus = await SecureStorage.GetAsync("HomeLayout");
-            if (layoutStatus == "Mosaic")
+            bool switchState = Convert.ToBoolean(Preferences.Get("IsHomeMosaicActive", false));
+            MosaicSwitchStatus = switchState;
+            ListSwitchStatus = !switchState;
+            if (switchState == true)
             {
-                SwitchStatus = true;
-                StandardStatus = false;
                 CardHeight = 200;
             }
-            else if (layoutStatus == "Standard")
-            {
-                StandardStatus = true;
-                SwitchStatus = false;
-                CardHeight = 270;
-            }
-            else
-            {
-                await SecureStorage.SetAsync("HomeLayout", "Standard");
-                StandardStatus = true;
-                SwitchStatus = false;
-                CardHeight = 270;
-            }
-        }
-
-        protected async Task SetLayout()
-        {
-            string layoutStatus = SwitchStatus == true ? "Mosaic" : "Standard";
-            await SecureStorage.SetAsync("HomeLayout", layoutStatus);
-            if (layoutStatus == "Mosaic")
-            {
-                SwitchStatus = true;
-                StandardStatus = false;
-                CardHeight = 200;
-            }
-            else
-            {
-                await SecureStorage.SetAsync("HomeLayout", "Standard");
-                StandardStatus = true;
-                SwitchStatus = false;
-                CardHeight = 270;
-            }
+            else { CardHeight = 270; }
         }
 
         protected async Task LoadArticles()

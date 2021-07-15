@@ -5,7 +5,7 @@
              ios:Page.UseSafeArea="True"
              xmlns:vm="clr-namespace:TidBit.ViewModels"
              xmlns:Controls="clr-namespace:TidBit.Controls"
-             BackgroundColor="{StaticResource TBPurpleDark}"
+             BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight}, Dark={StaticResource PageBackgroundDark}}"
              Visual="Material"
              Shell.NavBarIsVisible="False"
              x:Class="TidBit.Views.HomeView">
@@ -30,22 +30,22 @@
 
                     </Grid>
 
-                    <Frame Grid.Row="1" Margin="0" BackgroundColor="{AppThemeBinding Light={StaticResource BorderBackgroundLight}, Dark={StaticResource BorderBackgroundDark}}" CornerRadius="35" HeightRequest="300" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Frame Grid.Row="1" Margin="0" Padding="16" BackgroundColor="{AppThemeBinding Light={StaticResource BorderBackgroundLight}, Dark={StaticResource BorderBackgroundDark}}" CornerRadius="35" HeightRequest="300" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 
                         <StackLayout Padding="0,0,0,8">
 
-                            <CarouselView ItemsSource="{Binding Source={StaticResource vm}, Path=FeaturedArticles}" 
-                                      IndicatorView="indicatorView" PeekAreaInsets="0" VerticalOptions="FillAndExpand" HorizontalOptions="Fill" Loop="False">
+                            <CarouselView ItemsSource="{Binding Source={StaticResource vm}, Path=FeaturedArticles}" Margin="0" BackgroundColor="#00FFFFFF"
+                                      IndicatorView="indicatorView" PeekAreaInsets="0" VerticalOptions="FillAndExpand" HorizontalOptions="Fill" Loop="False" HorizontalScrollBarVisibility="Never">
                                 <CarouselView.ItemTemplate>
 
                                     <DataTemplate>
 
-                                        <Frame x:Name="WrapperFrame" Margin="0,0,0,8" CornerRadius="16" Padding="0" HasShadow="False">
+                                        <Frame x:Name="WrapperFrame" Margin="0,0,0,8" CornerRadius="16" Padding="0" HasShadow="False" IsClippedToBounds="True">
                                             <Frame.GestureRecognizers>
                                                 <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={StaticResource vm}, Path=ArticleTappedCommand}" CommandParameter="{Binding .}"/>
                                             </Frame.GestureRecognizers>
 
-                                            <Grid Margin="0" Padding="0" RowDefinitions="*, 40" ColumnDefinitions="*, 50">
+                                            <Grid Margin="0" Padding="0" RowDefinitions="*, 40" ColumnDefinitions="*, 40">
 
                                                 <Controls:ArticleCard Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0"/>
 
@@ -73,7 +73,7 @@
 
                         <Label Grid.Column="1" TextColor="{AppThemeBinding Light={StaticResource AccentTextLight}, Dark={StaticResource AccentTextDark}}" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalOptions="End" Style="{StaticResource MediumTextStyle}" Text="Mosaic"/>
 
-                        <Switch Grid.Column="2" IsToggled="{Binding Source={StaticResource vm}, Path=SwitchStatus}" Toggled="LayoutSwitchToggled" OnColor="{StaticResource TBPurple}" ThumbColor="{StaticResource TBPurpleDark}" VerticalOptions="Center"/>
+                        <Switch Grid.Column="2" IsToggled="{Binding Source={StaticResource vm}, Path=MosaicSwitchStatus}" Toggled="LayoutSwitchToggled" OnColor="{StaticResource TBPurple}" ThumbColor="{StaticResource TBPurpleDark}" VerticalOptions="Center"/>
 
                     </Grid>
 
@@ -85,16 +85,16 @@
 
                                 <DataTemplate>
 
-                                    <Frame x:Name="WrapperFrame" Margin="0,0,0,16" Padding="0" CornerRadius="16" BackgroundColor="{AppThemeBinding Light={StaticResource CardBackgroundLight}, Dark={StaticResource CardBackgroundDark}}" HeightRequest="{Binding Source={StaticResource vm}, Path=CardHeight}">
+                                    <Frame x:Name="WrapperFrame" Margin="0,0,0,16" Padding="0" CornerRadius="16" BackgroundColor="{AppThemeBinding Light={StaticResource CardBackgroundLight}, Dark={StaticResource CardBackgroundDark}}" HasShadow="False" HeightRequest="{Binding Source={StaticResource vm}, Path=CardHeight}" IsClippedToBounds="True">
                                         <Frame.GestureRecognizers>
                                             <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={StaticResource vm}, Path=ArticleTappedCommand}" CommandParameter="{Binding .}"/>
                                         </Frame.GestureRecognizers>
 
-                                        <Grid Margin="0" Padding="0" RowDefinitions="*,40" ColumnDefinitions="*,40" IsClippedToBounds="False">
+                                        <Grid Margin="0" Padding="0" RowDefinitions="*,40" ColumnDefinitions="*,40" >
 
-                                            <Controls:ArticleCard Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0" IsVisible="{Binding Source={StaticResource vm}, Path=StandardStatus}"/>
+                                            <Controls:ArticleCard Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0" IsVisible="{Binding Source={StaticResource vm}, Path=ListSwitchStatus}"/>
 
-                                            <Controls:ArticleCardMosaic Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0" IsVisible="{Binding Source={StaticResource vm}, Path=SwitchStatus}"/>
+                                            <Controls:ArticleCardMosaic Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0" IsVisible="{Binding Source={StaticResource vm}, Path=MosaicSwitchStatus}"/>
 
                                             <ImageButton Grid.Row="1" Grid.Column="1" Source="favoritenav.png" Command="{Binding Source={StaticResource vm}, Path=FavoriteTappedCommand}" CommandParameter="{Binding .}" WidthRequest="30" HeightRequest="30" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="#00FFFFFF"/>
 
